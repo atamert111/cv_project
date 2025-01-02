@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Oluştur - CVYarat</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>CVYarat</h1>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="form-container">
+        <div class="container">
+            <h2>Adım Adım CV Oluşturun</h2>
+            <p>Her adımı doldurarak profesyonel bir CV oluşturabilirsiniz.</p>
+
+            <!-- Adım İlerleyici -->
+            <div class="stepper">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-title">Kişisel Bilgiler</span>
+                </div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-title">İş Deneyimi</span>
+                </div>
+                <div class="step" data-step="3">
+                    <span class="step-number">3</span>
+                    <span class="step-title">Eğitim</span>
+                </div>
+                <div class="step" data-step="4">
+                    <span class="step-number">4</span>
+                    <span class="step-title">Beceriler</span>
+                </div>
+            </div>
+
+            <!-- Form Adımları -->
+            <form action="/submit" method="POST" class="modern-form" id="form">
+                <!-- Adım 1: Kişisel Bilgiler -->
+                <div class="form-step active" data-step="1">
+                    <h3>Kişisel Bilgiler</h3>
+                    
+                    <!-- Profil Resmi -->
+                    <div class="profile-photo">
+                        <label for="profile_photo">Profil Resmi Yükle: (Opsiyonel)</label>
+                        <img id="profile-preview" src="/static/images/profilresmi.png" alt="Profil Resmi">
+                        <input type="file" id="profile_photo" name="profile_photo" accept="image/*">
+                        <p id="photo-status">Varsayılan Profil Resmi Gösteriliyor.</p>
+                    </div>
+
+                    <!-- Ad ve Soyad -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">Ad (Zorunlu):</label>
+                            <input type="text" id="name" name="name" placeholder="Adınızı girin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="surname">Soyad (Zorunlu):</label>
+                            <input type="text" id="surname" name="surname" placeholder="Soyadınızı girin" required>
+                        </div>
+                    </div>
+
+                    <!-- Telefon ve E-posta -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Telefon (Zorunlu):</label>
+                            <input type="tel" id="phone" name="phone" placeholder="Telefon numaranızı girin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-posta (Zorunlu):</label>
+                            <input type="email" id="email" name="email" placeholder="E-posta adresinizi girin" required>
+                        </div>
+                    </div>
+
+                    <!-- Adres (Opsiyonel) -->
+                    <label for="address">Adres (Opsiyonel):</label>
+                    <input type="text" id="address" name="address" placeholder="Adresinizi girin">
+
+                    <!-- Seçmeli Opsiyonel Alanlar -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="military_service">Askerlik Tecili (Opsiyonel):</label>
+                            <select id="military_service" name="military_service">
+                                <option value="" selected>Seçin</option>
+                                <option value="yapildi">Yapıldı</option>
+                                <option value="yapilmadi">Yapılmadı</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="driver_license">Sürücü Ehliyeti (Opsiyonel):</label>
+                            <select id="driver_license" name="driver_license">
+                                <option value="" selected>Yok</option>
+                                <option value="A1">A1 - Hafif motosikletler</option>
+                                <option value="A2">A2 - Orta derecede motosikletler</option>
+                                <option value="A">A - Büyük motosikletler</option>
+                                <option value="B1">B1 - Dört tekerli hafif motorlu taşıtlar</option>
+                                <option value="B">B - Otomobiller ve kamyonetler</option>
+                                <option value="BE">BE - Otomobiller ve hafif römorklar</option>
+                                <option value="C1">C1 - Hafif kamyonlar</option>
+                                <option value="C1E">C1E - Hafif kamyonlar ve römorklar</option>
+                                <option value="C">C - Kamyonlar</option>
+                                <option value="CE">CE - Kamyonlar ve römorklar</option>
+                                <option value="D1">D1 - Küçük otobüsler</option>
+                                <option value="D1E">D1E - Küçük otobüsler ve römorklar</option>
+                                <option value="D">D - Otobüsler</option>
+                                <option value="DE">DE - Otobüsler ve römorklar</option>
+                                <option value="F">F - Tarım ve iş makineleri</option>
+                                <option value="M">M - Mopedler</option>
+                            </select>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="marital_status">Medeni Hali (Opsiyonel):</label>
+                            <select id="marital_status" name="marital_status">
+                                <option value="" selected>Seçin</option>
+                                <option value="evli">Evli</option>
+                                <option value="bekar">Bekar</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="button" id="nextBtn" class="cta-button">İleri</button>
+                    </div>
+                </div>
+
+                <!-- Diğer Adımlar: İş Deneyimi, Eğitim, Beceriler -->
+                <div class="form-step" data-step="2">
+                    <h3>İş Deneyimi</h3>
+                    <!-- İş Deneyimi Alanları -->
+                </div>
+                <div class="form-step" data-step="3">
+                    <h3>Eğitim</h3>
+                    <!-- Eğitim Alanları -->
+                </div>
+                <div class="form-step" data-step="4">
+                    <h3>Beceriler</h3>
+                    <!-- Beceriler Alanları -->
+                </div>
+            </form>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CVYarat. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/static/js/form.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adım 1: Kişisel Bilgiler</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1>Adım 1: Kişisel Bilgiler</h1>
+        </div>
+    </header>
+    <main class="form-container">
+        <div class="container">
+            <h2>Kişisel Bilgilerinizi Girin</h2>
+            <form action="/step2" method="POST" class="modern-form">
+                <div class="profile-photo">
+                    <label for="profile_photo">Profil Resmi Yükle:</label>
+                    <img id="profile-preview" src="/static/images/profilresmi.png" alt="Profil Resmi">
+                    <input type="file" id="profile_photo" name="profile_photo" accept="image/*">
+                    <p id="photo-status">Varsayılan Profil Resmi Gösteriliyor.</p>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Ad (Zorunlu):</label>
+                        <input type="text" id="name" name="name" placeholder="Adınızı girin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="surname">Soyad (Zorunlu):</label>
+                        <input type="text" id="surname" name="surname" placeholder="Soyadınızı girin" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Telefon (Zorunlu):</label>
+                        <input type="tel" id="phone" name="phone" placeholder="Telefon numaranızı girin" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-posta (Zorunlu):</label>
+                        <input type="email" id="email" name="email" placeholder="E-posta adresinizi girin" required>
+                    </div>
+                </div>
+                <label for="address">Adres (Opsiyonel):</label>
+                <input type="text" id="address" name="address" placeholder="Adresinizi girin">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="military_service">Askerlik Tecili (Opsiyonel):</label>
+                        <select id="military_service" name="military_service">
+                            <option value="" selected>Seçin</option>
+                            <option value="yapildi">Yapıldı</option>
+                            <option value="yapilmadi">Yapılmadı</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="driver_license">Sürücü Ehliyeti (Opsiyonel):</label>
+                        <select id="driver_license" name="driver_license">
+                            <option value="" selected>Yok</option>
+                            <option value="A1">A1 - Hafif motosikletler</option>
+                            <option value="A2">A2 - Orta motosikletler</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="marital_status">Medeni Hali (Opsiyonel):</label>
+                        <select id="marital_status" name="marital_status">
+                            <option value="" selected>Seçin</option>
+                            <option value="evli">Evli</option>
+                            <option value="bekar">Bekar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="submit" class="cta-button">Sonraki Adım</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 CVYarat. Tüm Hakları Saklıdır.</p>
+        </div>
+    </footer>
+    <script src="/static/js/form.js"></script>
+</body>
+</html>
