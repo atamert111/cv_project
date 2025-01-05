@@ -1,0 +1,35 @@
+.action-buttons-project {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.add-project {
+    background-color: #28a745; /* Yeşil */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.add-project:hover {
+    background-color: #218838; /* Daha koyu yeşil */
+}
+
+.remove-project {
+    background-color: #dc3545; /* Kırmızı */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.remove-project:hover {
+    background-color: #c82333; /* Daha koyu kırmızı */
+}

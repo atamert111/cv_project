@@ -1,0 +1,25 @@
+<div class="accordion-header" onclick="toggleAccordion(this)">Referanslar</div>
+<div class="accordion-content" id="references-section">
+    <div class="reference-entry">
+        <div class="inline">
+            <label for="reference_name">Referans Adı:</label>
+            <input type="text" id="reference_name" name="reference_name" placeholder="Adı ve Soyadı" required>
+        </div>
+
+        <div class="inline">
+            <label for="reference_position">Pozisyon:</label>
+            <input type="text" id="reference_position" name="reference_position" placeholder="Pozisyon" required>
+        </div>
+
+        <div class="inline">
+            <label for="reference_contact">İletişim Bilgileri:</label>
+            <input type="text" id="reference_contact" name="reference_contact" placeholder="Telefon veya E-posta" required>
+        </div>
+    </div>
+
+    <!-- + ve - Butonları -->
+    <div class="action-buttons-reference">
+        <button type="button" class="add-reference" onclick="addReference()">+</button>
+        <button type="button" class="remove-reference" onclick="removeReference()">-</button>
+    </div>
+</div>

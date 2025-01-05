@@ -5,8 +5,98 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adım 1: Kişisel Bilgiler</title>
     <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        /* Sarı arka plan rengi */
+        .form-container {
+            background-color: #fff9c4; /* Sarıya yakın */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Yan yana düzenleme */
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        /* Genişlik düzenlemeleri */
+        .form-group {
+            flex: 1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        /* Adres */
+        .address-group {
+            margin-bottom: 20px;
+        }
+
+        /* Profil Fotoğrafı */
+        .profile-photo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-photo img {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #ddd;
+            margin-bottom: 10px;
+        }
+
+        .profile-photo input[type="file"] {
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Butonlar */
+        .form-buttons {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #218838;
+        }
+
+        .error-message {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
+    {% include 'header.html' %}
     <header class="header">
         <div class="container">
             <h1>Adım 1: Kişisel Bilgiler</h1>
@@ -15,61 +105,88 @@
     <main class="form-container">
         <div class="container">
             <h2>Kişisel Bilgilerinizi Girin</h2>
-            <form action="/step2" method="POST" class="modern-form">
+
+            <!-- Hata Mesajı Gösterimi -->
+            {% if error %}
+            <p class="error-message">{{ error }}</p>
+            {% endif %}
+
+            <form action="/step1" method="POST" class="modern-form" enctype="multipart/form-data">
+                <!-- Profil Fotoğrafı -->
                 <div class="profile-photo">
-                    <label for="profile_photo">Profil Resmi Yükle:</label>
-                    <img id="profile-preview" src="/static/images/profilresmi.png" alt="Profil Resmi">
+                    <label for="profile_photo">Profil Resmi Yükle (Opsiyonel):</label>
+                    <img id="profile-preview" 
+                         src="{% if data.profile_photo_uploaded %}{{ data.profile_photo }}{% else %}/static/images/profilresmi.png{% endif %}" 
+                         alt="Profil Resmi">
                     <input type="file" id="profile_photo" name="profile_photo" accept="image/*">
-                    <p id="photo-status">Varsayılan Profil Resmi Gösteriliyor.</p>
+                    <p id="photo-status">
+                        {% if data.profile_photo_uploaded %}
+                            Profil resmi yüklendi.
+                        {% else %}
+                            Profil resmi yüklemeniz önerilir. 
+                        {% endif %}
+                    </p>
                 </div>
+
+                <!-- Ad ve Soyad -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="name">Ad (Zorunlu):</label>
-                        <input type="text" id="name" name="name" placeholder="Adınızı girin" required>
+                        <input type="text" id="name" name="name" value="{{ data.name }}" placeholder="Adınızı girin" required>
                     </div>
                     <div class="form-group">
                         <label for="surname">Soyad (Zorunlu):</label>
-                        <input type="text" id="surname" name="surname" placeholder="Soyadınızı girin" required>
+                        <input type="text" id="surname" name="surname" value="{{ data.surname }}" placeholder="Soyadınızı girin" required>
                     </div>
                 </div>
+
+                <!-- Telefon ve E-posta -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="phone">Telefon (Zorunlu):</label>
-                        <input type="tel" id="phone" name="phone" placeholder="Telefon numaranızı girin" required>
+                        <input type="tel" id="phone" name="phone" value="{{ data.phone }}" placeholder="Telefon numaranızı girin" required>
                     </div>
                     <div class="form-group">
                         <label for="email">E-posta (Zorunlu):</label>
-                        <input type="email" id="email" name="email" placeholder="E-posta adresinizi girin" required>
+                        <input type="email" id="email" name="email" value="{{ data.email }}" placeholder="E-posta adresinizi girin" required>
                     </div>
                 </div>
-                <label for="address">Adres (Opsiyonel):</label>
-                <input type="text" id="address" name="address" placeholder="Adresinizi girin">
+
+                <!-- Adres -->
+                <div class="address-group">
+                    <label for="address">Adres (Opsiyonel):</label>
+                    <input type="text" id="address" name="address" value="{{ data.address }}" placeholder="Adresinizi girin">
+                </div>
+
+                <!-- Seçmeli Alanlar -->
                 <div class="form-row">
                     <div class="form-group">
                         <label for="military_service">Askerlik Tecili (Opsiyonel):</label>
                         <select id="military_service" name="military_service">
                             <option value="" selected>Seçin</option>
-                            <option value="yapildi">Yapıldı</option>
-                            <option value="yapilmadi">Yapılmadı</option>
+                            <option value="yapildi" {% if data.military_service == 'yapildi' %}selected{% endif %}>Yapıldı</option>
+                            <option value="yapilmadi" {% if data.military_service == 'yapilmadi' %}selected{% endif %}>Yapılmadı</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="driver_license">Sürücü Ehliyeti (Opsiyonel):</label>
                         <select id="driver_license" name="driver_license">
                             <option value="" selected>Yok</option>
-                            <option value="A1">A1 - Hafif motosikletler</option>
-                            <option value="A2">A2 - Orta motosikletler</option>
+                            <option value="A1" {% if data.driver_license == 'A1' %}selected{% endif %}>A1 - Hafif motosikletler</option>
+                            <option value="A2" {% if data.driver_license == 'A2' %}selected{% endif %}>A2 - Orta motosikletler</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="marital_status">Medeni Hali (Opsiyonel):</label>
                         <select id="marital_status" name="marital_status">
                             <option value="" selected>Seçin</option>
-                            <option value="evli">Evli</option>
-                            <option value="bekar">Bekar</option>
+                            <option value="evli" {% if data.marital_status == 'evli' %}selected{% endif %}>Evli</option>
+                            <option value="bekar" {% if data.marital_status == 'bekar' %}selected{% endif %}>Bekar</option>
                         </select>
                     </div>
                 </div>
+
+                <!-- Buton -->
                 <div class="form-buttons">
                     <button type="submit" class="cta-button">Sonraki Adım</button>
                 </div>
@@ -81,6 +198,5 @@
             <p>&copy; 2025 CVYarat. Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
-    <script src="/static/js/form.js"></script>
 </body>
 </html>

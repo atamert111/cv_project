@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Özet Sayfası</title>
+</head>
+<body>
+    <h1>CV Özeti</h1>
+    <h2>Kişisel Bilgiler</h2>
+    <ul>
+        <li>Ad: {{ step1_data.name }}</li>
+        <li>Soyad: {{ step1_data.surname }}</li>
+        <li>Telefon: {{ step1_data.phone }}</li>
+        <li>E-posta: {{ step1_data.email }}</li>
+    </ul>
+
+    <h2>İş Deneyimleri</h2>
+    <ul>
+        {% for job in step2_data.jobs %}
+        <li>{{ job }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Eğitim</h2>
+    <ul>
+        {% for edu in step2_data.education %}
+        <li>{{ edu }}</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Beceriler</h2>
+    <ul>
+        {% for skill, level in step2_data.skills.items() %}
+        <li>{{ skill }}: {{ level }}/5</li>
+        {% endfor %}
+    </ul>
+
+    <a href="{{ url_for('result_page.result') }}">CV'yi Görüntüle</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<div class="accordion-header" onclick="toggleAccordion(this)">Diller</div>
+<div class="accordion-content" id="skills-section">
+    <div class="skill-entry">
+        <div class="inline">
+            <label for="languageinfo_name">Dil</label>
+            <input type="text" id="languageinfo_name" name="languageinfo_name" placeholder="Dil" required>
+        </div>
+
+        <div class="inline">
+            <label for="languageinfo_name">Bilgi Seviyesi:</label>
+            <select id="softskilanguageinfo_namell_name" name="languageinfo_name" required>
+                <option value="">Seçiniz</option>
+                <option value="1">1 - Çok Az</option>
+                <option value="2">2</option>
+                <option value="3">3 - Orta</option>
+                <option value="4">4</option>
+                <option value="5">5 - Çok İyi</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- + ve - Butonları -->
+    <div class="action-buttons-skill">
+        <button type="button" class="add-skill" onclick="addSkill()">+</button>
+        <button type="button" class="remove-skill" onclick="removeSkill()">-</button>
+    </div>
+</div>

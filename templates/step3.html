@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step 3 - Şablon Seçimi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .header {
+            margin-bottom: 20px;
+        }
+
+        .carousel {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .carousel img {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            display: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .carousel-controls {
+            position: absolute;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            font-size: 18px;
+            line-height: 40px;
+            text-align: center;
+        }
+
+        .carousel-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .form-container {
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Step 3 - Şablon Seçimi</h1>
+            <p>Beğendiğiniz şablonu seçmek için okları kullanın.</p>
+        </div>
+
+        <div class="carousel">
+            <div class="carousel-controls">
+                <button id="prevBtn">&lt;</button>
+                <button id="nextBtn">&gt;</button>
+            </div>
+            <img src="/static/templates/template1.png" alt="Şablon 1" class="active" data-template="1">
+            <img src="/static/templates/template2.png" alt="Şablon 2" data-template="2">
+            <img src="/static/templates/template3.png" alt="Şablon 3" data-template="3">
+        </div>
+
+        <div class="form-container">
+            <form method="POST">
+                <input type="hidden" id="selectedTemplate" name="template" value="1">
+                <button type="submit" class="cta-button">Sonraki</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.carousel img');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const selectedTemplate = document.getElementById('selectedTemplate');
+            let currentIndex = 0;
+
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.remove('active');
+                    if (index === currentIndex) {
+                        img.classList.add('active');
+                        selectedTemplate.value = img.dataset.template; // Seçili şablonu güncelle
+                    }
+                });
+            }
+
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length; // Döngüsel olarak sola geç
+                updateCarousel();
+            });
+
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length; // Döngüsel olarak sağa geç
+                updateCarousel();
+            });
+
+            // Sayfa yüklendiğinde ilk şablon otomatik olarak aktif olur
+            updateCarousel();
+        });
+    </script>
+</body>
+</html>
