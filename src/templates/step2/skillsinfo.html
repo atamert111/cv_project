@@ -1,0 +1,27 @@
+<div class="accordion-header" onclick="toggleAccordion(this)">Beceriler</div>
+<div class="accordion-content" id="skills-section">
+    <div class="skill-entry">
+        <div class="inline">
+            <label for="skill_name">Beceri:</label>
+            <input type="text" id="skill_name" name="skill_name" placeholder="Matlab, C++, Excel vb. " required>
+        </div>
+
+        <div class="inline">
+            <label for="skill_level">Bilgi Seviyesi:</label>
+            <select id="skill_level" name="skill_level" required>
+                <option value="">Seçiniz</option>
+                <option value="1">1 - Çok Az</option>
+                <option value="2">2</option>
+                <option value="3">3 - Orta</option>
+                <option value="4">4</option>
+                <option value="5">5 - Çok İyi</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- + ve - Butonları -->
+    <div class="action-buttons-skill">
+        <button type="button" class="add-skill" onclick="addSkill()">+</button>
+        <button type="button" class="remove-skill" onclick="removeSkill()">-</button>
+    </div>
+</div>

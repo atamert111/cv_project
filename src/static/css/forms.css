@@ -1,0 +1,32 @@
+/* Form Alanları */
+input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+input:focus, select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Form Düzeni */
+.form-container {
+    background-color: #007bff; /* Form arka plan mavi */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}

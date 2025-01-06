@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sonuç - Özet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #444;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .section ul li {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .btn-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+
+        .empty {
+            font-style: italic;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Sonuç Özeti</h1>
+
+        <!-- Kişisel Bilgiler -->
+        <div class="section">
+            <h2>Kişisel Bilgiler</h2>
+            <ul>
+                <li>Ad: {{ step1_data.get('name', 'Bilinmiyor') }}</li>
+                <li>Soyad: {{ step1_data.get('surname', 'Bilinmiyor') }}</li>
+                <li>Telefon: {{ step1_data.get('phone', 'Bilinmiyor') }}</li>
+                <li>E-posta: {{ step1_data.get('email', 'Bilinmiyor') }}</li>
+                <li>Medeni Hali: {{ step1_data.get('marital_status', 'Bilinmiyor') }}</li>
+                <li>Ehliyet: {{ step1_data.get('driver_license', 'Bilinmiyor') }}</li>
+                <li>Profil Resmi: 
+                    {% if step1_data.get('profile_photo') %}
+                        <a href="{{ step1_data.get('profile_photo') }}" target="_blank">Resmi Görüntüle</a>
+                    {% else %}
+                        <span class="empty">Yüklenmedi</span>
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+
+        <!-- İş Deneyimleri -->
+        <div class="section">
+            <h2>İş Deneyimleri</h2>
+            {% if step2_data.get('job_experiences') %}
+                <ul>
+                    {% for job in step2_data.get('job_experiences') %}
+                        <li>
+                            <strong>Şirket:</strong> {{ job.get('company_name', 'Belirtilmedi') }}<br>
+                            <strong>Pozisyon:</strong> {{ job.get('position', 'Belirtilmedi') }}<br>
+                            <strong>Dönem:</strong> {{ job.get('start_date', 'Belirtilmedi') }} - {{ job.get('end_date', 'Belirtilmedi') }}<br>
+                            <strong>Açıklama:</strong> {{ job.get('description', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz iş deneyimi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Eğitim -->
+        <div class="section">
+            <h2>Eğitim</h2>
+            {% if step2_data.get('education') %}
+                <ul>
+                    {% for edu in step2_data.get('education') %}
+                        <li>
+                            <strong>Okul:</strong> {{ edu.get('school_name', 'Belirtilmedi') }}<br>
+                            <strong>Fakülte:</strong> {{ edu.get('faculty_name', 'Belirtilmedi') }}<br>
+                            <strong>Derece:</strong> {{ edu.get('degree', 'Belirtilmedi') }}<br>
+                            <strong>Bölüm:</strong> {{ edu.get('field_of_study', 'Belirtilmedi') }}<br>
+                            <strong>Dönem:</strong> {{ edu.get('start_date', 'Belirtilmedi') }} - {{ edu.get('end_date', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz eğitim bilgisi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Sertifikalar -->
+        <div class="section">
+            <h2>Sertifikalar</h2>
+            {% if step2_data.get('certificates') %}
+                <ul>
+                    {% for cert in step2_data.get('certificates') %}
+                        <li>
+                            <strong>Sertifika:</strong> {{ cert.get('name', 'Belirtilmedi') }}<br>
+                            <strong>Tarih:</strong> {{ cert.get('date', 'Belirtilmedi') }}<br>
+                            <strong>Kuruluş:</strong> {{ cert.get('issuer', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz sertifika bilgisi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Projeler -->
+        <div class="section">
+            <h2>Projeler</h2>
+            {% if step2_data.get('projects') %}
+                <ul>
+                    {% for project in step2_data.get('projects') %}
+                        <li>
+                            <strong>Proje:</strong> {{ project.get('name', 'Belirtilmedi') }}<br>
+                            <strong>Açıklama:</strong> {{ project.get('description', 'Belirtilmedi') }}<br>
+                            <strong>Tarih:</strong> {{ project.get('date', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz proje bilgisi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Diller -->
+        <div class="section">
+            <h2>Diller</h2>
+            {% if step2_data.get('languages') %}
+                <ul>
+                    {% for lang in step2_data.get('languages') %}
+                        <li>
+                            <strong>Dil:</strong> {{ lang.get('name', 'Belirtilmedi') }}<br>
+                            <strong>Seviye:</strong> {{ lang.get('level', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz dil bilgisi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Şablon Seçimi -->
+        <div class="section">
+            <h2>Seçilen Şablon</h2>
+            <p>
+                Şablon: 
+                {% if step3_data.get('template') %}
+                    Şablon {{ step3_data.get('template') }}
+                {% else %}
+                    <span class="empty">Henüz seçilmedi.</span>
+                {% endif %}
+            </p>
+        </div>
+
+        <form method="POST">
+            <button type="submit" class="cta-button">PDF Oluştur</button>
+        </form>
+
+        <!-- <div class="btn-container">
+            <a href="/pdf" class="cta-button">PDF Oluştur</a>
+        </div> -->
+    </div>
+</body>
+</html>

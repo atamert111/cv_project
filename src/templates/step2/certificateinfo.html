@@ -1,0 +1,25 @@
+<div class="accordion-header" onclick="toggleAccordion(this)">Sertifikalar</div>
+<div class="accordion-content" id="certificate-section">
+    <div class="certificate-entry">
+        <div class="inline">
+            <label for="certificate_name">Sertifika Adı:</label>
+            <input type="text" id="certificate_name" name="certificate_name" placeholder="Sertifika adı" required>
+        </div>
+
+        <div class="inline">
+            <label for="certificate_year">Sertifika Yılı (Opsiyonel):</label>
+            <input type="number" id="certificate_year" name="certificate_year" placeholder="YYYY" min="1900" max="2099">
+        </div>
+
+        <div class="inline">
+            <label for="certificate_place">Alındığı Yer (Opsiyonel):</label>
+            <input type="text" id="certificate_place" name="certificate_place" placeholder="Alındığı yer">
+        </div>
+    </div>
+
+    <!-- + ve - Butonları -->
+    <div class="action-buttons-certificate">
+        <button type="button" class="add-certificate" onclick="addCertificate()">+</button>
+        <button type="button" class="remove-certificate" onclick="removeCertificate()">-</button>
+    </div>
+</div>

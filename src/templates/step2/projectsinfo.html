@@ -1,0 +1,30 @@
+<div class="accordion-header" onclick="toggleAccordion(this)">Projeler</div>
+<div class="accordion-content" id="projects-section">
+    <div class="project-entry">
+        <div class="inline">
+            <label for="project_name">Proje Adı:</label>
+            <input type="text" id="project_name" name="project_name" placeholder="Proje adı" required>
+        </div>
+
+        <div class="inline">
+            <label for="project_date">Proje Tarihi:</label>
+            <input type="date" id="project_date" name="project_date" required>
+        </div>
+
+        <div class="inline">
+            <label for="project_description">Proje Açıklaması (Opsiyonel):</label>
+            <textarea id="project_description" name="project_description" placeholder="Proje açıklaması"></textarea>
+        </div>
+
+        <div class="inline">
+            <label for="project_link">Proje Linki (Opsiyonel):</label>
+            <input type="url" id="project_link" name="project_link" placeholder="GitHub veya başka bir link">
+        </div>
+    </div>
+
+    <!-- + ve - Butonları -->
+    <div class="action-buttons-project">
+        <button type="button" class="add-project" onclick="addProject()">+</button>
+        <button type="button" class="remove-project" onclick="removeProject()">-</button>
+    </div>
+</div>
