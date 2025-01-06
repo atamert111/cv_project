@@ -28,7 +28,7 @@
 
         /* Sol Kırmızı Alan */
         .left-section {
-            background-color: #d32f2f;
+            background-color: #f56a6a;
             color: white;
             width: 30%;
             height: 100vh;
@@ -183,6 +183,7 @@
             top: 50%; /* Dikey hizalama */
             transform: translateY(-50%); /* Dikey ortalama */
         }
+
         .right-section h2#projects::before {
             content: '';
             display: inline-block;
@@ -200,6 +201,7 @@
             top: 50%; /* Dikey hizalama */
             transform: translateY(-50%); /* Dikey ortalama */
         }
+
         .right-section h2#certificates::before {
             content: '';
             display: inline-block;
@@ -311,49 +313,49 @@
                         <img src="file:///Users/atamerterdihan/cv_project/static/images/nameicon.png" alt="Icon" class="icon">
                         <div>
                             <strong>Ad:</strong>
-                            <div class=\"name-text\" style=\"margin-left: -8px;\">Ayla Candan</div>
+                            <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_name}}</div>
                         </div>
                     </li>
                     <li class="name-container">
                         <img src="file:///Users/atamerterdihan/cv_project/static/images/phone.png" alt="Icon" class="icon">
                         <div>
                             <strong>Tel:</strong>
-                            <div class=\"name-text\" style=\"margin-left: -8px;\">+90 212 123 45 67</div>
+                            <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_phone}}</div>
                         </div>
                     </li>
                     <li class="name-container">
                         <img src="file:///Users/atamerterdihan/cv_project/static/images/mail.png" alt="Icon" class="icon">
                         <div>
                             <strong>E-posta:</strong>
-                            <div class=\"name-text\" style=\"margin-left: -8px;\">ornek@cv.com.tr</div>
+                            <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_email}}</div>
                         </div>
                     </li>
                     <li class="name-container">
                         <img src="file:///Users/atamerterdihan/cv_project/static/images/location.png" alt="Icon" class="icon">
                         <div>
                             <strong>Adres</Address>:</strong>
-                            <div class=\"name-text\" style=\"margin-left: -8px;\">İstanbul</div>
+                            <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_address}}</div>
                         </div>
                     </li>
                     <li class="name-container">
                         <img src="file:///Users/atamerterdihan/cv_project/static/images/ehliyet.png" alt="Icon" class="icon">
                         <div>
                             <strong>Ehliyet</Address>:</strong>
-                            <div class=\"name-text\" style=\"margin-left: -8px;\">B Sınıfı</div>
+                            <div class=\"name-text\" style=\"margin-left: -8px;\">{{ driver_license}}</div>
                         </div>
                     </li>
                     <li class="name-container">
                         <img src="file:///Users/atamerterdihan/cv_project/static/images/military.png" alt="Icon" class="icon">
                         <div>
                             <strong>Askerlik</Address>:</strong>
-                            <div class=\"name-text\" style=\"margin-left: -8px;\">Tecilli</div>
+                            <div class=\"name-text\" style=\"margin-left: -8px;\">military_service_status</div>
                         </div>
                     </li>
                     <li class="name-container">
                         <img src="file:///Users/atamerterdihan/cv_project/static/images/maried.png" alt="Icon" class="icon">
                         <div>
                             <strong>Medeni Hal:</Address>:</strong>
-                            <div class=\"name-text\" style=\"margin-left: -8px;\">Evli</div>
+                            <div class=\"name-text\" style=\"margin-left: -8px;\">marital_status</div>
                         </div>
                     </li>
                 </ul>
@@ -361,127 +363,122 @@
             <div class="skills">
                 <h3>DİLLER</h3>
                 <ul>
-                    <ul>
-                        <li style="display: flex; justify-content: space-between;">
-                            <span class="text">İngilizce:</span>
+                    {% for language in languages %}
+                    <li style="display: flex; justify-content: space-between;">
+                        <span class="text">{{ language.name }}:</span>
+                        <span class="stars">
+                            {% for _ in range(language.level|int) %}
+                                ⭐
+                            {% endfor %}
                         </span>
-                            <span class="stars">⭐⭐⭐⭐⭐</span>
-
-                        </li>
-                        <li style="display: flex; justify-content: space-between;">
-                            <span class="text">Frnasızca:</span>
-                        </span>
-                            <span class="stars">⭐⭐⭐</span>
-                        </li>
-                    </ul>
+                    </li>
+                    {% endfor %}
                 </ul>
                 <h3>BECERİLER</h3>
                 <ul>
+                    {% for skill in technical_skills %}
                     <li style="display: flex; justify-content: space-between;">
-                        <span class="text">MatLab:</span>
-                    </span>
-                        <span class="stars">⭐⭐⭐⭐⭐</span>
+                        <span class="text">{{ skill.name }}:</span>
+                        <span class="stars">
+                            {% for _ in range(skill.level|int) %}
+                                ⭐
+                            {% endfor %}
+                        </span>
                     </li>
-                    <li style="display: flex; justify-content: space-between;">
-                        <span class="text">c++:</span>
-                    </span>
-                        <span class="stars">⭐⭐⭐⭐⭐⭐</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between;">
-                        <span class="text">Excel:</span>
-                    </span>
-                        <span class="stars">⭐⭐⭐⭐⭐⭐⭐⭐⭐</span>
-                    </li>
+                    {% endfor %}
                 </ul>
                 <h3>YETENEKLER</h3>
                 <ul>
+                    {% for skill in soft_skills %}
                     <li style="display: flex; justify-content: space-between;">
-                        <span class="text">İletişim:</span>
-                    </span>
-                        <span class="stars">⭐⭐⭐⭐⭐⭐</span>
+                        <span class="text">{{ skill.name }}:</span>
+                        <span class="stars">
+                            {% for _ in range(skill.level|int) %}
+                                ⭐
+                            {% endfor %}
+                        </span>
                     </li>
-                    <li style="display: flex; justify-content: space-between;">
-                        <span class="text">Empati:</span>
-                    </span>
-                        <span class="stars">⭐⭐⭐⭐⭐⭐⭐⭐</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between;">
-                        <span class="text">Zaman Yönetimi:</span>
-                    </span>
-                        <span class="stars">⭐⭐⭐⭐⭐⭐</span>
-                    </li>
-                </ul>
-                
+                    {% endfor %}
+                </ul>                
             </div>
         </div>
 
         <!-- Sağ Beyaz Alan -->
         <div class="right-section">
-            <div class="name">AYLA CANDAN</div>
+            <div class="name">{{ personal_info_name | upper }} </div>
             <p>Dinamik ve deneyimli bir kardiyoloji doktoru olarak hastaların sağlığını ön planda tutan, etkili iletişim ve çözüm odaklılık ile öne çıkan bir sağlık profesyoneliyim. Araştırmaya ve ekip çalışmasına yatkınlığım sayesinde sağlık sektöründe fark yaratmaya devam ediyorum.</p>
 
             <h2 id="experience">Deneyim</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>2018 - 2023</h3>
-                    <p><strong>Kardiyoloji Doktoru</strong> - Medika Hastanesi, İzmir</p>
-                    <p>Hastane başvuran hastaların kardiyovasküler rahatsızlıklarını teşhis ve tedavi ettim.</p>
+                <div class="timeline">
+                    {% set last_company_name = None %}
+                    {% for job in job_experiences %}
+                        {% if last_company_name != job['experiences.company_name'] %}
+                            {% if not loop.first %}
+                                </div> <!-- Önceki şirketin kapatma div'i -->
+                            {% endif %}
+                            <div class="timeline-item">
+                                <h3>{{ job['experiences.start_date'] }} - {{ job['experiences.end_date'] }}</h3>
+                                <p><strong>{{ job['experiences.position'] }}</strong> - {{ job['experiences.company_name'] }}</p>
+                                <p>{{ job['experiences.description'] }}</p>
+                                {% set last_company_name = job['experiences.company_name'] %}
+                        {% else %}
+                            <!-- Aynı şirket için yeni pozisyon -->
+                            <div style="margin-left: 20px;">
+                                <h3>{{ job['experiences.start_date'] }} - {{ job['experiences.end_date'] }}</h3>
+                                <p><strong>{{ job['experiences.position'] }}</strong></p>
+                                <p>{{ job['experiences.description'] }}</p>
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                    </div> <!-- Son şirketin kapatma div'i -->
                 </div>
-                <div class="timeline-item">
-                    <h3>2017 - 2018</h3>
-                    <p><strong>İntörn Doktor</strong> - Ege Üniversitesi, İzmir</p>
-                    <p>Haftanın iki günü acil serviste görev aldım.</p>
-                </div>
-            </div>
             <div style="width: 100%; height: 1px; background-color: #292727; margin: 20px 0;"></div>
             <h2 id="education">Eğitim</h2>
                 <div class="timeline">
+                    {% for edu in education %}
                     <div class="timeline-item">
-                        <h3>2018 - 2023</h3>
-                        <p><strong>Makine Mühendisliği</strong> - Ege Üniversitesi, İzmir</p>
-                        <p>Mühendislik fakültesi - Lisans - 2.9</p>
+                        <h3>{{ edu['start_date'] }} - {{ edu['end_date'] }}</h3>
+                        <p><strong>{{ edu['field_of_study'] }}</strong> - {{ edu['education.school_name'] }}</p>
+                        <p>{{ edu['faculty_name'] }} - {{ edu['degree'] }}{% if edu['degree'] == 'Lisans' %} - {{ edu['gpa']|default('') }}{% endif %}</p>
                     </div>
-                    <div class="timeline-item">
-                        <h3>2017 - 2018</h3>
-                        <p><strong>Matemetik Fen Bölümü</strong> - Bilgi Anadolu Lisesi, İzmir</p>
-                        <p> Lise - 80.4/100</p>
-                    </div>
-                    
+                    {% endfor %}
                 </div>
                 <div style="width: 100%; height: 1px; background-color: #292727; margin: 20px 0;"></div>
-            <h2 id="projects">Projeler</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <p><strong>Kalp Hastalıkları Araştırması:</strong> Türkiye'de yapılan kapsamlı bir araştırma.</p>
+                <h2 id="projects">Projeler</h2>
+                <div class="timeline">
+                    {% for project in projects %}
+                    <div class="timeline-item">
+                        <p><strong>{{ project.name }}:</strong> {{ project.description }}</p>
+                    </div>
+                    {% endfor %}
                 </div>
-                <div class="timeline-item">
-                    <p><strong>Toplum Sağlığı Projesi:</strong> İzmir'de yürütülen bir sosyal sorumluluk projesi.</p>
-                </div>
-            </div>
-            <div style="width: 100%; height: 1px; background-color: #292727; margin: 20px 0;"></div>
+                <div style="width: 100%; height: 1px; background-color: #292727; margin: 20px 0;"></div>                
             <h2 id="certificates">Sertifikalar</h2>
             <div class="timeline">
+                {% for certificate in certificates %}
                 <div class="timeline-item">
-                    <p><strong>İleri Yaşam Desteği:</strong> 2020</p>
+                    <p><strong>{{ certificate.name }}:</strong> {{ certificate.date }}</p>
                 </div>
-                <div class="timeline-item">
-                    <p><strong>Kardiyoloji Güncellemeleri:</strong> 2022</p>
-                </div>
+                {% endfor %}
             </div>
             <div style="width: 100%; height: 1px; background-color: #292727; margin: 20px 0;"></div>
             <h2 id="references">Referanslar</h2>
             <div class="timeline">
+                {% for reference in references %}
                 <div class="timeline-item">
-                    <p><strong>Ali Yılmaz</strong> Yeditepe Üniversitesi</p>
-                    <p> Öğretim Görevlisi</p>
+                    <p><strong>{{ reference.name }}</strong> {{ reference.contact }}</p>
+                    <p>{{ reference.relation }}</p>
                 </div>
-                <div class="timeline-item">
-                    <p><strong>Ayşe Kınak</strong> MEg AŞ</p>
-                    <p> İK Director</p>
-                </div>
-            </div>
-
+                {% endfor %}
+            </div>            
         </div>
     </div>
-</body>
-</html>
+    </body>
+    </html>
+
+
+
+
+
+
+    

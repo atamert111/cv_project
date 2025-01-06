@@ -1,12 +1,10 @@
-from flask import Flask, render_template, session, redirect, url_for, request, send_file
-import pdfkit
+from flask import Flask, render_template, session, send_file
+from weasyprint import HTML
 import io
 
+# Flask uygulaması
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Session için gerekli
-
-# PDF oluşturma yapılandırması
-PDFKIT_CONFIG = pdfkit.configuration(wkhtmltopdf='/usr/local/bin/wkhtmltopdf')  # `wkhtmltopdf` yolunu kontrol edin
+app.secret_key = 'supersecretkey'
 
 # Blueprint importları
 from main import main_page
@@ -27,13 +25,13 @@ app.register_blueprint(finalize_page, url_prefix='/finalize')
 @app.route('/pdf')
 def generate_pdf():
     """
-    Tüm session verilerinden bir CV PDF oluşturur.
+    Session'dan gelen verilerle bir CV PDF oluşturur ve tarayıcıda görüntüler.
     """
-    # Tüm session verilerini topla
+    # Session'dan verileri topla
     step1_data = session.get('step1_data', {})
     step2_data = session.get('step2_data', {})
     step3_data = session.get('step3_data', {})
-    
+
     # Tüm verileri birleştir
     data = {
         'personal_info': step1_data,
@@ -47,20 +45,21 @@ def generate_pdf():
         'summary': step3_data.get('summary', '')
     }
 
-    # HTML'den PDF oluşturma
-    options = {
-        'enable-local-file-access': None
-    }
-    rendered_html = render_template('cv.template.html', **data)
-    pdf = pdfkit.from_string(rendered_html, False, configuration=PDFKIT_CONFIG, options=options)
+    # HTML'i oluştur
+    rendered_html = render_template('sample.html', **data)
 
-    # PDF'yi indirme olarak döndür
-    return send_file(
-        io.BytesIO(pdf),
-        mimetype='application/pdf',
-        as_attachment=True,
-        download_name='cv.pdf'
-    )
+    # WeasyPrint ile PDF oluştur
+    try:
+        pdf = HTML(string=rendered_html).write_pdf()
+        return send_file(
+            io.BytesIO(pdf),
+            mimetype='application/pdf',
+            as_attachment=False,  # Tarayıcıda açılmasını sağlar
+            download_name='cv.pdf'
+        )
+    except Exception as e:
+        return f"PDF oluşturulurken bir hata oluştu: {e}"
 
+# Uygulamayı çalıştır
 if __name__ == '__main__':
     app.run(debug=True)

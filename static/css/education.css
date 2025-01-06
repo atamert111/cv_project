@@ -39,7 +39,7 @@
 
 .three-column {
     display: grid;
-    grid-template-columns: repeat(3, 5fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
 }
 .inline label, .inline select, .inline input {

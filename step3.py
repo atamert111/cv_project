@@ -4,8 +4,8 @@ step3_page = Blueprint('step3_page', __name__)
 
 @step3_page.route('/', methods=['GET', 'POST'])
 def step3():
-    if 'step2_data' not in session:
-        return redirect(url_for('step2_page.step2'))  # Step 2'ye geri yönlendirme
+    #if 'step2_data' not in session:
+     #   return redirect(url_for('step2_page.step2'))  # Step 2'ye geri yönlendirme
 
     if request.method == 'POST':
         # Step 3'ten gelen verileri session'a kaydet

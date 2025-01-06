@@ -38,13 +38,14 @@ def step1():
         session['step1_data'] = {
             'name': request.form.get('name'),
             'surname': request.form.get('surname'),
-            'phone': request.form.get('phone'),
-            'email': email,
-            'address': request.form.get('address'),
-            'military_service': request.form.get('military_service'),
+            'personal_info_name': f"{request.form.get('name')} {request.form.get('surname')}",
+            'personal_info.phone': request.form.get('phone'),
+            'personal_info.email': email,
+            'personal_info.address': request.form.get('address'),
+            'military_service_status': request.form.get('military_service'),
             'driver_license': request.form.get('driver_license'),
             'marital_status': request.form.get('marital_status'),
-            'profile_photo': profile_photo_path,
+            'personal_info.profile_photo': profile_photo_path,
             'profile_photo_uploaded': profile_photo_uploaded,  # Fotoğraf durumu
         }
 

@@ -90,6 +90,8 @@
                 <li>Soyad: {{ step1_data.get('surname', 'Bilinmiyor') }}</li>
                 <li>Telefon: {{ step1_data.get('phone', 'Bilinmiyor') }}</li>
                 <li>E-posta: {{ step1_data.get('email', 'Bilinmiyor') }}</li>
+                <li>Medeni Hali: {{ step1_data.get('marital_status', 'Bilinmiyor') }}</li>
+                <li>Ehliyet: {{ step1_data.get('driver_license', 'Bilinmiyor') }}</li>
                 <li>Profil Resmi: 
                     {% if step1_data.get('profile_photo') %}
                         <a href="{{ step1_data.get('profile_photo') }}" target="_blank">Resmi Görüntüle</a>
@@ -136,6 +138,59 @@
                 </ul>
             {% else %}
                 <p class="empty">Henüz eğitim bilgisi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Sertifikalar -->
+        <div class="section">
+            <h2>Sertifikalar</h2>
+            {% if step2_data.get('certificates') %}
+                <ul>
+                    {% for cert in step2_data.get('certificates') %}
+                        <li>
+                            <strong>Sertifika:</strong> {{ cert.get('name', 'Belirtilmedi') }}<br>
+                            <strong>Tarih:</strong> {{ cert.get('date', 'Belirtilmedi') }}<br>
+                            <strong>Kuruluş:</strong> {{ cert.get('issuer', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz sertifika bilgisi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Projeler -->
+        <div class="section">
+            <h2>Projeler</h2>
+            {% if step2_data.get('projects') %}
+                <ul>
+                    {% for project in step2_data.get('projects') %}
+                        <li>
+                            <strong>Proje:</strong> {{ project.get('name', 'Belirtilmedi') }}<br>
+                            <strong>Açıklama:</strong> {{ project.get('description', 'Belirtilmedi') }}<br>
+                            <strong>Tarih:</strong> {{ project.get('date', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz proje bilgisi girilmedi.</p>
+            {% endif %}
+        </div>
+
+        <!-- Diller -->
+        <div class="section">
+            <h2>Diller</h2>
+            {% if step2_data.get('languages') %}
+                <ul>
+                    {% for lang in step2_data.get('languages') %}
+                        <li>
+                            <strong>Dil:</strong> {{ lang.get('name', 'Belirtilmedi') }}<br>
+                            <strong>Seviye:</strong> {{ lang.get('level', 'Belirtilmedi') }}
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p class="empty">Henüz dil bilgisi girilmedi.</p>
             {% endif %}
         </div>
 
