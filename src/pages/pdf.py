@@ -17,14 +17,14 @@ def pdf():
     step3_data = session.get('step3_data', {})
 
     data = {
-        'personal_info_name': 'Ayla Candan',
-        'personal_info_phone': '+90 212 123 45 67',
-        'personal_info_email': 'ayla.candan@example.com',
-        'personal_info_address': 'İstanbul',
-        'driver_license': [] ,
-        'soft_skills': [],  # Yetenekler boş
-        'technical_skills': [],  # Teknik beceriler boş
-        'languages': [],  # Diller boş
+        'personal_info_name': step1_data.get('personal_info_name', ''),
+        'personal_info_phone': step1_data.get('personal_info_phone', ''),
+        'personal_info_email': step1_data.get('personal_info_email', ''),
+        'personal_info_address': step1_data.get('personal_info_address', ''),
+        'driver_license': step1_data.get('driver_license', []),
+        'soft_skills': step2_data.get('soft_skills', []),
+        'technical_skills': step2_data.get('technical_skills', []),
+        'languages': step2_data.get('languages', []),
         'job_experiences': [
             {
                 'experiences.company_name': 'Medika Hastanesi',
@@ -74,11 +74,27 @@ def pdf():
             {'name': 'Ali Yılmaz', 'contact': 'Yeditepe Üniversitesi', 'relation': 'Öğretim Görevlisi'},
             {'name': 'Ayşe Kınak', 'contact': 'MEg AŞ', 'relation': 'İK Direktörü'},
         ],
-        'image_paths' : {
-            'profilresmi' :  'file://' + os.path.join(dir_path, '../templates/pdf-templates/static', 'images/profilresmi.png')
-        }
+      
     }
 
+    image_paths = {
+        'nameicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/nameicon.png')}",
+        'phoneicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/phoneicon.png')}",
+        'mailicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/mailicon.png')}",
+        'addressicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/addressicon.png')}",
+        'liceanceicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/liceanceicon.png')}",
+        'mailiconicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/mailiconicon.png')}",
+        'mariedicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/mariedicon.png')}",
+        'jobicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/jobicon.png')}",
+        'eduicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/eduicon.png')}",
+        'proicon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/proicon.png')}",
+        'cericon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/cericon.png')}",
+        'reficon': f"file://{os.path.join(dir_path, '../templates/pdf-templates/static/images/reficon.png')}"
+    }
+
+
+    # Dosya yollarını 'data' içine eklemek isterseniz:
+    data['image_paths'] = image_paths
     # HTML şablonunu işleme
     html = render_template('pdf-templates/template1.html', **data)
 

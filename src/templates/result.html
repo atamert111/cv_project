@@ -88,10 +88,11 @@
             <ul>
                 <li>Ad: {{ step1_data.get('name', 'Bilinmiyor') }}</li>
                 <li>Soyad: {{ step1_data.get('surname', 'Bilinmiyor') }}</li>
-                <li>Telefon: {{ step1_data.get('phone', 'Bilinmiyor') }}</li>
-                <li>E-posta: {{ step1_data.get('email', 'Bilinmiyor') }}</li>
+                <li>Telefon: {{ step1_data.get('personal_info_phone', 'Bilinmiyor') }}</li>
+                <li>E-posta: {{ step1_data.get('personal_info_email', 'Bilinmiyor') }}</li>
                 <li>Medeni Hali: {{ step1_data.get('marital_status', 'Bilinmiyor') }}</li>
                 <li>Ehliyet: {{ step1_data.get('driver_license', 'Bilinmiyor') }}</li>
+                <li>Askerlik: {{ step1_data.get('military_service_status', 'Bilinmiyor') }}</li>
                 <li>Profil Resmi: 
                     {% if step1_data.get('profile_photo') %}
                         <a href="{{ step1_data.get('profile_photo') }}" target="_blank">Resmi Görüntüle</a>
@@ -111,7 +112,8 @@
                         <li>
                             <strong>Şirket:</strong> {{ job.get('company_name', 'Belirtilmedi') }}<br>
                             <strong>Pozisyon:</strong> {{ job.get('position', 'Belirtilmedi') }}<br>
-                            <strong>Dönem:</strong> {{ job.get('start_date', 'Belirtilmedi') }} - {{ job.get('end_date', 'Belirtilmedi') }}<br>
+                            <strong>Konum:</strong> {{ job.get('locations', 'Belirtilmedi') }}<br>
+                            <strong>Dönem:</strong> {{ job.get('start_date', 'Belirtilmedi') }} - {{ job.get('end_date', 'Halen') }}<br>
                             <strong>Açıklama:</strong> {{ job.get('description', 'Belirtilmedi') }}
                         </li>
                     {% endfor %}

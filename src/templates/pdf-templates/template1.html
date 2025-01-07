@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doktor CV Örneği</title>
+    <title>Template1</title>
     <style>
         /* Kenar Boşluklarını Kaldır */
         @page {
@@ -152,7 +152,7 @@
             display: inline-block;
             width: 25px; /* İkon genişliği */
             height: 25px; /* İkon yüksekliği */
-            background: url("file:///Users/atamerterdihan/cv_project/static/images/job.png") no-repeat;
+            background: url('{{ image_paths.jobicon }}') no-repeat;
             background-color: black; /* Arka plan rengi */
             background-size: contain; /* İkonun tam görünmesini sağlar */
             background-position: center; /* İkonu ortalar */
@@ -171,7 +171,7 @@
             display: inline-block;
             width: 25px; /* İkon genişliği */
             height: 25px; /* İkon yüksekliği */
-            background: url("file:///Users/atamerterdihan/cv_project/static/images/education.png") no-repeat;
+            background: url('{{ image_paths.eduicon }}') no-repeat;
             background-color: black; /* Arka plan rengi */
             background-size: contain; /* İkonun tam görünmesini sağlar */
             background-position: center; /* İkonu ortalar */
@@ -189,7 +189,7 @@
             display: inline-block;
             width: 25px; /* İkon genişliği */
             height: 25px; /* İkon yüksekliği */
-            background: url("file:///Users/atamerterdihan/cv_project/static/images/project.png") no-repeat;
+            background: url('{{ image_paths.proicon }}') no-repeat;
             background-color: black; /* Arka plan rengi */
             background-size: contain; /* İkonun tam görünmesini sağlar */
             background-position: center; /* İkonu ortalar */
@@ -207,7 +207,7 @@
             display: inline-block;
             width: 25px; /* İkon genişliği */
             height: 25px; /* İkon yüksekliği */
-            background: url("file:///Users/atamerterdihan/cv_project/static/images/sertifika.png") no-repeat;
+            background: url('{{ image_paths.cericon }}') no-repeat;
             background-color: black; /* Arka plan rengi */
             background-size: contain; /* İkonun tam görünmesini sağlar */
             background-position: center; /* İkonu ortalar */
@@ -224,7 +224,7 @@
             display: inline-block;
             width: 25px; /* İkon genişliği */
             height: 25px; /* İkon yüksekliği */
-            background: url("file:///Users/atamerterdihan/cv_project/static/images/referance.png") no-repeat;
+            background: url('{{ image_paths.reficon }}') no-repeat;
             background-color: black; /* Arka plan rengi */
             background-size: contain; /* İkonun tam görünmesini sağlar */
             background-position: center; /* İkonu ortalar */
@@ -313,28 +313,28 @@
                 <h3>Kişisel Bilgiler</h3>
                 <ul>
                     <li class="name-container">
-                        <img src="file:///Users/atamerterdihan/cv_project/static/images/nameicon.png" alt="Icon" class="icon">
+                        <img src= {{ image_paths.nameicon }} alt="Icon" class="icon">
                         <div>
                             <strong>Ad:</strong>
                             <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_name}}</div>
                         </div>
                     </li>
                     <li class="name-container">
-                        <img src="file:///Users/atamerterdihan/cv_project/static/images/phone.png" alt="Icon" class="icon">
+                        <img src={{ image_paths.phoneicon }} alt="Icon" class="icon">
                         <div>
                             <strong>Tel:</strong>
                             <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_phone}}</div>
                         </div>
                     </li>
                     <li class="name-container">
-                        <img src="file:///Users/atamerterdihan/cv_project/static/images/mail.png" alt="Icon" class="icon">
+                        <img src={{ image_paths.mailicon }} alt="Icon" class="icon">
                         <div>
                             <strong>E-posta:</strong>
                             <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_email}}</div>
                         </div>
                     </li>
                     <li class="name-container">
-                        <img src="file:///Users/atamerterdihan/cv_project/static/images/location.png" alt="Icon" class="icon">
+                        <img src={{ image_paths.addressicon }} alt="Icon" class="icon">
                         <div>
                             <strong>Adres</Address>:</strong>
                             <div class=\"name-text\" style=\"margin-left: -8px;\">{{ personal_info_address}}</div>
@@ -342,7 +342,7 @@
                     </li>
                     {% if driver_license %}
                     <li class="name-container">
-                        <img src="file:///Users/atamerterdihan/cv_project/static/images/ehliyet.png" alt="Icon" class="icon">
+                        <img src={{ image_paths.liceanceicon }} alt="Icon" class="icon">
                         <div>
                             <strong>Ehliyet:</strong>
                             <div class="name-text">{{ driver_license }}</div>
@@ -351,7 +351,7 @@
                     {% endif %}
                     {% if military_service_status %}
                     <li class="name-container">
-                        <img src="file:///Users/atamerterdihan/cv_project/static/images/military.png" alt="Icon" class="icon">
+                        <img src={{ image_paths.mailiconicon }} alt="Icon" class="icon">
                         <div>
                             <strong>Askerlik Durumu:</strong>
                             <div class="name-text">{{ military_service_status }}</div>
@@ -360,7 +360,7 @@
                     {% endif %}
                     {% if marital_status %}
                     <li class="name-container">
-                        <img src="file:///Users/atamerterdihan/cv_project/static/images/maried.png" alt="Icon" class="icon">
+                        <img src={{ image_paths.mariedicon }} alt="Icon" class="icon">
                         <div>
                             <strong>Medeni Hal:</strong>
                             <div class="name-text">{{ marital_status }}</div>
@@ -390,9 +390,9 @@
                 <ul>
                     {% for skill in technical_skills %}
                     <li style="display: flex; justify-content: space-between;">
-                        <span class="text">{{ skill.name }}:</span>
+                        <span class="text">{{ technical_skill_name }}:</span>
                         <span class="stars">
-                            {% for _ in range(skill.level|int) %}
+                            {% for _ in range(technical_skill_level|int) %}
                                 ⭐
                             {% endfor %}
                         </span>
@@ -405,9 +405,9 @@
                 <ul>
                     {% for skill in soft_skills %}
                     <li style="display: flex; justify-content: space-between;">
-                        <span class="text">{{ skill.name }}:</span>
+                        <span class="text">{{ soft_skill_name }}:</span>
                         <span class="stars">
-                            {% for _ in range(skill.level|int) %}
+                            {% for _ in range( soft_skill_level |int) %}
                                 ⭐
                             {% endfor %}
                         </span>
@@ -497,10 +497,3 @@
     </div>
     </body>
     </html>
-
-
-
-
-
-
-    

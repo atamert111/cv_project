@@ -148,18 +148,18 @@
                     </div>
                     <div class="form-group">
                         <label for="email">E-posta (Zorunlu):</label>
-                        <input type="email" id="email" name="email" value="{{ data.email }}" placeholder="E-posta adresinizi girin" required>
+                        <input type="email" id="email" name="email" value="{{ data.personal_info_email }}" placeholder="E-posta adresinizi girin" required>
                     </div>
                 </div>
 
                 <!-- Adres -->
                 <div class="address-group">
                     <label for="address">Adres (Opsiyonel):</label>
-                    <input type="text" id="address" name="address" value="{{ data.address }}" placeholder="Adresinizi girin">
+                    <input type="text" id="address" name="address" value="{{ data.personal_info_address }}" placeholder="Adresinizi girin">
                 </div>
 
                 <!-- Seçmeli Alanlar -->
-                <div class="form-row">
+                <div class="form-row"><data value=""></data>
                     <div class="form-group">
                         <label for="military_service">Askerlik Tecili (Opsiyonel):</label>
                         <select id="military_service" name="military_service">

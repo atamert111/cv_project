@@ -40,7 +40,7 @@ def step1():
             'surname': request.form.get('surname'),
             'personal_info_name': f"{request.form.get('name')} {request.form.get('surname')}",
             'personal_info_phone': request.form.get('phone'),
-            'personal_info_email': email,
+            'personal_info_email': request.form.get('email'),
             'personal_info_address': request.form.get('address'),
             'military_service_status': request.form.get('military_service'),
             'driver_license': request.form.get('driver_license'),
