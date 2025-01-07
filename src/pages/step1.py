@@ -14,7 +14,10 @@ def allowed_file(filename):
 
 @step1_page.route('/', methods=['GET', 'POST'])
 def step1():
-    if request.method == 'POST':
+    if request.method == 'GET':
+        # Formun tekrar yüklenmesi durumunda session verilerini aktar
+        return render_template('step1.html', data=session.get('step1_data', {}))
+    elif request.method == 'POST':
         # Zorunlu alanları kontrol et
         if not request.form.get('name') or not request.form.get('surname') or not request.form.get('phone') or not request.form.get('email'):
             return render_template('step1.html', error="Lütfen tüm zorunlu alanları doldurun.", data=request.form)
@@ -52,5 +55,4 @@ def step1():
         # Bir sonraki adıma yönlendir
         return redirect(url_for('step2_page.step2'))
 
-    # Formun tekrar yüklenmesi durumunda session verilerini aktar
-    return render_template('step1.html', data=session.get('step1_data', {}))
+    return

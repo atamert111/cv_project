@@ -1,29 +1,36 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
+import json
 
 step2_page = Blueprint('step2_page', __name__)
 
 @step2_page.route('/', methods=['GET', 'POST'])
 def step2():
-    if request.method == 'POST':
+    if request.method == 'GET':
+        return  render_template('step2.html')
+    elif request.method == 'POST':
+
+        print("################ REQUEST FROM ######################")
+        print(request.form)
+        print("####################################################")
         # İş Deneyimleri
         job_experiences = []
         company_reference = None  # En son kullanılan şirket adı
-        for i in range(len(request.form.getlist('job_position[]'))):
-            same_company = 'same_company[]' in request.form and request.form.getlist('same_company[]')[i] == 'true'
+        for i in range(len(request.form.getlist('job_position'))):
+            same_company = 'same_company' in request.form and request.form.getlist('same_company')[i] == 'true'
 
             # Eğer aynı iş checkbox'ı seçiliyse önceki şirket adını kullan
             if same_company:
                 company_name = company_reference
             else:
-                company_name = request.form.getlist('company_name[]')[i]
+                company_name = request.form.getlist('company_name')[i]
                 company_reference = company_name  # Şirket adını güncelle
 
             job_experiences.append({
                 'company_name': company_name,
-                'position': request.form.getlist('job_position[]')[i],
-                'start_date': request.form.getlist('job_start_date[]')[i],
-                'end_date': request.form.getlist('job_end_date[]')[i],
-                'description': request.form.getlist('job_description[]')[i],
+                'position': request.form.getlist('job_position')[i],
+                'start_date': request.form.getlist('job_start_date')[i],
+                'end_date': request.form.getlist('job_end_date')[i],
+                'description': request.form.getlist('job_description')[i],
                 'same_company': same_company
             })
 
@@ -104,7 +111,11 @@ def step2():
             'references': references
         }
 
+        print("################ SESSION step2_data ################")
+        print(json.dumps(session.get('step2_data', {}), indent=2))
+        print("####################################################")
+
         # step3'e yönlendirme
         return redirect(url_for('step3_page.step3'))
 
-    return render_template('step2.html')
+    return

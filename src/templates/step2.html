@@ -37,6 +37,7 @@
     </header>
 
     <main class="form-container">
+        <form action="/step2" method="POST" class="modern-form" enctype="multipart/form-data">
         <div class="container">
             <div class="accordion">
                 {% include 'step2/jobinfo.html' %}
@@ -51,11 +52,16 @@
             </div>
 
             <!-- Önceki ve Sonraki Butonlar -->
+            <div class="action-buttons">
+                <button type="button" id="previous-button" class="cta-button" onclick="navigatePrevious()">Önceki</button>
+                <button type="button" id="next-button" class="cta-button" onclick="navigateNext()">Sonraki</button>
+            </div>
             <div class="form-buttons">
-                <button id="previous-button" class="cta-button" onclick="navigatePrevious()">Önceki</button>
-                <button id="next-button" class="cta-button" onclick="navigateNext()">Sonraki</button>
+                <button type="submit" class="cta-button">Gönder</button>
             </div>
         </div>
+
+        </form>
     </main>
 
     <script>
