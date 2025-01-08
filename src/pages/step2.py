@@ -1,12 +1,13 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
 import json
+from cv_data import merge_data
 
 step2_page = Blueprint('step2_page', __name__)
 
 @step2_page.route('/', methods=['GET', 'POST'])
 def step2():
     if request.method == 'GET':
-        return  render_template('step2.html')
+        return  render_template('step2.html', data=session.get('cv_data', {}))
     elif request.method == 'POST':
 
         print("################ REQUEST FROM ######################")
@@ -82,10 +83,7 @@ def step2():
                 'level': request.form.getlist('soft_skill_level')[i]
             })
         # Hakkında
-        self_about = []
-        self_about.append({
-            'text': request.form.get('self_about_text')
-            })
+        self_about = request.form.get('self_about_text', '')
         # Projeler
         projects = []
         for i in range(len(request.form.getlist('project_name'))):
@@ -105,7 +103,7 @@ def step2():
             })
 
         # Tüm verileri session'da saklama
-        session['step2_data'] = {
+        new_data = {
             'job_experiences': job_experiences,
             'education': education,
             'certificates': certificates,
@@ -116,9 +114,10 @@ def step2():
             'references': references,
             'self_about':self_about
         }
+        session['cv_data'] = merge_data(session.get('cv_data', {}), new_data)
 
-        print("################ SESSION step2_data ################")
-        print(json.dumps(session.get('step2_data', {}), indent=2))
+        print("################ SESSION cv_data ################")
+        print(json.dumps(session.get('cv_data', {}), indent=2))
         print("####################################################")
 
         # step3'e yönlendirme

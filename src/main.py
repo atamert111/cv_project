@@ -12,6 +12,8 @@ from pages.step3 import step3_page
 from pages.result import result_page
 from pages.pdf import pdf_page
 
+from pages.sample import sample_page
+
 # Blueprint'leri kaydet
 app.register_blueprint(root_page, url_prefix='/')
 app.register_blueprint(step1_page, url_prefix='/step1')
@@ -19,6 +21,9 @@ app.register_blueprint(step2_page, url_prefix='/step2')
 app.register_blueprint(step3_page, url_prefix='/step3')
 app.register_blueprint(result_page, url_prefix='/result')
 app.register_blueprint(pdf_page, url_prefix='/pdf')
+
+
+app.register_blueprint(sample_page, url_prefix='/sample')
 
 # Uygulamayı çalıştır
 if __name__ == '__main__':

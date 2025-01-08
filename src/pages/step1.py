@@ -4,6 +4,7 @@ import os
 from werkzeug.utils import secure_filename
 import json
 import time
+from cv_data import merge_data
 
 step1_page = Blueprint('step1_page', __name__)
 
@@ -18,7 +19,7 @@ def allowed_file(filename):
 def step1():
     if request.method == 'GET':
         # Formun tekrar yüklenmesi durumunda session verilerini aktar
-        return render_template('step1.html', data=session.get('step1_data', {}))
+        return render_template('step1.html', data=session.get('cv_data', {}))
     elif request.method == 'POST':
 
         print("################ REQUEST FROM ######################")
@@ -48,22 +49,23 @@ def step1():
             profile_photo_uploaded = True  # Fotoğrafın yüklendiğini işaretle
 
         # Verileri session'da sakla
-        session['step1_data'] = {
+        new_data = {
             'name': request.form.get('name'),
             'surname': request.form.get('surname'),
             'personal_info_name': f"{request.form.get('name')} {request.form.get('surname')}",
             'personal_info_phone': request.form.get('phone'),
             'personal_info_email': request.form.get('email'),
             'personal_info_address': request.form.get('address'),
-            'military_service_status': request.form.get('military_service'),
+            'military_service_status': request.form.get('military_service_status'),
             'driver_license': request.form.get('driver_license'),
             'marital_status': request.form.get('marital_status'),
-            'personal_info.profile_photo': profile_photo_path,
+            'personal_info_profile_photo': profile_photo_path,
             'profile_photo_uploaded': profile_photo_uploaded,  # Fotoğraf durumu
         }
+        session['cv_data'] = merge_data(session.get('cv_data', {}), new_data)
 
-        print("################ SESSION step1_data ################")
-        print(json.dumps(session.get('step1_data', {}), indent=2))
+        print("################ SESSION cv_data ################")
+        print(json.dumps(session.get('cv_data', {}), indent=2))
         print("####################################################")
 
         # Bir sonraki adıma yönlendir
