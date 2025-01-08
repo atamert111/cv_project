@@ -112,7 +112,7 @@
                         <li>
                             <strong>Şirket:</strong> {{ job.get('company_name', 'Belirtilmedi') }}<br>
                             <strong>Pozisyon:</strong> {{ job.get('position', 'Belirtilmedi') }}<br>
-                            <strong>Konum:</strong> {{ job.get('locations', 'Belirtilmedi') }}<br>
+                            <strong>Konum:</strong> {{ job.get('location', 'Belirtilmedi') }}<br>
                             <strong>Dönem:</strong> {{ job.get('start_date', 'Belirtilmedi') }} - {{ job.get('end_date', 'Halen') }}<br>
                             <strong>Açıklama:</strong> {{ job.get('description', 'Belirtilmedi') }}
                         </li>
@@ -133,7 +133,7 @@
                             <strong>Okul:</strong> {{ edu.get('school_name', 'Belirtilmedi') }}<br>
                             <strong>Fakülte:</strong> {{ edu.get('faculty_name', 'Belirtilmedi') }}<br>
                             <strong>Derece:</strong> {{ edu.get('degree', 'Belirtilmedi') }}<br>
-                            <strong>Bölüm:</strong> {{ edu.get('field_of_study', 'Belirtilmedi') }}<br>
+                            <strong>Bölüm:</strong> {{ edu.get('department_name', 'Belirtilmedi') }}<br>
                             <strong>Dönem:</strong> {{ edu.get('start_date', 'Belirtilmedi') }} - {{ edu.get('end_date', 'Belirtilmedi') }}
                         </li>
                     {% endfor %}

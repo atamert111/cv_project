@@ -31,20 +31,21 @@ def step2():
                 'start_date': request.form.getlist('job_start_date')[i],
                 'end_date': request.form.getlist('job_end_date')[i],
                 'description': request.form.getlist('job_description')[i],
+                'location': request.form.getlist('job_location')[i],
                 'same_company': same_company
             })
 
         # Eğitim Bilgileri
         education = []
-        for i in range(len(request.form.getlist('school_name[]'))):
+        for i in range(len(request.form.getlist('school_name'))):
             currently_studying = 'currently_studying[]' in request.form and request.form.getlist('currently_studying[]')[i] == 'true'
             education.append({
-                'school_name': request.form.getlist('school_name[]')[i],
-                'faculty_name': request.form.getlist('faculty_name[]')[i],
-                'degree': request.form.getlist('degree[]')[i],
-                'field_of_study': request.form.getlist('field_of_study[]')[i],
-                'start_date': request.form.getlist('education_start_date[]')[i],
-                'end_date': request.form.getlist('education_end_date[]')[i] if not currently_studying else "Halen",
+                'school_name': request.form.getlist('school_name')[i],
+                'department': request.form.getlist('department_name')[i],
+                'faculty_name': request.form.getlist('faculty_name')[i],
+                'degree': request.form.getlist('degree')[i],
+                'start_date': request.form.getlist('education_start_date')[i],
+                'end_date': request.form.getlist('education_end_date')[i] if not currently_studying else "Halen",
                 'currently_studying': currently_studying
             })
 
@@ -52,51 +53,55 @@ def step2():
         certificates = []
         for i in range(len(request.form.getlist('certificate_name[]'))):
             certificates.append({
-                'name': request.form.getlist('certificate_name[]')[i],
-                'date': request.form.getlist('certificate_date[]')[i],
-                'issuer': request.form.getlist('certificate_issuer[]')[i]
+                'name': request.form.getlist('certificate_name')[i],
+                'date': request.form.getlist('certificate_date')[i],
+                'issuer': request.form.getlist('certificate_issuer')[i]
             })
 
         # Diller
         languages = []
-        for i in range(len(request.form.getlist('language_name[]'))):
+        for i in range(len(request.form.getlist('language_name'))):
             languages.append({
-                'name': request.form.getlist('language_name[]')[i],
-                'level': request.form.getlist('language_level[]')[i]
+                'name': request.form.getlist('language_name')[i],
+                'level': request.form.getlist('language_level')[i]
             })
 
         # Teknik Beceriler
         technical_skills = []
-        for i in range(len(request.form.getlist('technical_skill_name[]'))):
+        for i in range(len(request.form.getlist('technical_skill_name'))):
             technical_skills.append({
-                'name': request.form.getlist('technical_skill_name[]')[i],
-                'level': request.form.getlist('technical_skill_level[]')[i]
+                'name': request.form.getlist('technical_skill_name')[i],
+                'level': request.form.getlist('technical_skill_level')[i]
             })
 
         # Kişisel Yetenekler
         soft_skills = []
-        for i in range(len(request.form.getlist('soft_skill_name[]'))):
+        for i in range(len(request.form.getlist('soft_skill_name'))):
             soft_skills.append({
-                'name': request.form.getlist('soft_skill_name[]')[i],
-                'level': request.form.getlist('soft_skill_level[]')[i]
+                'name': request.form.getlist('soft_skill_name')[i],
+                'level': request.form.getlist('soft_skill_level')[i]
             })
-
+        # Hakkında
+        self_about = []
+        self_about.append({
+            'text': request.form.get('self_about_text')
+            })
         # Projeler
         projects = []
-        for i in range(len(request.form.getlist('project_name[]'))):
+        for i in range(len(request.form.getlist('project_name'))):
             projects.append({
-                'name': request.form.getlist('project_name[]')[i],
-                'description': request.form.getlist('project_description[]')[i],
-                'date': request.form.getlist('project_date[]')[i]
+                'name': request.form.getlist('project_name')[i],
+                'description': request.form.getlist('project_description')[i],
+                'date': request.form.getlist('project_link')[i]
             })
 
         # Referanslar
         references = []
-        for i in range(len(request.form.getlist('reference_name[]'))):
+        for i in range(len(request.form.getlist('reference_name'))):
             references.append({
-                'name': request.form.getlist('reference_name[]')[i],
-                'contact': request.form.getlist('reference_contact[]')[i],
-                'relation': request.form.getlist('reference_relation[]')[i]
+                'name': request.form.getlist('reference_name')[i],
+                'contact': request.form.getlist('reference_contact')[i],
+                'relation': request.form.getlist('reference_relation')[i]
             })
 
         # Tüm verileri session'da saklama
@@ -108,7 +113,8 @@ def step2():
             'technical_skills': technical_skills,
             'soft_skills': soft_skills,
             'projects': projects,
-            'references': references
+            'references': references,
+            'self_about':self_about
         }
 
         print("################ SESSION step2_data ################")

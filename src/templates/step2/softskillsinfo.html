@@ -3,12 +3,12 @@
     <div class="skill-entry">
         <div class="inline">
             <label for="softskill_name">Yetenekler: </label>
-            <input type="text" id="softskill_name" name="softskill_name" placeholder="(İletişim - Kararlılık vb.)" required>
+            <input type="text" id="softskill_name" name="soft_skill_name" placeholder="(İletişim - Kararlılık vb.)" required>
         </div>
 
         <div class="inline">
             <label for="softskill_name">Bilgi Seviyesi:</label>
-            <select id="softskill_name" name="softskill_name" required>
+            <select id="softskill_name" name="soft_skill_level" required>
                 <option value="">Seçiniz</option>
                 <option value="1">1 - Çok Az</option>
                 <option value="2">2</option>
@@ -20,8 +20,10 @@
     </div>
 
     <!-- + ve - Butonları -->
-    <div class="action-buttons-skill">
-        <button type="button" class="add-skill" onclick="addSkill()">+</button>
-        <button type="button" class="remove-skill" onclick="removeSkill()">-</button>
+    <div class="action-buttons">
+        <a href="#" class="cta-button" onclick="addJob()">+</a>
+        <a href="#" class="cta-button" onclick="removeJob()">-</a>
+        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
+        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
     </div>
 </div>

@@ -25,56 +25,12 @@ def pdf():
         'soft_skills': step2_data.get('soft_skills', []),
         'technical_skills': step2_data.get('technical_skills', []),
         'languages': step2_data.get('languages', []),
-        'job_experiences': [
-            {
-                'experiences.company_name': 'Medika Hastanesi',
-                'experiences.start_date': '2018',
-                'experiences.end_date': '2023',
-                'experiences.position': 'Kardiyoloji Doktoru',
-                'experiences.description': 'Hastane başvuran hastaların kardiyovasküler rahatsızlıklarını teşhis ve tedavi ettim.'
-            },
-            {
-                'experiences.company_name': 'Ege Üniversitesi',
-                'experiences.start_date': '2017',
-                'experiences.end_date': '2018',
-                'experiences.position': 'İntörn Doktor',
-                'experiences.description': 'Haftanın iki günü acil serviste görev aldım.'
-            }
-        ],
-        'education': [
-            {
-                'education.school_name': 'Ege Üniversitesi',
-                'start_date': '2018',
-                'end_date': '2023',
-                'field_of_study': 'Makine Mühendisliği',
-                'faculty_name': 'Mühendislik Fakültesi',
-                'degree': 'Lisans',
-                'gpa': '2.9'
-            },
-            {
-                'education.school_name': 'Bilgi Anadolu Lisesi',
-                'start_date': '2017',
-                'end_date': '2018',
-                'field_of_study': 'Matematik Fen Bölümü',
-                'faculty_name': '',
-                'degree': 'Lise',
-                'gpa': '80.4'
-            }
-        ],
-        'projects': [
-            {'name': 'Kalp Hastalıkları Araştırması', 'description': 'Türkiye\'de yapılan kapsamlı bir araştırma.'},
-            {'name': 'Toplum Sağlığı Projesi', 'description': 'İzmir\'de yürütülen bir sosyal sorumluluk projesi.'}
-        ],
-        'certificates': [],  # Sertifikalar boş
-        'references': [
-            {'name': 'Ali Yılmaz', 'contact': 'Yeditepe Üniversitesi', 'relation': 'Öğretim Görevlisi'},
-            {'name': 'Ayşe Kınak', 'contact': 'MEg AŞ', 'relation': 'İK Direktörü'},
-            {'name': 'Ali Yılmaz', 'contact': 'Yeditepe Üniversitesi', 'relation': 'Öğretim Görevlisi'},
-            {'name': 'Ayşe Kınak', 'contact': 'MEg AŞ', 'relation': 'İK Direktörü'},
-            {'name': 'Ali Yılmaz', 'contact': 'Yeditepe Üniversitesi', 'relation': 'Öğretim Görevlisi'},
-            {'name': 'Ayşe Kınak', 'contact': 'MEg AŞ', 'relation': 'İK Direktörü'},
-        ],
-      
+        'job_experiences': step2_data.get('job_experiences', []),
+        'education': step2_data.get('education', []),
+        'projects':step2_data.get('projects', []),
+        'certificates':step2_data.get('certificates', []),
+        'references':step2_data.get('references', []),
+        'self_about':step2_data.get('self_about', [])
     }
 
     image_paths = {

@@ -3,12 +3,12 @@
     <div class="skill-entry">
         <div class="inline">
             <label for="skill_name">Beceri:</label>
-            <input type="text" id="skill_name" name="skill_name" placeholder="Matlab, C++, Excel vb. " required>
+            <input type="text" id="skill_name" name="technical_skill_name" placeholder="Matlab, C++, Excel vb. " required>
         </div>
 
         <div class="inline">
             <label for="skill_level">Bilgi Seviyesi:</label>
-            <select id="skill_level" name="skill_level" required>
+            <select id="skill_level" name="technical_skill_level" required>
                 <option value="">Seçiniz</option>
                 <option value="1">1 - Çok Az</option>
                 <option value="2">2</option>
@@ -20,8 +20,10 @@
     </div>
 
     <!-- + ve - Butonları -->
-    <div class="action-buttons-skill">
-        <button type="button" class="add-skill" onclick="addSkill()">+</button>
-        <button type="button" class="remove-skill" onclick="removeSkill()">-</button>
+    <div class="action-buttons">
+        <a href="#" class="cta-button" onclick="addJob()">+</a>
+        <a href="#" class="cta-button" onclick="removeJob()">-</a>
+        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
+        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
     </div>
 </div>

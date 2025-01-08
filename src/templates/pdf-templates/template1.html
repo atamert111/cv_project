@@ -377,7 +377,7 @@
                     <li style="display: flex; justify-content: space-between;">
                         <span class="text">{{ language.name }}:</span>
                         <span class="stars">
-                            {% for _ in range(language.level|int) %}
+                            {% for _ in range(language.level | int) %}
                                 ⭐
                             {% endfor %}
                         </span>
@@ -386,74 +386,73 @@
                 </ul>
                 {% endif %}
                 {% if technical_skills %}
-                <h3>BECERİLER</h3>
+                <h3>TEKNİK BECERİLER</h3>
                 <ul>
                     {% for skill in technical_skills %}
                     <li style="display: flex; justify-content: space-between;">
-                        <span class="text">{{ technical_skill_name }}:</span>
+                        <span class="text">{{ skill.name }}:</span>
                         <span class="stars">
-                            {% for _ in range(technical_skill_level|int) %}
+                            {% for _ in range(skill.level | int) %}
                                 ⭐
                             {% endfor %}
                         </span>
                     </li>
                     {% endfor %}
-                </ul>
-                {% endif %}                
+        
+                {% endif %}             
                 {% if soft_skills %}
                 <h3>YETENEKLER</h3>
                 <ul>
                     {% for skill in soft_skills %}
                     <li style="display: flex; justify-content: space-between;">
-                        <span class="text">{{ soft_skill_name }}:</span>
+                        <span class="text">{{ skill.name }}:</span>
                         <span class="stars">
-                            {% for _ in range( soft_skill_level |int) %}
+                            {% for _ in range(skill.level | int) %}
                                 ⭐
                             {% endfor %}
                         </span>
                     </li>
                     {% endfor %}
                 </ul>
-                {% endif %}              
+                {% endif %}         
             </div>
         </div>
 
         <!-- Sağ Beyaz Alan -->
         <div class="right-section">
             <div class="name">{{ personal_info_name | upper }} </div>
-            <p>Dinamik ve deneyimli bir kardiyoloji doktoru olarak hastaların sağlığını ön planda tutan, etkili iletişim ve çözüm odaklılık ile öne çıkan bir sağlık profesyoneliyim. </p>
-
+            <p>{{ self_about[0]['text'] }}</p>
             <h2 id="experience">Deneyim</h2>
-                <div class="timeline">
-                    {% set last_company_name = None %}
-                    {% for job in job_experiences %}
-                        {% if last_company_name != job['experiences.company_name'] %}
-                            {% if not loop.first %}
-                                </div> <!-- Önceki şirketin kapatma div'i -->
-                            {% endif %}
-                            <div class="timeline-item">
-                                <h3>{{ job['experiences.start_date'] }} - {{ job['experiences.end_date'] }}</h3>
-                                <p><strong>{{ job['experiences.position'] }}</strong> - {{ job['experiences.company_name'] }}</p>
-                                <p>{{ job['experiences.description'] }}</p>
-                                {% set last_company_name = job['experiences.company_name'] %}
-                        {% else %}
-                            <!-- Aynı şirket için yeni pozisyon -->
-                            <div style="margin-left: 20px;">
-                                <h3>{{ job['experiences.start_date'] }} - {{ job['experiences.end_date'] }}</h3>
-                                <p><strong>{{ job['experiences.position'] }}</strong></p>
-                                <p>{{ job['experiences.description'] }}</p>
-                            </div>
+            <div class="timeline">
+                {% set last_company_name = None %}
+                {% for job in job_experiences %}
+                    {% if last_company_name != job['company_name'] %}
+                        {% if not loop.first %}
+                            </div> <!-- Önceki şirketin kapatma div'i -->
                         {% endif %}
-                    {% endfor %}
-                    </div> <!-- Son şirketin kapatma div'i -->
-                </div>
+                        <div class="timeline-item">
+                            <h3>{{ job['start_date'] }} - {{ job['end_date'] }}</h3>
+                            <p><strong>{{ job['position'] }}</strong> - {{ job['company_name'] }}</p>
+                            <p>{{ job['description'] }}</p>
+                            {% set last_company_name = job['company_name'] %}
+                    {% else %}
+                        <!-- Aynı şirket için yeni pozisyon -->
+                        <div style="margin-left: 20px;">
+                            <h3>{{ job['start_date'] }} - {{ job['end_date'] }}</h3>
+                            <p><strong>{{ job['position'] }}</strong></p>
+                            <p>{{ job['description'] }}</p>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                </div> <!-- Son şirketin kapatma div'i -->
+            </div>
             <div style="width: 100%; height: 1px; background-color: #292727; margin: 20px 0;"></div>
-            <h2 id="education">Eğitim</h2>
+                <h2 id="education">Eğitim</h2>
                 <div class="timeline">
                     {% for edu in education %}
                     <div class="timeline-item">
                         <h3>{{ edu['start_date'] }} - {{ edu['end_date'] }}</h3>
-                        <p><strong>{{ edu['field_of_study'] }}</strong> - {{ edu['education.school_name'] }}</p>
+                        <p><strong>{{ edu['department'] }}</strong> - {{ edu['education.school_name'] }}</p>
                         <p>{{ edu['faculty_name'] }} - {{ edu['degree'] }}{% if edu['degree'] == 'Lisans' %} - {{ edu['gpa']|default('') }}{% endif %}</p>
                     </div>
                     {% endfor %}
