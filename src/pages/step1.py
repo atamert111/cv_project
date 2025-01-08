@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, session, redirect, url_fo
 import re
 import os
 from werkzeug.utils import secure_filename
+import json
+import time
 
 step1_page = Blueprint('step1_page', __name__)
 
@@ -18,6 +20,14 @@ def step1():
         # Formun tekrar yüklenmesi durumunda session verilerini aktar
         return render_template('step1.html', data=session.get('step1_data', {}))
     elif request.method == 'POST':
+
+        print("################ REQUEST FROM ######################")
+        print(request.form)
+        print("####################################################")
+        print(request.files)
+        print("####################################################")
+      
+
         # Zorunlu alanları kontrol et
         if not request.form.get('name') or not request.form.get('surname') or not request.form.get('phone') or not request.form.get('email'):
             return render_template('step1.html', error="Lütfen tüm zorunlu alanları doldurun.", data=request.form)
@@ -51,6 +61,10 @@ def step1():
             'personal_info.profile_photo': profile_photo_path,
             'profile_photo_uploaded': profile_photo_uploaded,  # Fotoğraf durumu
         }
+
+        print("################ SESSION step1_data ################")
+        print(json.dumps(session.get('step1_data', {}), indent=2))
+        print("####################################################")
 
         # Bir sonraki adıma yönlendir
         return redirect(url_for('step2_page.step2'))

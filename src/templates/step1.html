@@ -110,81 +110,31 @@
             {% if error %}
             <p class="error-message">{{ error }}</p>
             {% endif %}
-                <form action="/step1" method="POST" class="modern-form" enctype="multipart/form-data">
-                    <!-- Profil Fotoğrafı -->
-                    <div class="profile-photo" style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
-                        <!-- Fotoğraf ve çarpı butonu -->
-                        <div style="position: relative;">
-                            <img id="profile-preview" 
-                                src="/static/images/profilresmi.png" 
-                                style="width: 150px; height: 150px; border-radius: 50%; border: 2px solid #ccc;">
-                            <!-- Çarpı Butonu -->
-                            <button id="remove-photo" type="button" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 14px; cursor: pointer; display: none;">&times;</button>
-                        </div>
-                        
-                        <!-- Yazı ve buton -->
-                        <div style="flex: 1;">
-                            <p id="photo-status" style="color: #555; font-size: 16px; margin: 0; font-weight: bold;">
-                                Profil Resmi Yükle
-                            </p>
-                            <input type="file" id="profile_photo" name="profile_photo" accept="image/*" style="display: none;">
-                            <label for="profile_photo" class="custom-file-upload" style="cursor: pointer; padding: 10px 20px; background-color: #28a745; color: white; border-radius: 5px; display: inline-block; margin-top: 10px;">
-                                Dosya Seç
-                            </label>
-                            <p id="file-name" style="color: #888; font-size: 14px; margin-top: 5px;">Seçili dosya yok</p>
-                        </div>
+            <form action="/step1" method="POST" class="modern-form" enctype="multipart/form-data">
+                <!-- Profil Fotoğrafı -->
+                <div class="profile-photo" style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                    <!-- Fotoğraf ve çarpı butonu -->
+                    <div style="position: relative;">
+                        <img id="profile-preview" 
+                            src="/static/images/profilresmi.png" 
+                            style="width: 150px; height: 150px; border-radius: 50%; border: 2px solid #ccc;">
+                        <!-- Çarpı Butonu -->
+                        <button id="remove-photo" type="button" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 14px; cursor: pointer; display: none;">&times;</button>
                     </div>
-                </form>
-                
-                <script>
-                    const profilePhotoInput = document.getElementById("profile_photo");
-                    const profilePreview = document.getElementById("profile-preview");
-                    const photoStatus = document.getElementById("photo-status");
-                    const fileNameDisplay = document.getElementById("file-name");
-                    const removePhotoButton = document.getElementById("remove-photo");
-                
-                    // Dosya yüklendiğinde çalışacak işlev
-                    profilePhotoInput.addEventListener("change", function (event) {
-                        const file = event.target.files[0];
-                        
-                        if (file) {
-                            // Seçilen dosyanın URL'sini oluştur ve önizleme için ayarla
-                            const reader = new FileReader();
-                            reader.onload = function (e) {
-                                profilePreview.src = e.target.result;
-                                profilePreview.alt = "Yüklenen Profil Resmi";
-                            };
-                            reader.readAsDataURL(file);
-                
-                            // Dosya adını güncelle
-                            fileNameDisplay.textContent = `Seçili dosya: ${file.name}`;
-                            fileNameDisplay.style.color = "green";
-                
-                            // Durum yazısını güncelle
-                            photoStatus.textContent = "Profil resminiz başarıyla yüklendi.";
-                            photoStatus.style.color = "green";
-                
-                            // Çarpı butonunu göster
-                            removePhotoButton.style.display = "block";
-                        }
-                    });
-                
-                    // Fotoğraf kaldırma işlevi
-                    removePhotoButton.addEventListener("click", function () {
-                        profilePreview.src = "/static/images/profilresmi.png";
-                        profilePreview.alt = "Varsayılan Profil Resmi";
-                
-                        fileNameDisplay.textContent = "Seçili dosya yok";
-                        fileNameDisplay.style.color = "#888";
-                
-                        photoStatus.textContent = "Profil Resmi Yükle";
-                        photoStatus.style.color = "#555";
-                
-                        // Input'u sıfırla
-                        profilePhotoInput.value = "";
-                        removePhotoButton.style.display = "none";
-                    });
-                </script>            
+                    
+                    <!-- Yazı ve buton -->
+                    <div style="flex: 1;">
+                        <p id="photo-status" style="color: #555; font-size: 16px; margin: 0; font-weight: bold;">
+                            Profil Resmi Yükle
+                        </p>
+                        <input type="file" id="profile_photo" name="profile_photo" accept="image/*" style="display: none;">
+                        <label for="profile_photo" class="custom-file-upload" style="cursor: pointer; padding: 10px 20px; background-color: #28a745; color: white; border-radius: 5px; display: inline-block; margin-top: 10px;">
+                            Dosya Seç
+                        </label>
+                        <p id="file-name" style="color: #888; font-size: 14px; margin-top: 5px;">Seçili dosya yok</p>
+                    </div>
+                </div>
+
             
                 <!-- Ad ve Soyad -->
                 <div class="form-row">
@@ -256,5 +206,55 @@
             <p>&copy; 2025 CVYarat. Tüm Hakları Saklıdır.</p>
         </div>
     </footer>
+                   
+    <script>
+        const profilePhotoInput = document.getElementById("profile_photo");
+        const profilePreview = document.getElementById("profile-preview");
+        const photoStatus = document.getElementById("photo-status");
+        const fileNameDisplay = document.getElementById("file-name");
+        const removePhotoButton = document.getElementById("remove-photo");
+    
+        // Dosya yüklendiğinde çalışacak işlev
+        profilePhotoInput.addEventListener("change", function (event) {
+            const file = event.target.files[0];
+            
+            if (file) {
+                // Seçilen dosyanın URL'sini oluştur ve önizleme için ayarla
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    profilePreview.src = e.target.result;
+                    profilePreview.alt = "Yüklenen Profil Resmi";
+                };
+                reader.readAsDataURL(file);
+    
+                // Dosya adını güncelle
+                fileNameDisplay.textContent = `Seçili dosya: ${file.name}`;
+                fileNameDisplay.style.color = "green";
+    
+                // Durum yazısını güncelle
+                photoStatus.textContent = "Profil resminiz başarıyla yüklendi.";
+                photoStatus.style.color = "green";
+    
+                // Çarpı butonunu göster
+                removePhotoButton.style.display = "block";
+            }
+        });
+    
+        // Fotoğraf kaldırma işlevi
+        removePhotoButton.addEventListener("click", function () {
+            profilePreview.src = "/static/images/profilresmi.png";
+            profilePreview.alt = "Varsayılan Profil Resmi";
+    
+            fileNameDisplay.textContent = "Seçili dosya yok";
+            fileNameDisplay.style.color = "#888";
+    
+            photoStatus.textContent = "Profil Resmi Yükle";
+            photoStatus.style.color = "#555";
+    
+            // Input'u sıfırla
+            profilePhotoInput.value = "";
+            removePhotoButton.style.display = "none";
+        });
+    </script>         
 </body>
 </html>
