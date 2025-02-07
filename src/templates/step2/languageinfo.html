@@ -1,29 +1,65 @@
 <div class="accordion-header" onclick="toggleAccordion(this)">Diller</div>
-<div class="accordion-content" id="skills-section">
-    <div class="skill-entry">
-        <div class="inline">
-            <label for="languageinfo_name">Dil</label>
-            <input type="text" id="languageinfo_name" name="language_name" placeholder="Dil">
+<div class="accordion-content" id="language-section">
+    <div id="language-list">
+        {% if data.languages %}
+            {% for language in data.languages %}
+            <div class="language-entry">
+                <div class="grouped_skill">
+                    <!-- Dil Adı -->
+                    <div class="inline">
+                        <input type="text" class="wide-input" name="language_name" value="{{ language.name }}" placeholder=" " required>
+                        <label for="language_name">Dil</label>
+                    </div>
+                    
+                    <!-- Bilgi Seviyesi -->
+                    <div class="inline">
+                        <select name="language_level" required>
+                            <option value="" disabled selected hidden>Seçiniz</option>
+                            <option value="1" {% if language.level == "1" %}selected{% endif %}>1 - Çok Az</option>
+                            <option value="2" {% if language.level == "2" %}selected{% endif %}>2</option>
+                            <option value="3" {% if language.level == "3" %}selected{% endif %}>3 - Orta</option>
+                            <option value="4" {% if language.level == "4" %}selected{% endif %}>4</option>
+                            <option value="5" {% if language.level == "5" %}selected{% endif %}>5 - Çok İyi</option>
+                        </select>
+                        <label for="language_level">Bilgi Seviyesi</label>
+                    </div>
+                </div>
+                
+                <!-- "-" Butonu -->
+                <b class="cta-button_lang remove-btn" onclick="removeLanguage(this)">-</b>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="language-entry">
+            <div class="grouped_skill">
+                <!-- Dil Adı -->
+                <div class="inline">
+                    <input type="text" class="wide-input" name="language_name" placeholder=" " required>
+                    <label for="language_name">Dil</label>
+                </div>
+                
+                <!-- Bilgi Seviyesi -->
+                <div class="inline">
+                    <select name="language_level" required>
+                        <option value="" disabled selected hidden>Seçiniz</option>
+                        <option value="1">1 - Çok Az</option>
+                        <option value="2">2</option>
+                        <option value="3">3 - Orta</option>
+                        <option value="4">4</option>
+                        <option value="5">5 - Çok İyi</option>
+                    </select>
+                    <label for="language_level">Bilgi Seviyesi</label>
+                </div>
+            </div>
+            
+            <!-- "-" Butonu -->
+            <b class="cta-button_lang remove-btn" onclick="removeLanguage(this)">×</b>
         </div>
-
-        <div class="inline">
-            <label for="languageinfo_name">Bilgi Seviyesi:</label>
-            <select id="softskilanguageinfo_namell_name" name="language_level">
-                <option value="">Seçiniz</option>
-                <option value="1">1 - Çok Az</option>
-                <option value="2">2</option>
-                <option value="3">3 - Orta</option>
-                <option value="4">4</option>
-                <option value="5">5 - Çok İyi</option>
-            </select>
-        </div>
+        {% endif %}
     </div>
 
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    <!-- "+ Ekle" Butonu -->
+    <div class="lang-add-button-wrapper">
+        <a class="cta-button_lang add-btn" onclick="addLanguage()">+</a>
     </div>
 </div>

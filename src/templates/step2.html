@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Genel Bilgiler - İş Deneyimleri</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/step2.css">
     <style>
         .form-buttons {
             display: flex;
@@ -28,164 +28,45 @@
         }
     </style>
 </head>
-<body>
-    {% include 'common/header.html' %}
-    <header class="header">
-        <div class="container">
-            <h1>2.Adım - Genel Bilgiler</h1>
-        </div>
-    </header>
-
+{% include 'step1/wave_up_step.html' %}
+<div class="content">
+        {% include 'common/header.html' %}
+ 
     <main class="form-container">
+            {% include '/step2/form_explain.html' %}
+            {% include '/step2/navbar.html' %}
+            {% include '/step2/form_explain2.html' %}
         <form action="/step2" method="POST" class="modern-form" enctype="multipart/form-data">
         <div class="container">
             <div class="accordion">
-                {% include 'step2/jobinfo.html' %}
-                {% include 'step2/educationinfo.html' %}
-                {% include 'step2/languageinfo.html' %}
-                {% include 'step2/skillsinfo.html' %}
-                {% include 'step2/softskillsinfo.html' %}
-                {% include 'step2/selfinfo.html' %}
-                {% include 'step2/projectsinfo.html' %}
-                {% include 'step2/certificateinfo.html' %}
-                {% include 'step2/referencesinfo.html' %}
+                {% include '/step2/selfinfo.html' %}
+                {% include '/step2/jobinfo.html' %}
+                {% include '/step2/educationinfo.html' %}
+                {% include '/step2/languageinfo.html' %}
+                {% include '/step2/skillsinfo.html' %}
+                {% include '/step2/softskillsinfo.html' %}
+                {% include '/step2/projectsinfo.html' %}
+                {% include '/step2/certificateinfo.html' %}
+                {% include '/step2/referencesinfo.html' %}
+
             </div>
 
             <!-- Önceki ve Sonraki Butonlar -->
             <div class="action-buttons">
-                <button type="button" id="previous-button" class="cta-button" onclick="navigatePrevious()">Önceki</button>
-                <button type="button" id="next-button" class="cta-button" onclick="navigateNext()">Sonraki</button>
-            </div>
+                <button type="button" id="previous-button" class="cta-button2" onclick="navigatePrevious()">Önceki</button>
+            <!-- <button type="button" id="next-button" class="cta-button2" onclick="navigateNext()">Sonraki</button>-->
+            
             <div class="form-buttons">
-                <button type="submit" class="cta-button">Gönder</button>
+                <button type="submit" class="cta-button3">Sonraki</button>
+            </div>
             </div>
         </div>
 
         </form>
     </main>
+    {% include 'common/footer.html' %}
 
-    <script>
-        // Önceki sayfaya yönlendirme
-        function navigatePrevious() {
-            window.location.href = '/step1'; // Step 1'e yönlendirme
-        }
-
-        // Sonraki sayfaya yönlendirme
-        function navigateNext() {
-            window.location.href = '/step3'; // Step 3'e yönlendirme
-        }
-
-        // Accordion işlevselliği
-        function toggleAccordion(header) {
-            const allContents = document.querySelectorAll('.accordion-content');
-            const allHeaders = document.querySelectorAll('.accordion-header');
-            const content = header.nextElementSibling;
-
-            // Tüm içerikleri kapat
-            allContents.forEach(item => item.classList.remove('active'));
-
-            // Tıklanan açık değilse, aç
-            if (!content.classList.contains('active')) {
-                content.classList.add('active');
-            }
-
-            // Tıklanan başlığa aktif sınıfı ekle
-            allHeaders.forEach(item => item.classList.remove('active'));
-            header.classList.add('active');
-        }
-
-        // Yeni iş deneyimi ekle
-        function addJob() {
-            const container = document.getElementById('job-experiences');
-            const firstJob = container.querySelector('.job-entry');
-            const newJob = firstJob.cloneNode(true);
-
-            // İçerikleri temizle
-            newJob.querySelectorAll('input, textarea, select').forEach(input => {
-                if (input.type === 'checkbox') {
-                    input.checked = false;
-                } else {
-                    input.value = '';
-                }
-            });
-
-            newJob.querySelector('.toggle-container').style.display = 'flex';
-
-            container.insertBefore(newJob, container.querySelector('.action-buttons'));
-        }
-
-        // Son iş deneyimini sil
-        function removeJob() {
-            const container = document.getElementById('job-experiences');
-            const jobEntries = container.querySelectorAll('.job-entry');
-
-            if (jobEntries.length > 1) {
-                jobEntries[jobEntries.length - 1].remove();
-            }
-        }
-
-        // "Halen çalışıyorum" seçildiğinde bitiş tarihi alanını devre dışı bırak
-        function toggleEndDate(checkbox) {
-            const endDate = checkbox.closest('.three-column').querySelector('#end_date');
-            if (checkbox.checked) {
-                endDate.value = '';
-                endDate.disabled = true;
-            } else {
-                endDate.disabled = false;
-            }
-        }
-
-        // "Aynı iş yeri" seçildiğinde şirket adını devre dışı bırak
-        function toggleSameCompany(checkbox) {
-            const companyName = checkbox.closest('.job-entry').querySelector('#company_name');
-            if (checkbox.checked) {
-                companyName.value = '';
-                companyName.disabled = true;
-            } else {
-                companyName.disabled = false;
-            }
-        }
-        
-        
-        // Yeni eğitim bilgisi ekle
-        function addEducation() {
-            const container = document.getElementById('education-experiences');
-            const firstEducation = container.querySelector('.education-entry');
-            const newEducation = firstEducation.cloneNode(true);
-
-            // İçerikleri temizle
-            newEducation.querySelectorAll('input').forEach(input => {
-                if (input.type === 'checkbox') {
-                    input.checked = false;
-                } else {
-                    input.value = '';
-                }
-            });
-
-            container.insertBefore(newEducation, container.querySelector('.action-buttons'));
-        }
-
-        // Son eğitim bilgisini sil
-        function removeEducation() {
-            const container = document.getElementById('education-experiences');
-            const educationEntries = container.querySelectorAll('.education-entry');
-
-            if (educationEntries.length > 1) {
-                educationEntries[educationEntries.length - 1].remove();
-            }
-        }
-
-        // "Halen devam ediyorum" seçildiğinde mezuniyet yılı alanını devre dışı bırak
-        function toggleEndYear(checkbox) {
-            const endYear = checkbox.closest('.three-column').querySelector('#end_year');
-            if (checkbox.checked) {
-                endYear.value = '';
-                endYear.disabled = true;
-            } else {
-                endYear.disabled = false;
-            }
-        }
-    </script>
+    <script src="/static/js/step2/step2.js" defer></script>
     <script src="/static/js/step2/educationinfo.js" defer></script>
     <script src="/static/js/step2/languageinfo.js" defer></script>
     <script src="/static/js/step2/skillsinfo.js" defer></script>
@@ -194,10 +75,6 @@
     <script src="/static/js/step2/projectsinfo.js" defer></script>
     <script src="/static/js/step2/certificateinfo.js" defer></script>
     <script src="/static/js/step2/referencesinfo.js" defer></script>
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 CVYarat. Tüm Hakları Saklıdır.</p>
-        </div>
-    </footer>
+ 
 </body>
 </html>

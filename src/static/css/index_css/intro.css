@@ -1,0 +1,84 @@
+:root{
+      /* Info Section */
+      --info-background:#fff;
+      --info-header-sub:#007BFF;
+      --info-header-h2:#333;
+      --info-header-h1:#007BFF;
+      --info-card-background:#f9f9f9;
+      --info-card-h3:#333;
+      --info-card-p:#555;
+}
+
+/* Info Section */
+.info-section {
+    padding: 60px 20px;
+    background-color: var(--info-background); 
+    text-align: center;
+}
+
+.info-header {
+    margin-bottom: 40px;
+}
+
+.info-header .sub-title {
+    font-size: 18px;
+    color: var(--info-header-sub); 
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.info-header h2 {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--info-header-h2); 
+    margin-bottom: 10px;
+}
+
+.info-header hr {
+    width: 50px;
+    height: 3px;
+    background-color: var(--info-header-h1); 
+    border: none;
+    margin: 20px auto 0;
+}
+
+.info-cards {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.info-card {
+    max-width: 300px;
+    text-align: center;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: var(--info-card-background); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.info-card img {
+    width: 60px;
+    margin-bottom: 20px;
+}
+
+.info-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--info-card-h3); 
+    margin-bottom: 10px;
+}
+
+.info-card p {
+    font-size: 16px;
+    color: var(--info-card-p);
+    line-height: 1.5;
+}

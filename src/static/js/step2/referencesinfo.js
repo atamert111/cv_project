@@ -1,24 +1,68 @@
-// Yeni referans bilgisi ekle
-function addReference() {
-    const container = document.getElementById('references-section');
-    const firstReference = container.querySelector('.reference-entry');
-    const newReference = firstReference.cloneNode(true);
+document.addEventListener("DOMContentLoaded", function () {
+    checkReferenceButtonVisibility();
+});
 
-    // İçerikleri temizle
-    newReference.querySelectorAll('input, textarea').forEach(input => {
-        input.value = '';
-    });
+function addReferenceEntry() {
+    let referenceSection = document.getElementById("references-section");
+    let referenceEntries = document.getElementsByClassName("reference-entry");
+    let referenceNumber = referenceEntries.length + 1; // Yeni referans numarası
 
-    container.insertBefore(newReference, container.querySelector('.action-buttons-reference'));
+    let newEntry = document.createElement("div");
+    newEntry.classList.add("reference-entry");
+
+    newEntry.innerHTML = `
+        <div class="ref-title">${referenceNumber}. Referans Bilgileri</div>
+
+        <div class="inline">
+            <input type="text" name="reference_name[]" placeholder=" " required>
+            <label for="reference_name">Referans Adı:</label>
+        </div>
+
+        <div class="reference-group">
+            <div class="inline position-field">
+                <input type="text" name="reference_position[]" placeholder=" " required>
+                <label for="reference_position">Referansın Pozisyonu:</label>
+            </div>
+
+            <div class="inline contact-field">
+                <input type="text" name="reference_contact[]" placeholder=" " required>
+                <label for="reference_contact">İletişim Bilgileri:</label>
+            </div>
+        </div>
+
+        <b class="cta-button_ref remove-btn" onclick="removeReferenceEntry(this)">-</b>
+    `;
+
+    let addButtonContainer = document.getElementById("add-reference-container");
+    referenceSection.insertBefore(newEntry, addButtonContainer);
+
+    updateReferenceNumbers();
+    checkReferenceButtonVisibility();
 }
 
-// Referans bilgisi sil
-function removeReference() {
-    const container = document.getElementById('references-section');
-    const referenceEntries = container.querySelectorAll('.reference-entry');
 
-    // En az bir giriş kalmalı
-    if (referenceEntries.length > 1) {
-        referenceEntries[referenceEntries.length - 1].remove();
+function removeReferenceEntry(button) {
+    let entry = button.closest(".reference-entry");
+    entry.remove();
+    updateReferenceNumbers();
+    checkReferenceButtonVisibility();
+}
+
+function updateReferenceNumbers() {
+    let referenceEntries = document.getElementsByClassName("reference-entry");
+    for (let i = 0; i < referenceEntries.length; i++) {
+        let title = referenceEntries[i].querySelector(".ref-title");
+        title.textContent = `${i + 1}. Referans Bilgileri`;
+    }
+}
+
+function checkReferenceButtonVisibility() {
+    let referenceEntries = document.getElementsByClassName("reference-entry");
+    let addButtonContainer = document.getElementById("add-reference-container");
+
+    if (referenceEntries.length === 0) {
+        addButtonContainer.style.display = "block";
+    } else {
+        addButtonContainer.style.display = "flex";
     }
 }

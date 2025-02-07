@@ -1,0 +1,71 @@
+:root {
+    --step-background: #ffffff;
+    --step-h3: #333333;
+    --step-p: #555555;
+}
+
+/* Steps Section */
+.steps-section {
+    background-color: var(--step-background);
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.steps-container {
+    display: flex; /* Flexbox düzeni */
+    justify-content: center; /* Kartları yatayda ortala */
+    align-items: stretch; /* Kartları aynı yükseklikte tut */
+    gap: 40px; /* Kartlar arasındaki boşluk */
+    flex-wrap: wrap; /* Alt satıra taşma için sarma */
+    max-width: 1200px; /* Konteyner genişliği */
+    margin: 0 auto; /* Ortalamak için */
+}
+
+.step {
+    flex: 1 1 calc(33.33% - 40px); /* Kart genişliğini %33 yap, boşlukları hesaba kat */
+    max-width: 300px; /* Maksimum genişlik */
+    text-align: center; /* İçeriği ortala */
+    background-color: #f9f9f9; /* Kart arka planı */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Gölge efekti */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-5px); /* Hover durumunda yukarı kaldır */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.step img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.step h3 {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--step-h3);
+    margin-bottom: 10px;
+}
+
+.step p {
+    font-size: 16px;
+    color: var(--step-p);
+    line-height: 1.6;
+}
+
+/* Responsive (Mobil) Görünüm */
+@media screen and (max-width: 768px) {
+    .steps-container {
+        flex-direction: column; /* Mobilde kartları alt alta diz */
+        gap: 20px; /* Kartlar arasındaki boşluğu azalt */
+    }
+
+    .step {
+        flex: 1 1 100%; /* Kart genişliğini %100 yap */
+        max-width: none;
+    }
+}

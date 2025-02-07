@@ -1,0 +1,19 @@
+
+@import url('common/header.css');
+@import url('index_css/feature_slayt.css');
+@import url('common/wave.css');
+@import url('index_css/hero.css');
+@import url('index_css/intro.css');
+@import url('index_css/whyisus.css');
+@import url('common/footer.css');
+
+
+:root{
+    /* Wave  Section */
+    --wave-up-background:#392DF5; 
+    --wave-down-background:#fff; 
+
+}
+
+
+

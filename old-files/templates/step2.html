@@ -65,9 +65,9 @@
         }
 
         // Sonraki sayfaya yönlendirme
-        function navigateNext() {
-            window.location.href = '/step3'; // Step 3'e yönlendirme
-        }
+        // function navigateNext() {
+       //      window.location.href = '/step3'; // Step 3'e yönlendirme
+        // }
 
         // Accordion işlevselliği
         function toggleAccordion(header) {
@@ -141,33 +141,6 @@
         }
         
         
-        // Yeni eğitim bilgisi ekle
-        function addEducation() {
-            const container = document.getElementById('education-experiences');
-            const firstEducation = container.querySelector('.education-entry');
-            const newEducation = firstEducation.cloneNode(true);
-
-            // İçerikleri temizle
-            newEducation.querySelectorAll('input').forEach(input => {
-                if (input.type === 'checkbox') {
-                    input.checked = false;
-                } else {
-                    input.value = '';
-                }
-            });
-
-            container.insertBefore(newEducation, container.querySelector('.action-buttons'));
-        }
-
-        // Son eğitim bilgisini sil
-        function removeEducation() {
-            const container = document.getElementById('education-experiences');
-            const educationEntries = container.querySelectorAll('.education-entry');
-
-            if (educationEntries.length > 1) {
-                educationEntries[educationEntries.length - 1].remove();
-            }
-        }
 
         // "Halen devam ediyorum" seçildiğinde mezuniyet yılı alanını devre dışı bırak
         function toggleEndYear(checkbox) {

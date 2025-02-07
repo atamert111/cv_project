@@ -56,6 +56,7 @@ def step1():
             'personal_info_phone': request.form.get('phone'),
             'personal_info_email': request.form.get('email'),
             'personal_info_address': request.form.get('address'),
+            'personal_info_birthday': request.form.get('birthday'),
             'military_service_status': request.form.get('military_service_status'),
             'driver_license': request.form.get('driver_license'),
             'marital_status': request.form.get('marital_status'),

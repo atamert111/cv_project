@@ -1,32 +1,38 @@
 <div class="accordion-header" onclick="toggleAccordion(this)">Projeler</div>
 <div class="accordion-content" id="projects-section">
+    {% set project_list = data.projects if data.projects else [{}] %}
+    {% for project in project_list %}
     <div class="project-entry">
+        <div class="proj-title custom-proj-title">{{ loop.index }}. Proje Bilgileri</div>
+
         <div class="inline">
+            <input type="text" name="project_name[]" value="{{ project.name if project.name else '' }}" placeholder=" " required>
             <label for="project_name">Proje Adı:</label>
-            <input type="text" id="project_name" name="project_name" placeholder="Proje adı">
+        </div>
+        
+        <div class="grouped2">
+            <div class="inline">
+                <input type="date" name="project_date[]" value="{{ project.date if project.date else '' }}" placeholder=" " required>
+                <label for="project_date">Proje Tarihi:</label>
+            </div>
+            <div class="inline">
+                <input type="text" name="project_link[]" value="{{ project.link if project.link else '' }}" placeholder=" ">
+                <label for="project_link">Proje Linki (Opsiyonel): "GitHub veya başka bir link"</label>
+            </div>
         </div>
 
-        <div class="inline">
-            <label for="project_date">Proje Tarihi:</label>
-            <input type="date" id="project_date" name="project_date">
-        </div>
-
-        <div class="inline">
+        <div class="inline2">
+            <textarea name="project_description[]" class="text-content" placeholder=" " required>{{ project.description if project.description else '' }}</textarea>
             <label for="project_description">Proje Açıklaması (Opsiyonel):</label>
-            <textarea id="project_description" name="project_description" placeholder="Proje açıklaması"></textarea>
         </div>
 
-        <div class="inline">
-            <label for="project_link">Proje Linki (Opsiyonel):</label>
-            <input type="url" id="project_link" name="project_link" placeholder="GitHub veya başka bir link">
-        </div>
+        <!-- "-" Butonu -->
+        <b class="cta-button_proj remove-btn" onclick="removeProjectEntry(this)">-</b>
     </div>
+    {% endfor %}
 
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    <!-- "+ Ekle" Butonu -->
+    <div id="add-button-container">
+        <a class="cta-button_proj add-btn" onclick="addProjectEntry()">+</a>
     </div>
 </div>

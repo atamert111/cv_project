@@ -1,29 +1,65 @@
-<div class="accordion-header" onclick="toggleAccordion(this)">Beceriler</div>
-<div class="accordion-content" id="skills-section">
-    <div class="skill-entry">
-        <div class="inline">
-            <label for="skill_name">Beceri:</label>
-            <input type="text" id="skill_name" name="technical_skill_name" placeholder="Matlab, C++, Excel vb. ">
+<div class="accordion-header" onclick="toggleAccordion(this)">Teknik Beceriler</div>
+<div class="accordion-content" id="tech-skills-section">
+    <div id="tech-skills-list">
+        {% if data.technical_skills %}
+            {% for skill in data.technical_skills %}
+            <div class="tech-skill-entry">
+                <div class="grouped_skill">
+                    <!-- Teknik Beceri Adı -->
+                    <div class="inline">
+                        <input type="text" class="wide-input" name="tech_skill_name" value="{{ skill.name }}" placeholder=" " required>
+                        <label for="tech_skill_name">Teknik Beceri (Matlab, Excel vb.)</label>
+                    </div>
+                    
+                    <!-- Bilgi Seviyesi -->
+                    <div class="inline">
+                        <select name="tech_skill_level" required>
+                            <option value="" disabled selected hidden>Seçiniz</option>
+                            <option value="1" {% if skill.level == "1" %}selected{% endif %}>1 - Çok Az</option>
+                            <option value="2" {% if skill.level == "2" %}selected{% endif %}>2</option>
+                            <option value="3" {% if skill.level == "3" %}selected{% endif %}>3 - Orta</option>
+                            <option value="4" {% if skill.level == "4" %}selected{% endif %}>4</option>
+                            <option value="5" {% if skill.level == "5" %}selected{% endif %}>5 - Çok İyi</option>
+                        </select>
+                        <label for="tech_skill_level">Bilgi Seviyesi</label>
+                    </div>
+                </div>
+                
+                <!-- "-" Butonu -->
+                <b class="cta-button_tech remove-btn" onclick="removeTechSkill(this)">-</b>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="tech-skill-entry">
+            <div class="grouped_skill">
+                <!-- Teknik Beceri Adı -->
+                <div class="inline">
+                    <input type="text" class="wide-input" name="tech_skill_name" placeholder=" " required>
+                    <label for="tech_skill_name">Teknik Beceri (Matlab, Excel vb.)</label>
+                </div>
+                
+                <!-- Bilgi Seviyesi -->
+                <div class="inline">
+                    <select name="tech_skill_level" required>
+                        <option value="" disabled selected hidden>Seçiniz</option>
+                        <option value="1">1 - Çok Az</option>
+                        <option value="2">2</option>
+                        <option value="3">3 - Orta</option>
+                        <option value="4">4</option>
+                        <option value="5">5 - Çok İyi</option>
+                    </select>
+                    <label for="tech_skill_level">Bilgi Seviyesi</label>
+                </div>
+            </div>
+            
+            <!-- "-" Butonu -->
+            <b class="cta-button_tech remove-btn" onclick="removeTechSkill(this)">-</b>
         </div>
-
-        <div class="inline">
-            <label for="skill_level">Bilgi Seviyesi:</label>
-            <select id="skill_level" name="technical_skill_level">
-                <option value="">Seçiniz</option>
-                <option value="1">1 - Çok Az</option>
-                <option value="2">2</option>
-                <option value="3">3 - Orta</option>
-                <option value="4">4</option>
-                <option value="5">5 - Çok İyi</option>
-            </select>
-        </div>
+        {% endif %}
     </div>
 
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    <!-- "+ Ekle" Butonu -->
+    <div class="tech-add-button-wrapper">
+        <a class="cta-button_tech add-btn" onclick="addTechSkill()">+</a>
     </div>
 </div>

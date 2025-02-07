@@ -1,0 +1,181 @@
+
+:root {
+ /* Headres Renkler */
+ --header-background-main: #392DF5;/* headers arka plan Renkler */
+ --header-text: #F5F5F5;
+ --header-top-button: #F5F5F5;
+ --header-top-button-hover-background: #2C2C2C;
+ --header-top-button-hover-border: #F5A623;
+ --header-top-button-active-background: #F5F5F5;
+ --header-top-button-active: #F5A623;
+ --header-top-button-active-border: #F5A623;
+}
+
+/* Header Section */
+.header {
+    background-color: var(--header-background-main);
+    color: var(--header-text);
+    padding: 15px 0;
+    display: flex; /* Flexbox dÃ¼zenini etkinleÅŸtir */
+    justify-content: space-between; /* Ä°ki tarafÄ± ayÄ±r */
+    align-items: center; /* Dikey hizalama */
+    padding: 0 10px; /* SaÄŸ ve sol boÅŸluk */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+}
+
+.brand-title {
+    font-size: 30px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.top-nav {
+    display: flex;
+    justify-content: space-between; /* Align items to the left and right */
+    gap: 610px; /* Maintain spacing consistency */
+}
+
+.top-buttons {
+    display: flex;
+    justify-content: flex-end; /* Align buttons to the right */
+    padding: 15px; /* Add uniform padding */
+    margin: 15px; /* Add uniform margin */
+    list-style: none; /* Liste işaretlerini kaldırır */
+
+}
+
+.top-button {
+    text-decoration: none;
+    color: var(--header-top-button);
+    font-size: 18px;
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+    
+    
+}
+
+.top-button:hover {
+    background-color: var(--header-top-button-hover-background);
+    border-color: var(--header-top-button-hover-border);
+}
+
+.top-button.active {
+    background-color: var(--header-top-button-active-background);
+    color: var(--header-top-button-active);
+    font-weight: bold;
+    border-color: var(--header-top-button-active-border);
+}
+
+/* Responsive Fixes */
+@media only screen and (max-width: 768px) {
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .hero-text {
+        padding: 40px 10px;
+    }
+    
+    .hero-image {
+        padding: 0;
+    }
+    
+    .features-slider {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .steps-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+ 
+    
+    .top-buttons {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background-color: var(--header-background-main);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .top-buttons.open {
+        display: flex;
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .hero-text h1 {
+        font-size: 32px;
+    }
+    
+    .hero-text p {
+        font-size: 16px;
+    }
+    
+    .cta-button {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
+    .info-cards {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+/* Hamburger Menu Styling */
+.hamburger-menu {
+    display: none; /* Default: Hidden */
+    font-size: 28px;
+    background: none;
+    border: none;
+    color: var(--header-text);
+    cursor: pointer;
+    padding: 10px;
+}
+
+.top-buttons {
+    display: flex;
+   
+}
+
+@media only screen and (max-width: 768px) {
+    .hamburger-menu {
+        display: block; /* Visible on small screens */
+    }
+    
+    .top-buttons {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 10px;
+        background-color: var(--header-background-main);
+        padding: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .top-buttons.open {
+        display: flex;
+        gap: 25px;
+    }
+}
+
+
+/* Hamburger menu alignment fix */
+.hamburger-menu {
+    position: absolute;
+    right: 10px; /* Align to the right in app view */
+    top: 15px;
+    z-index: 999; /* Ensure it's on top of other elements */
+}

@@ -4,39 +4,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CVYarat - Hızlı ve Kolay CV Hazırlayın</title>
-    <link rel="stylesheet" href="/static/css/style.css">
+    <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
     {% include 'common/header.html' %}
+    {% include 'index/feature.html' %}
+    {% include 'index/hero.html' %}
+    {% include 'index/ware_up.html' %}
+    {% include 'index/info.html' %}
+    {% include 'index/whyisus.html' %}
+    {% include 'index/ware_down.html' %}
+    {% include 'common/footer.html' %}
+    
 
-    <!-- Hero Section -->
-    <main class="hero">
-        <div class="container hero-content">
-            <div class="hero-image-wrapper">
-                <img src="/static/images/cv-2-gulsah.png.webp" alt="CVYarat Görseli" class="hero-image">
-            </div>
-            <div class="text-content">
-                <h2 class="hero-title">Hızlı - Kolay - Etkili</h2>
-                <p class="hero-description">
-                    Profesyonel bir CV hazırlamak artık çok kolay. 
-                    Sadece bilgilerinizi girin, şablonunuzu seçin ve dakikalar içinde CV’nizi indirin.
-                </p>
-                <a href="/step1" class="cta-button">Hemen CV Yarat</a>
-            </div>
-        </div>
-    </main>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
+    const topButtons = document.querySelector('.top-buttons');
+    
+    if (hamburgerMenu && topButtons) {
+        hamburgerMenu.addEventListener('click', function() {
+            topButtons.classList.toggle('open');
+        });
+    }
+});
+document.addEventListener('DOMContentLoaded', function () {
+    // Mevcut URL'yi al
+    const currentPath = window.location.pathname;
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <h3 class="features-title">Neden CVYarat?</h3>
-            <ul class="features-list">
-                <li>Hızlı ve kolay kullanım</li>
-                <li>Profesyonel şablonlar</li>
-                <li>Tamamen ücresiz</li>
-            </ul>
-        </div>
-    </section>
+    // Tüm linkleri kontrol et
+    const links = document.querySelectorAll('.top-button');
+
+    links.forEach(link => {
+        // Linkin href özelliğini al
+        const linkHref = link.getAttribute('href');
+
+        // Eğer URL'ler eşleşirse veya ana sayfa için özel kontrol varsa active sınıfını ekle
+        if (currentPath === linkHref || (currentPath === '/' && (linkHref === '#' || linkHref === '/#'))) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+});
+
+
+</script>
 </body>
-
 </html>

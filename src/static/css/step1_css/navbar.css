@@ -1,0 +1,67 @@
+/* Üst Menü */
+/* Navigasyon Sekmeleri */
+.navbar {
+    display: flex; /* Bağlantıları yan yana hizala */
+    justify-content: space-between; /* Eşit boşluk bırak */
+    background-color: #f9f9f9; /* Arka plan rengi */
+    border-bottom: 3px solid #ddd; /* Alt çizgi */
+    padding: 10px; /* Üst ve alt boşluk */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+}
+
+.navbar a {
+    flex: 1; /* Her bağlantı eşit genişlikte */
+    text-align: center; /* Metin ortalanır */
+    padding: 5px 5px; /* İç boşluk */
+    color: #555; /* Metin rengi */
+    text-decoration: none; /* Alt çizgiyi kaldır */
+    border-radius: 10px; /* Köşe yuvarlatma */
+    font-size: 18px; /* Yazı boyutu */
+    transition: background-color 0.3s ease; /* Hover için geçiş animasyonu */
+}
+
+.navbar a.active {
+    background-color: #F5A623; /* Aktif bağlantı arka planı */
+    color: white; /* Aktif bağlantı metin rengi */
+    border-radius: 10px; /* Köşe yuvarlatma */
+    margin-top: 0px; /* Üstten kaydır */
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.navbar a:hover {
+    background-color: #e9e9e9; /* Hover durumunda arka plan */
+}
+
+
+@media only screen and (max-width: 768px) {
+
+    .navbar {
+     flex-wrap: wrap; /* Mobilde bağlantılar alt alta geçmesin */
+     justify-content: center; /* Bağlantıları ortala */
+     gap: 5px; /* Bağlantılar arasında boşluk */
+     padding: 5px; /* Üst ve alt boşlukları azalt */
+ }
+
+ .navbar a {
+     flex: none; /* Her bağlantının genişliği bağımsız */
+     min-width: 100px; /* Her bağlantı için minimum genişlik */
+     padding: 5px; /* İç boşlukları artır */
+     font-size: 16px; /* Yazı boyutunu biraz küçült */
+ }
+ .header {
+   
+     min-width: 100px; /* Her bağlantı için minimum genişlik */
+ 
+ }
+ .wave {
+   
+     max-width: 10px; /* Her bağlantı için minimum genişlik */
+ 
+ }
+
+ .navbar a.active {
+     margin: 0; /* Margin sıfırlandı */
+     border-radius: 5px; /* Daha küçük köşe yuvarlatma */
+ }
+}

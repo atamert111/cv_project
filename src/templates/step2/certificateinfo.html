@@ -1,27 +1,33 @@
 <div class="accordion-header" onclick="toggleAccordion(this)">Sertifikalar</div>
 <div class="accordion-content" id="certificate-section">
+    {% set certificate_list = data.certificates if data.certificates else [{}] %}
+    {% for certificate in certificate_list %}
     <div class="certificate-entry">
+        <div class="cert-title custom-cert-title">{{ loop.index }}. Sertifika Bilgileri</div>
+
         <div class="inline">
+            <input type="text" name="certificate_name[]" value="{{ certificate.name if certificate.name else '' }}" placeholder=" " required>
             <label for="certificate_name">Sertifika Adı:</label>
-            <input type="text" id="certificate_name" name="certificate_name" placeholder="Sertifika adı" >
         </div>
 
-        <div class="inline">
-            <label for="certificate_year">Sertifika Yılı (Opsiyonel):</label>
-            <input type="number" id="certificate_year" name="certificate_date" placeholder="YYYY" min="1900" max="2099">
+        <div class="grouped2">
+            <div class="inline">
+                <input type="number" name="certificate_year[]" value="{{ certificate.date if certificate.date else '' }}" placeholder=" " min="1900" max="2099">
+                <label for="certificate_year">Sertifika Yılı (Opsiyonel):</label>
+            </div>
+            <div class="inline">
+                <input type="text" name="certificate_place[]" value="{{ certificate.issuer if certificate.issuer else '' }}" placeholder=" ">
+                <label for="certificate_place">Alındığı Yer (Opsiyonel):</label>
+            </div>
         </div>
 
-        <div class="inline">
-            <label for="certificate_place">Alındığı Yer (Opsiyonel):</label>
-            <input type="text" id="certificate_place" name="certificate_place" placeholder="Alındığı yer">
-        </div>
+        <!-- "-" Butonu -->
+        <b class="cta-button_cert remove-btn" onclick="removeCertificateEntry(this)">-</b>
     </div>
+    {% endfor %}
 
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    <!-- "+ Ekle" Butonu -->
+    <div id="add-certificate-container">
+        <a class="cta-button_cert add-btn" onclick="addCertificateEntry()">+</a>
     </div>
 </div>

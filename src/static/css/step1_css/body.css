@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* İçeriği üstten başlat */
+    align-items: center;
+    background:#F5F5F5;* Geçiş */
+    background-repeat: no-repeat; /* Tekrar etme */
+    background-attachment: fixed; /* Kaydırma sırasında sabit */
+    position: relative;
+    background-size: cover;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+
+}

@@ -1,0 +1,69 @@
+/* Form Alanları */
+input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+}
+
+input:focus, select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Form Düzeni */
+.form-container {
+    background-color: #007bff; /* Form arka plan mavi */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+.action-buttons, .form-buttons {
+    display: flex; /* Flexbox düzenini etkinleştir */
+    justify-content: space-between; /* Butonları sola ve sağa hizala */
+    align-items: center; /* Dikey hizalamayı ortala */
+    width: 100%; /* Konteyner genişliği */
+    margin: 20px 0; /* Üst ve alt boşluk */
+}
+.action-buttons {
+    display: flex; /* Yan yana hizalama */
+    justify-content: space-between; /* Butonları sağa ve sola hizala */
+    align-items: center; /* Dikey hizalama */
+    width: 100%; /* Konteyner genişliği */
+    margin: 20px 0; /* Üst ve alt boşluk */
+}
+
+.cta-button2, .cta-button3 {
+    width: 45%; /* Buton genişliği */
+    height: 40px; /* Buton yüksekliği */
+    padding: 0; /* İç dolgu yok, sabit yükseklik */
+    background-color: #F5A623; /* Arka plan rengi */
+    color: white; /* Yazı rengi */
+    font-size: 16px; /* Yazı boyutu */
+    border: none; /* Çerçeve yok */
+    border-radius: 5px; /* Köşe yuvarlatma */
+    cursor: pointer; /* Fare imleci işaretçi */
+    text-align: center; /* Yazıyı ortala */
+    transition: background-color 0.3s ease; /* Hover efekti */
+}
+
+.cta-button2:hover, .cta-button3:hover {
+    background-color: #4CAF50; /* Hover için koyu mavi */
+}
+
+.cta-button2:active, .cta-button3:active {
+    background-color: #4CAF50; /* Tıklandığında daha koyu */
+}
+

@@ -13,6 +13,7 @@ from pages.result import result_page
 from pages.pdf import pdf_page
 
 from pages.sample import sample_page
+from pages.reset import reset_page
 
 # Blueprint'leri kaydet
 app.register_blueprint(root_page, url_prefix='/')
@@ -22,8 +23,8 @@ app.register_blueprint(step3_page, url_prefix='/step3')
 app.register_blueprint(result_page, url_prefix='/result')
 app.register_blueprint(pdf_page, url_prefix='/pdf')
 
-
 app.register_blueprint(sample_page, url_prefix='/sample')
+app.register_blueprint(reset_page, url_prefix='/reset')  # Doğru Blueprint kullanıldı
 
 # Uygulamayı çalıştır
 if __name__ == '__main__':

@@ -1,11 +1,19 @@
 <div class="accordion-header" onclick="toggleAccordion(this)">Ön Yazı</div>
-<div class="accordion-content" id="references-section">
-    <div class="reference-entry">
-        <div class="text-content">
-            <label for="selfinfo">Ön Yazı</label>
-            <input type="text" id="self_about_text" name="self_about_text" placeholder="Kendinizden Kısaca bahsedin">
+<div class="accordion-content" id="self_about-section">
+    {% if data.self_about %}
+        <div class="selfinfo_entry">
+            <div class="inline2">
+                <textarea id="self_about_text" name="self_about_text" class="text-content" placeholder=" " required>{{ data.self_about }}</textarea>
+                <label for="self_about_text">Ön Yazı (Kendinizden Kısaca bahsedin)</label>
+            </div>
         </div>
-    </div>
-
-
+    {% else %}
+    <!-- Yeni Ön Yazı Girişi -->
+        <div class="selfinfo_entry">
+            <div class="inline2">
+                <textarea id="self_about_text" name="self_about_text" class="text-content" placeholder=" " required></textarea>
+                <label for="self_about_text">Ön Yazı (Kendinizden Kısaca bahsedin)</label>
+            </div>
+        </div>
+    {% endif %}
 </div>

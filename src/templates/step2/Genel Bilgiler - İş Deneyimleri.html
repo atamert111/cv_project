@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genel Bilgiler - İş Deneyimleri</title>
+    <link rel="stylesheet" href="/static/css/step2.css">
+    <style>
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .cta-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+    <!-- SVG Dalga -->
+    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path fill="#F5F5F5" fill-opacity="1" d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,160C840,128,960,96,1080,106.7C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
+    </svg>
+<div class="content">
+            <!-- Header Section -->
+    <header class="header">
+        <div class="container d-flex justify-content-between align-items-center">
+            
+            
+    <nav class="top-nav">
+        <button class="hamburger-menu" aria-label="Toggle navigation">
+            ☰
+        </button>
+    
+                <div class="brand-title">CVYarat.com</div>
+                <ul class="top-buttons">
+                    <li><a href="/#" class="top-button">Anasayfa</a></li>
+                    <li><a href="/about" class="top-button">Hakkında</a></li>
+                    <li><a href="/contact" class="top-button">İletişim</a></li>
+                </ul>                
+            </nav>
+        </div>
+    </header>
+ 
+    <main class="form-container">
+            <div class="Form_explanin_up">
+    <div class="Form_explanin_up h3">
+        <h3>CVdone ile ücretsiz CV oluşturun.</h3>
+    </div>
+    <div class="Form_explanin_up h3">
+    <p>Sadece 3 dakika içinde profesyonel şablonlarla CV'nizi hazırlayın.</p>
+    </div>
+</div>
+            <div class="navbar">
+    <a href="/step1">Kişisel Bilgiler</a>
+    <a href="/step2" class="active" >Deneyim Bilgileri</a>
+    <a href="/step3">Tasarım</a>
+    <a href="/finalize.html">Önizleme</a>
+</div>
+            <div class="Form_explanin_up p">
+    <p>Kısa Bir Süre İçinde CV'ni hazırlayacağız.</p>
+</div>
+        <form action="/step2" method="POST" class="modern-form" enctype="multipart/form-data">
+        <div class="container">
+            <div class="accordion">
+                <div class="accordion-header" onclick="toggleAccordion(this)">İş Deneyimleri</div>
+<div class="accordion-content" id="job-experiences">
+    
+    <!-- Yeni İş Girişi -->
+    <div class="job-entry">
+        <div class="job-title custom-job-title">1. Şirket Bilgileri</div>
+        <div class="grouped2">
+            <div class="inline">
+                <input type="text" class="wide-input" id="job_company_name" name="job_company_name" placeholder=" " required>
+                <label for="job_company_name">Şirket Adı:(*)</label>
+            </div>
+            <div class="toggle-container" style="display:none;">
+                <label for="same_company"></label>
+                <button type="button" class="toggle-button" onclick="toggleSameCompany(this)"></button>
+            </div>
+        </div>
+        <div class="grouped">
+            <div class="inline">
+                <input type="text" class="wide-input" id="job_position" name="job_position" placeholder=" " required>
+                <label for="job_position">Pozisyon:(*)</label>
+            </div>
+            <div class="inline">
+                <input type="text" class="narrow-input" id="job_location" name="job_location" placeholder=" " required>
+                <label for="job_location">Konum:(*)</label>
+            </div>
+        </div>
+        <div class="inline">
+            <textarea id="job_description" name="job_description" class="multi-line" placeholder=" " required></textarea>
+            <label for="job_description">Pozisyon Açıklaması:</label>
+        </div>
+        <div class="three-column">
+            <div class="inline">
+                <input type="date" id="job_start_date" name="job_start_date"  placeholder=" " required>
+                <label for="job_start_date">Başlangıç Tarihi:(*)</label>
+            </div>
+            <!-- Bitiş Tarihi Bölümü -->
+            <div class="inline" id="end_date_container">
+                <input type="date" id="job_end_date" name="job_end_date" placeholder=" " required>
+                <label for="job_end_date">Bitiş Tarihi:(*)</label>
+            </div>
+            <div >
+                <input type="checkbox" id="still_working" name="still_working" class="styled-checkbox" onchange="toggleEndDate(this)">
+                <label for="still_working" class="styled-label"></label>
+            </div>
+            
+        </div>
+        <div class="grouped">
+            <div class="inline">
+                <select id="work_type" name="work_type" required>
+                    <option value="" disabled selected hidden>Seçiniz</option>
+                    <option value="full_time">Tam Zamanlı</option>
+                    <option value="part_time">Yarı Zamanlı</option>
+                    <option value="intern">Stajyer</option>
+                </select>
+                <label for="work_type">Çalışma Türü (Opsiyonel):</label>
+            </div>
+            <div class="inline">
+                <select id="work_location" name="work_location" required>
+                    <option value="" disabled selected hidden>Seçiniz</option>
+                    <option value="office">Ofis</option>
+                    <option value="hybrid">Hibrit</option>
+                    <option value="remote">Remote</option>
+                </select>
+                <label for="work_location">Çalışma Yeri (Opsiyonel):</label>
+            </div>
+        </div>
+    </div>
+    
+
+    <!-- Ekle/Sil Butonları -->
+    <div class="action-buttons">
+        <a href="#" class="cta-button" onclick="addJob()">+</a>
+        <b href="#" class="cta-button" onclick="removeJob()">-</b>
+    </div>
+</div>
+                <div class="accordion-header" onclick="toggleAccordion(this)">Eğitim Bilgileri</div>
+<div class="accordion-content" id="education-experiences">
+    
+    
+    <div class="education-entry">
+        <div class="inline">
+            <input type="text" id="school_name" name="edu_school_name" value="" placeholder=" " required>
+            <!-- Placeholder gibi label -->
+            <label for="school_name">Okul Adı:(*)</label>
+        </div>
+
+        <div class="inline">
+            <select id="degree" name="degree" required>
+                <option value="" disabled selected hidden></option>
+                <option value="">-</option>
+                <option value="İlkokul">İlkokul</option>
+                <option value="Ortaokul">Ortaokul</option>
+                <option value="Lise">Lise</option>
+                <option value="Önlisans">Ön Lisans</option>
+                <option value="Lisans">Lisans</option>
+                <option value="Yuksek Lisans">Yüksek Lisans</option>
+                <option value="Doktora">Doktora</option>
+                <option value="Post-Doktora">Post-Doktora</option>
+            </select>
+            <!-- Placeholder gibi label -->
+            <label for="degree" class="floating-label">Derece</label>
+        </div>
+        
+        <div class="inline">
+            <input type="text" id="department" name="edu_department" value="" placeholder=" " >
+            <!-- Placeholder gibi label -->
+            <label for="department">Bölüm (Opsiyonel):</label>
+        </div>
+        <div class="inline">
+            <input type="text" id="faculty" name="faculty" value="" placeholder=" " >
+            <!-- Placeholder gibi label -->
+            <label for="faculty">Fakülte (Opsiyonel):</label>
+        </div>
+        <div class="three-column">
+            <div class="inline">
+                <input type="number" id="start_year" name="edu_start_year" value="" placeholder="" min="1900" max="2099">
+                <!-- Placeholder gibi label -->
+                <label for="start_year">Başlangıç Yılı:(*)</label>
+            </div>
+            <div class="inline">
+                <input type="number" id="end_year" name="edu_end_date" value="" placeholder="" min="1900" max="2099">
+                <!-- Placeholder gibi label -->
+                <label for="end_year">Mezuniyet Yılı:(*)</label>
+            </div>
+            <div class="inline">
+                <input type="checkbox" id="currently_studying" name="currently_studying"onchange="toggleEndYear(this)" placeholder=" " >
+                <!-- Placeholder gibi label -->
+                <label for="currently_studying">Halen devam ediyorum:</label>
+            </div>
+
+        </div>
+    </div>
+
+    
+    <!-- + ve - Butonları -->
+    <div class="action-buttons">
+        <a href="#" class="cta-button" onclick="addJob()">+</a>
+        <a href="#" class="cta-button" onclick="removeJob()">-</a>
+        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
+        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    </div>
+</div>
+   
+            </div>
+
+            <!-- Önceki ve Sonraki Butonlar -->
+            <div class="action-buttons">
+                <button type="button" id="previous-button" class="cta-button2" onclick="navigatePrevious()">Önceki</button>
+            <!-- <button type="button" id="next-button" class="cta-button2" onclick="navigateNext()">Sonraki</button>-->
+            
+            <div class="form-buttons">
+                <button type="submit" class="cta-button3">Sonraki</button>
+            </div>
+            </div>
+        </div>
+
+        </form>
+    </main>
+    <footer class="footer">
+    <div class="footer-wave">
+ 
+    </div>
+    <div class="footer-content">
+        <div class="footer-columns">
+            <!-- Column 1 -->
+            <div class="footer-column">
+                <h3>CV Örnekleri</h3>
+                <ul>
+                    <li>Satış Pazarlama CV</li>
+                    <li>Grafik & Tasarımcı CV</li>
+                    <li>Akademisyen CV</li>
+                    <li>Medikal CV</li>
+                    <li>Ulaşım CV</li>
+                </ul>
+            </div>
+            <!-- Column 2 -->
+            <div class="footer-column">
+                <h3>CV Blog</h3>
+                <ul>
+                    <li> Yeni Mezunlar Nasıl CV Hazırlamalı?</li>
+                    <li> Başarılı Öğretmen CV'si Nasıl Olmalı?</li>
+                    <li> CV Hazırlarken Asla Yapmamanız Gereken 10 Hata</li>
+                    <li> CV'de Doğru Fotoğraf Kullanımı Nasıl Olmalıdır?</li>
+                    <li> Etkileyici Bir CV Nasıl Hazırlanır?</li>
+                    <li> CV'de Staj Deneyimi Nasıl Yazılmalıdır?</li>
+                </ul>
+            </div>
+            <!-- Column 3 -->
+            <div class="footer-column">
+                <h3>İletişim</h3>
+                <ul>
+                    <li>📄 İletişim Formu</li>
+                    <li>✉ hello@cvdone.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Select Your Language: <a href="#">English</a>, <a href="#">Turkish</a></p>
+            <p>Copyright © 2025 | Tüm Hakları Saklıdır | Gizlilik Politikası | <a href="#">CVdone.com</a></p>
+        </div>
+    </div>
+</footer>
+
+
+
+    <script src="/static/js/step2/step2.js" defer></script>
+    <script src="/static/js/step2/educationinfo.js" defer></script>
+    <script src="/static/js/step2/languageinfo.js" defer></script>
+    <script src="/static/js/step2/skillsinfo.js" defer></script>
+    <script src="/static/js/step2/softskillsinfo.js" defer></script>
+    <script src="/static/js/step2/selfinfo.js" defer></script>
+    <script src="/static/js/step2/projectsinfo.js" defer></script>
+    <script src="/static/js/step2/certificateinfo.js" defer></script>
+    <script src="/static/js/step2/referencesinfo.js" defer></script>
+ 
+</body>
+</html>

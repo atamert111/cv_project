@@ -1,0 +1,211 @@
+.action-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.inline label {
+    width: 150px;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.inline input, .inline select {
+    padding: 8px;
+    width: calc(100% - 160px); /* Label genişliği ile dengeler */
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.skill-entry {
+    position: relative;
+    margin-bottom: 20px;
+    left: 20px;
+    min-width: 80px; /* En küçük genişlik */
+    max-width: 620px; /* En küçük genişlik */
+    display: flex;
+    flex-direction: column; /* Elemanları dikey hizalar */
+    gap: 30px; /* Satırlar arasında boşluk bırakır */
+    border-top: 5px solid #F5A623;
+    padding-top: 40px;
+    margin-top: 20px;
+}
+.skill-entry:first-child {
+    border-top: none; /* İlk eleman için çizgiyi kaldırır */
+    padding-top: 0;
+    margin-top: 0;
+    margin-top: 20px; /* İlk eleman için ek boşluk */
+}
+.skill-entry:nth-child(2) {
+    border-top: none; /* İlk eleman için çizgiyi kaldırır */
+    padding-top: 0;
+    margin-top: 0;
+}
+.skill-entry input {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Solda ikon için boşluk bırakıldı */
+    border: none;
+   
+    font-size: 16px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.3s ease;
+    }
+    .skill-entry input:focus {
+        outline: none; /* Varsayılan mavi çerçeveyi kaldır */
+        border-bottom: 2px solid #007BFF; /* Odaklanınca alt çizginin rengini değiştir */
+    }
+
+    .inline select {
+        width: 100%; /* Genişliği tam yapar */
+        min-width: 300px; /* Maksimum genişlik */
+        padding: 10px;
+        font-size: 14px;
+        border: none;
+        background: transparent;
+        outline: none;
+        appearance: none;
+        transition: border-color 0.3s ease;
+        font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+    }
+    
+    .inline select:focus {
+        border-color: #007BFF;
+    }
+    
+    
+    .inline select:focus + label,
+    .inline select:not([value=""]) + label {
+        top: 0;
+        font-size: 14px;
+        color: #4CAF50;
+    }
+
+    .grouped_skill {
+        padding: 0px;
+        display: flex; /* Yan yana dizilim için flex kullanıyoruz */
+        gap: 60px; /* Elemanlar arasında boşluk */
+        flex-wrap: nowrap; /* Genişlik yeterli değilse alt satıra taşı */
+        width: 100%; /* Kapsayıcı genişliği */
+        align-items: flex-start; /* Elemanları üst hizala */
+    }
+   /* Çarpı Butonu (Satır Sonunda) */
+.remove-btn {
+    background-color: orange; /* Varsayılan turuncu arka plan */
+    color: white; /* Beyaz yazı rengi */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none; /* Kenarlık yok */
+    border-radius: 50%; /* Yuvarlak şekil */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Renk geçişi efekti */
+}
+
+.remove-btn:hover {
+    background-color: red; /* Hover'da kırmızı arka plan */
+}
+
+/* "+" Butonu (Tam Ortada ve Büyük) */
+.lang-add-button-wrapper {
+    display: flex;
+    justify-content: center; /* Ortalamayı sağlıyor */
+    margin-top: 20px;
+}
+
+.add-btn {
+    background-color: orange; /* Varsayılan turuncu arka plan */
+    color: white; /* Beyaz yazı rengi */
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none; /* Kenarlık yok */
+    border-radius: 50%; /* Yuvarlak şekil */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Renk geçişi efekti */
+}
+
+.add-btn:hover {
+    background-color: green; /* Hover'da yeşil arka plan */
+}
+
+
+.language-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    position: relative;
+}
+/* Çarpı Butonu (Satır Sonunda) */
+.remove-btn_soft {
+    background-color: orange; /* Varsayılan turuncu arka plan */
+    color: white; /* Beyaz yazı rengi */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none; /* Kenarlık yok */
+    border-radius: 50%; /* Yuvarlak şekil */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Renk geçişi efekti */
+}
+
+.remove-btn_soft:hover {
+    background-color: red; /* Hover'da kırmızı arka plan */
+}
+
+/* "+" Butonu (Tam Ortada ve Büyük) */
+.soft-add-button-wrapper {
+    display: flex;
+    justify-content: center; /* Ortalamayı sağlıyor */
+    margin-top: 20px;
+}
+
+.add-btn_soft {
+    background-color: orange; /* Varsayılan turuncu arka plan */
+    color: white; /* Beyaz yazı rengi */
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none; /* Kenarlık yok */
+    border-radius: 50%; /* Yuvarlak şekil */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Renk geçişi efekti */
+}
+
+.add-btn_soft:hover {
+    background-color: green; /* Hover'da yeşil arka plan */
+}
+
+/* Yetenek Girişi */
+.soft-skill-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+/* Inline Alanlar */
+.inline {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,296 @@
+.content {
+    z-index: 2; /* Dalganın üstünde görünsün */
+    text-align: center;
+    padding: 20px;
+    border-color:#F5F5F5;* Geçiş */
+   
+}
+
+/* Form Alanları */
+input, select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: qpx solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+}
+
+input:focus, select:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    outline: none;
+}
+
+/* Form Düzeni */
+.form-container {
+    background-color: #ffffff; /* Sarıya yakın */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    max-width: 700px;
+    margin: 20px auto;
+}
+
+
+.form-buttons {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.container_form{
+    max-width: 700px;
+    margin: 50px ;
+    padding: 0px;
+  
+}
+
+
+/* Yan yana düzenleme */
+.form-row {
+    display: flex;
+    justify-content:20px;
+    gap: 30px;
+    margin-bottom: 15px;
+    flex-wrap: wrap; /* Taşan içerikleri aşağıya al */
+   
+}
+
+/* Sol ikon */
+.form-group .icon {
+position: absolute;
+left: 0px;
+top: 30%;
+transform: translateY(-50%);
+font-size: 40px;
+color: #888;
+
+}
+
+/* Input alanı */
+.form-group input {
+width: 100%;
+padding: 10px 10px 10px 40px; /* Solda ikon için boşluk bırakıldı */
+border: none;
+border-bottom: 2px solid #ccc;
+font-size: 16px;
+color: #333;
+outline: none;
+transition: border-color 0.3s ease;
+}
+/* Genişlik düzenlemeleri */
+.form-group {
+
+position: relative;
+margin-bottom: 20px;
+left: 20px;
+min-width: 80px; /* En küçük genişlik */
+}
+
+.form-group input:focus {
+border-bottom: 2px solid #4CAF50;
+}
+
+/* Placeholder gibi davranan label */
+.form-group label {
+position: absolute;
+left: 40px; /* İkonun sağında yer alacak */
+top: 50%;
+transform: translateY(-100%);
+font-size: 14px;
+color: #aaa;
+transition: all 0.3s ease;
+pointer-events: none;
+}
+
+/* Input dolunca veya odağa gelince label küçülme */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+top: 0px;
+font-size: 12px;
+color: #4CAF50;
+}
+
+.Form_explanin_up{
+    margin-bottom: 00px;
+    padding: 1px;
+    text-align: center;
+    margin-top: 0px;
+    
+}
+.Form_explanin_up h3 {
+    margin-bottom: -20px; /* h3 ile p arasındaki mesafeyi ayarlayın */
+}
+
+.Form_explanin_up p {
+    padding: 10px;
+    margin-bottom: 10px; /* h3 ile p arasındaki mesafeyi ayarlayın */
+}
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+
+
+/* Adres */
+.address-group {
+    margin-bottom: 20px;
+}
+/* Profil Fotoğrafı */
+.profile-photo {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    
+}
+
+.profile-photo img {
+    width: 178px;
+    height: 178px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    transition: opacity 0.3s;
+    
+}
+
+/* Hover-text genel ayarları */
+#hover-text {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Hover olduğunda görünür yap */
+.profile-photo:hover #hover-text {
+    opacity: 1;
+}
+
+/* Butonlar */
+.form-buttons {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.cta-button {
+    padding: 10px 20px;
+    background-color: #F5A623;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #218838;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}
+/* Select Görünümü */
+.form-group select {
+    width: 100%;
+    padding: 10px 10px 10px 40px; /* Solda ikon için boşluk bırakıldı */
+    border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 16px;
+    color: #333;
+    background: none;
+    outline: none;
+    appearance: none; /* Varsayılan oka izin verme */
+    -webkit-appearance: none; /* WebKit tarayıcılar için */
+    -moz-appearance: none; /* Firefox için */
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+   
+}
+
+/* Placeholder ve Seçenekler */
+.form-group select:invalid {
+    color: #aaa; /* Placeholder rengi */
+}
+
+.form-group select option {
+    color: #333; /* Normal seçenek rengi */
+    
+}
+
+/* Label Hareketi */
+.form-group label {
+    position: absolute;
+    left: 40px; /* Soldaki ikonun sağına yerleştirildi */
+    top: 50%;
+    transform: translateY(-100%);
+    font-size: 16px;
+    color: #aaa;
+    transition: all 0.3s ease;
+    pointer-events: none; /* Tıklanamaz */
+}
+
+/* Focus veya Seçim Yapıldığında Label Yukarı Çıksın */
+.form-group select:focus + label,
+.form-group select:not(:invalid) + label {
+    top: 0;
+    font-size: 12px;
+    color: #4CAF50;
+}
+
+    /* Mobil görünüm */
+@media screen and (max-width: 768px) {
+    .profile-photo {
+        flex-direction: column; /* Mobilde alanları dikey hizala */
+        align-items: center; /* Ortala */
+        gap: 10px;
+    }
+
+    .profile-photo img {
+        width: 100px; /* Küçük ekranlarda profil resmi küçülsün */
+        height: 100px;
+    }
+
+    #hover-text {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+}

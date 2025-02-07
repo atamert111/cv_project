@@ -1,23 +1,41 @@
-// Yeni yetenek/beceri bilgisi ekle
-function addSkill() {
-    const container = document.getElementById('skills-section');
-    const firstSkill = container.querySelector('.skill-entry');
-    const newSkill = firstSkill.cloneNode(true);
+function addSoftSkill() {
+    let softSkillsList = document.getElementById("soft-skills-list");
 
-    // İçerikleri temizle
-    newSkill.querySelectorAll('input, select').forEach(input => {
-        input.value = '';
-    });
+    // Yeni yetenek girişini oluştur
+    let newEntry = document.createElement("div");
+    newEntry.classList.add("soft-skill-entry");
+    newEntry.innerHTML = `
+        <div class="grouped_skill">
+            <div class="inline">
+                <input type="text" class="wide-input" name="soft_skill_name" placeholder=" " required>
+                <label for="soft_skill_name">Yetenekler (İletişim, Yöneticilik vb.)</label>
+            </div>
+            <div class="inline">
+                <select name="soft_skill_level" required>
+                    <option value="" disabled selected hidden>Seçiniz</option>
+                    <option value="1">1 - Çok Az</option>
+                    <option value="2">2</option>
+                    <option value="3">3 - Orta</option>
+                    <option value="4">4</option>
+                    <option value="5">5 - Çok İyi</option>
+                </select>
+                <label for="soft_skill_level">Bilgi Seviyesi</label>
+            </div>
+        </div>
+        <b class="cta-button_soft remove-btn" onclick="removeSoftSkill(this)">-</b>
+    `;
 
-    container.insertBefore(newSkill, container.querySelector('.action-buttons-skill'));
+    // Yeni girişleri listeye ekle
+    softSkillsList.appendChild(newEntry);
 }
 
-// Yetenek bilgisi sil
-function removeSkill() {
-    const container = document.getElementById('skills-section');
-    const skillEntries = container.querySelectorAll('.skill-entry');
+function removeSoftSkill(element) {
+    let softSkillsList = document.getElementById("soft-skills-list");
 
-    if (skillEntries.length > 1) {
-        skillEntries[skillEntries.length - 1].remove();
+    // En az bir yetenek girişinin kalmasını sağla
+    if (softSkillsList.children.length > 1) {
+        element.parentElement.remove();
+    } else {
+        alert("En az bir yetenek girişi olmalıdır.");
     }
 }

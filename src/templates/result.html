@@ -3,219 +3,218 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sonuç - Özet</title>
+    <title>CV Sonuç Özeti</title>
     <style>
+        /* Genel Sayfa Stili */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
         }
 
+        /* Konteyner Alanı */
         .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 25px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
 
+        /* Başlık Stili */
         h1 {
             text-align: center;
-            margin-bottom: 20px;
             color: #333;
-        }
-
-        h2 {
-            margin-top: 20px;
-            color: #444;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
-        }
-
-        .section {
+            font-size: 26px;
             margin-bottom: 20px;
         }
 
+        /* Bölüm Başlıkları */
+        h2 {
+            color: #007bff;
+            font-size: 22px;
+            margin-top: 25px;
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 8px;
+        }
+
+        /* Kartlar */
+        .section {
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Liste Şekillendirme */
         .section ul {
             list-style: none;
             padding: 0;
         }
 
         .section ul li {
-            margin-bottom: 10px;
-            padding: 10px;
-            border: 1px solid #ddd;
+            background: #f4f4f9;
+            padding: 12px;
+            margin-bottom: 8px;
             border-radius: 5px;
-            background-color: #f9f9f9;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
         }
 
+        /* Öğe Başlıkları */
+        .section ul li strong {
+            color: #444;
+        }
+
+        /* Boş Alan Mesajı */
+        .empty {
+            font-style: italic;
+            color: #999;
+        }
+
+        /* Buton Stilleri */
         .btn-container {
             text-align: center;
             margin-top: 20px;
         }
 
         .cta-button {
-            padding: 10px 20px;
-            background-color: #007bff;
+            display: inline-block;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #007bff, #0056b3);
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 6px;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: all 0.3s ease-in-out;
             text-decoration: none;
         }
 
         .cta-button:hover {
-            background-color: #0056b3;
+            background: linear-gradient(135deg, #0056b3, #003d82);
+            transform: scale(1.05);
         }
 
-        .empty {
-            font-style: italic;
-            color: #999;
+        /* Responsive Tasarım */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 22px;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
         }
+
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Sonuç Özeti</h1>
-
-        <!-- Kişisel Bilgiler -->
+        
         <div class="section">
             <h2>Kişisel Bilgiler</h2>
             <ul>
-                <li>Ad: {{ data.get('name', 'Bilinmiyor') }}</li>
-                <li>Soyad: {{ data.get('surname', 'Bilinmiyor') }}</li>
+                <li>Ad Soyad: {{ data.get('personal_info_name', 'Bilinmiyor') }}</li>
                 <li>Telefon: {{ data.get('personal_info_phone', 'Bilinmiyor') }}</li>
                 <li>E-posta: {{ data.get('personal_info_email', 'Bilinmiyor') }}</li>
-                <li>Medeni Hali: {{ data.get('marital_status', 'Bilinmiyor') }}</li>
+                <li>Adres: {{ data.get('personal_info_address', 'Bilinmiyor') }}</li>
+                <li>Doğum Tarihi: {{ data.get('personal_info_birthday', 'Bilinmiyor') }}</li>
+                <li>Medeni Hal: {{ data.get('marital_status', 'Bilinmiyor') }}</li>
                 <li>Ehliyet: {{ data.get('driver_license', 'Bilinmiyor') }}</li>
-                <li>Askerlik: {{ data.get('military_service_status', 'Bilinmiyor') }}</li>
-                <li>Profil Resmi: 
-                    {% if data.get('profile_photo') %}
-                        <a href="{{ data.get('profile_photo') }}" target="_blank">Resmi Görüntüle</a>
-                    {% else %}
-                        <span class="empty">Yüklenmedi</span>
-                    {% endif %}
-                </li>
+                <li>Askerlik Durumu: {{ data.get('military_service_status', 'Bilinmiyor') }}</li>
             </ul>
         </div>
 
-        <!-- İş Deneyimleri -->
         <div class="section">
             <h2>İş Deneyimleri</h2>
-            {% if data.get('job_experiences') %}
+            {% for job in data.get('job_experiences', []) %}
                 <ul>
-                    {% for job in data.get('job_experiences') %}
-                        <li>
-                            <strong>Şirket:</strong> {{ job.get('company_name', 'Belirtilmedi') }}<br>
-                            <strong>Pozisyon:</strong> {{ job.get('position', 'Belirtilmedi') }}<br>
-                            <strong>Konum:</strong> {{ job.get('location', 'Belirtilmedi') }}<br>
-                            <strong>Dönem:</strong> {{ job.get('start_date', 'Belirtilmedi') }} - {{ job.get('end_date', 'Halen') }}<br>
-                            <strong>Açıklama:</strong> {{ job.get('description', 'Belirtilmedi') }}
-                        </li>
-                    {% endfor %}
+                    <li><strong>Şirket:</strong> {{ job.company_name }}</li>
+                    <li><strong>Pozisyon:</strong> {{ job.position }}</li>
+                    <li><strong>Çalışma Türü:</strong> {{ job.work_type }}</li>
+                    <li><strong>Konum:</strong> {{ job.work_location }}</li>
+                    <li><strong>Dönem:</strong> {{ job.start_date }} - {{ job.end_date }}</li>
+                    <li><strong>Açıklama:</strong> {{ job.description }}</li>
                 </ul>
             {% else %}
                 <p class="empty">Henüz iş deneyimi girilmedi.</p>
-            {% endif %}
+            {% endfor %}
         </div>
 
-        <!-- Eğitim -->
         <div class="section">
             <h2>Eğitim</h2>
-            {% if data.get('education') %}
+            {% for edu in data.get('education', []) %}
                 <ul>
-                    {% for edu in data.get('education') %}
-                        <li>
-                            <strong>Okul:</strong> {{ edu.get('school_name', 'Belirtilmedi') }}<br>
-                            <strong>Fakülte:</strong> {{ edu.get('faculty_name', 'Belirtilmedi') }}<br>
-                            <strong>Derece:</strong> {{ edu.get('degree', 'Belirtilmedi') }}<br>
-                            <strong>Bölüm:</strong> {{ edu.get('department_name', 'Belirtilmedi') }}<br>
-                            <strong>Dönem:</strong> {{ edu.get('start_date', 'Belirtilmedi') }} - {{ edu.get('end_date', 'Belirtilmedi') }}
-                        </li>
-                    {% endfor %}
+                    <li><strong>Okul:</strong> {{ edu.school_name }}</li>
+                    <li><strong>Fakülte:</strong> {{ edu.faculty_name }}</li>
+                    <li><strong>Bölüm:</strong> {{ edu.department }}</li>
+                    <li><strong>Derece:</strong> {{ edu.degree }}</li>
+                    <li><strong>Başlangıç:</strong> {{ edu.start_year }}</li>
+                    <li><strong>Mezuniyet:</strong> {{ edu.end_year }}</li>
+                    <li><strong>Puan:</strong> {{ edu.grade }}</li>
                 </ul>
             {% else %}
                 <p class="empty">Henüz eğitim bilgisi girilmedi.</p>
-            {% endif %}
+            {% endfor %}
         </div>
 
-        <!-- Sertifikalar -->
         <div class="section">
-            <h2>Sertifikalar</h2>
-            {% if data.get('certificates') %}
-                <ul>
-                    {% for cert in data.get('certificates') %}
-                        <li>
-                            <strong>Sertifika:</strong> {{ cert.get('name', 'Belirtilmedi') }}<br>
-                            <strong>Tarih:</strong> {{ cert.get('date', 'Belirtilmedi') }}<br>
-                            <strong>Kuruluş:</strong> {{ cert.get('issuer', 'Belirtilmedi') }}
-                        </li>
-                    {% endfor %}
-                </ul>
+            <h2>Yetenekler</h2>
+            <h3>Teknik Yetenekler</h3>
+            {% for skill in data.get('technical_skills', []) %}
+                <p>{{ skill.name }} - Seviye: {{ skill.level }}</p>
             {% else %}
-                <p class="empty">Henüz sertifika bilgisi girilmedi.</p>
-            {% endif %}
+                <p class="empty">Henüz teknik beceri girilmedi.</p>
+            {% endfor %}
+            
+            <h3>Kişisel Yetenekler</h3>
+            {% for skill in data.get('soft_skills', []) %}
+                <p>{{ skill.name }} - Seviye: {{ skill.level }}</p>
+            {% else %}
+                <p class="empty">Henüz kişisel beceri girilmedi.</p>
+            {% endfor %}
         </div>
 
-        <!-- Projeler -->
-        <div class="section">
-            <h2>Projeler</h2>
-            {% if data.get('projects') %}
-                <ul>
-                    {% for project in data.get('projects') %}
-                        <li>
-                            <strong>Proje:</strong> {{ project.get('name', 'Belirtilmedi') }}<br>
-                            <strong>Açıklama:</strong> {{ project.get('description', 'Belirtilmedi') }}<br>
-                            <strong>Tarih:</strong> {{ project.get('date', 'Belirtilmedi') }}
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p class="empty">Henüz proje bilgisi girilmedi.</p>
-            {% endif %}
-        </div>
-
-        <!-- Diller -->
         <div class="section">
             <h2>Diller</h2>
-            {% if data.get('languages') %}
-                <ul>
-                    {% for lang in step2_data.get('languages') %}
-                        <li>
-                            <strong>Dil:</strong> {{ lang.get('name', 'Belirtilmedi') }}<br>
-                            <strong>Seviye:</strong> {{ lang.get('level', 'Belirtilmedi') }}
-                        </li>
-                    {% endfor %}
-                </ul>
+            {% for lang in data.get('languages', []) %}
+                <p>{{ lang.name }} - Seviye: {{ lang.level }}</p>
             {% else %}
                 <p class="empty">Henüz dil bilgisi girilmedi.</p>
-            {% endif %}
+            {% endfor %}
         </div>
 
-        <!-- Şablon Seçimi -->
         <div class="section">
-            <h2>Seçilen Şablon</h2>
-            <p>
-                Şablon: 
-                {% if data.get('template') %}
-                    Şablon {{ data.get('template') }}
-                {% else %}
-                    <span class="empty">Henüz seçilmedi.</span>
-                {% endif %}
-            </p>
+            <h2>Sertifikalar</h2>
+            {% for cert in data.get('certificates', []) %}
+                <ul>
+                    <li><strong>Adı:</strong> {{ cert.name }}</li>
+                    <li><strong>Kuruluş:</strong> {{ cert.issuer }}</li>
+                    <li><strong>Yıl:</strong> {{ cert.date }}</li>
+                </ul>
+            {% else %}
+                <p class="empty">Henüz sertifika girilmedi.</p>
+            {% endfor %}
         </div>
 
-        <form method="POST">
-            <button type="submit" class="cta-button">PDF Oluştur</button>
-        </form>
-
-        <!-- <div class="btn-container">
-            <a href="/pdf" class="cta-button">PDF Oluştur</a>
-        </div> -->
+        <div class="section">
+            <h2>Referanslar</h2>
+            {% for ref in data.get('references', []) %}
+                <p>{{ ref.name }} - {{ ref.position }} ({{ ref.contact }})</p>
+            {% else %}
+                <p class="empty">Henüz referans girilmedi.</p>
+            {% endfor %}
+        </div>
     </div>
 </body>
 </html>

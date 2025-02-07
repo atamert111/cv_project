@@ -1,0 +1,142 @@
+<form action="/step1" method="POST" class="modern-form" enctype="multipart/form-data">
+    <div class="profile-photo" style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px; position: relative;">
+        <!-- Profil Resmi ve Hover Yazısı -->
+        <div class="profile-photo" style="position: relative;">
+            <img id="profile-preview" src="/static/images/profilresmi.png" alt="Profil Resmi" />
+            <div id="hover-text">Fotoğraf Değiştir</div>
+         
+          <!-- Soru İşareti -->
+          <button id="info-button" type="button" style="position: absolute; top: -5px; right: -5px; background: #007bff; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 14px; cursor: pointer;">?</button>
+      
+          <!-- Çarpı Butonu -->
+          <button id="remove-photo" type="button" style="position: absolute; top: -5px; right: -5px; background: #ff4d4d; color: white; border: none; border-radius: 50%; width: 20px; height: 20px; font-size: 14px; cursor: pointer; display: none;">&times;</button>
+        </div> 
+        
+        <!-- Yazı -->
+        <div style="flex: 1; position: relative;">
+            <div class="form-group">
+                <!-- Soldaki ikon -->
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#bdd" viewBox="0 0 16 16">
+                    <path d="M8 8a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 1a7 7 0 0 0-5.468 2.79C2.33 13.022 4.106 14 8 14s5.67-.978 5.468-2.21A7 7 0 0 0 8 9z"/>
+                </svg>
+                <!-- Input alanı -->
+                <input type="text" id="name" name="name" value="{{ data.name }}" placeholder=" " required>
+                <!-- Placeholder gibi label -->
+                <label for="name">Adınız (*)</label>
+            </div>
+            <div class="form-group">
+                <!-- Soldaki ikon -->
+                <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="#ddd" viewBox="0 0 16 16">
+                    <path d="M8 8a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 1a7 7 0 0 0-5.468 2.79C2.33 13.022 4.106 14 8 14s5.67-.978 5.468-2.21A7 7 0 0 0 8 9z"/>
+                </svg>
+                <!-- Input alanı -->
+                <input type="text" id="surname" name="surname" value="{{ data.surname }}" placeholder=" " required>
+                <!-- Placeholder gibi label -->
+                <label for="surname">Soyadınız (*)</label>
+            </div>
+        
+          <!-- Gizli Dosya Inputu -->
+          <input type="file" id="profile_photo" name="profile_photo" accept="image/*" style="display: none;">
+        </div>
+      
+    </div>
+    <p id="photo-status" style="color: #555; font-size: 16px; margin: 10px 0 0; font-weight: bold; display: none;"></p>
+
+<br></br>
+    <!-- Telefon ve E-posta -->
+    <div class="form-row">
+        <div class="form-group">
+            <!-- Soldaki ikon -->
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ddd" viewBox="0 0 16 16">
+                <path d="M3.654 1.328a.678.678 0 0 1 .58-.326h2.707c.304 0 .576.186.66.464l.764 2.55a.678.678 0 0 1-.221.69L6.742 6.432a11.42 11.42 0 0 0 4.1 4.1l1.726-1.126a.678.678 0 0 1 .69-.221l2.55.764c.278.084.464.356.464.66v2.707a.678.678 0 0 1-.326.58l-2.307 1.536c-.248.165-.54.254-.834.254-.155 0-.31-.017-.462-.05C7.064 14.78 3.22 10.936 1.504 6.465c-.166-.462-.135-.97.086-1.394L3.654 1.328z"/>
+              </svg>                          
+            <!-- Input alanı -->
+            <input type="text" id="phone" name="phone" value="{{ data.personal_info_phone }}" placeholder=" " required>
+            <!-- Placeholder gibi label -->
+            <label for="phone">Telefon numaranız (*)</label>     
+        </div>
+        <div class="form-group">
+            <!-- Soldaki ikon -->
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="45" height="45" fill="#ddd" viewBox="0 0 24 24">
+                <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.05-.6a.5.5 0 0 0-.47.335L8 8.383l6.42-4.648a.5.5 0 0 0-.47-.735H2.05zM1 4.697v7.103c0 .058.01.114.027.168L5.383 8.53 1 4.697zm10.617 3.833l4.356 3.438c.017-.054.027-.11.027-.168V4.697l-4.383 3.833zM10.14 9.6L8 11.05 5.86 9.6l-4.346 3.43c.066.057.15.093.244.093h12.584a.337.337 0 0 0 .243-.093L10.14 9.6z"/>
+              </svg>                          
+            <!-- Input alanı -->
+            <input type="text" id="email" name="email" value="{{ data.personal_info_email }}" placeholder=" " required>
+            <!-- Placeholder gibi label -->
+            <label for="email">E-mailiniz (*)</label> 
+        </div>
+    </div>
+    <br></br>
+    <div class="form-row">
+        <div class="form-group">
+            <!-- Soldaki ikon -->
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ddd" viewBox="0 0 24 24">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"></path>
+            </svg>
+            <!-- Input alanı -->
+            <input type="text" id="address" name="address" value="{{ data.personal_info_address  }}" placeholder=" " >
+            <!-- Placeholder gibi label -->
+            <label for="address">Adresiniz</label> 
+        </div>
+        <div class="form-group">
+            <!-- Soldaki ikon -->
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ddd" viewBox="0 0 24 24">
+                <path d="M19 3h-1V1h-2v2H8V1H6v2H5C3.89 3 3 3.89 3 5v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.11-.9-2-2-2zM5 19V9h14v10H5z"></path>
+            </svg>
+           <!-- Input alanı -->
+           <input type="date" id="birthday" name="birthday" value="{{ data.personal_info_birthday }}" placeholder=" " >
+           <!-- Placeholder gibi label -->
+           <label for="birthday">Doğum Tarihi (*)</label> 
+       </div>
+     </div>
+<br></br>
+    <!-- Seçmeli Alanlar -->
+    <div class="form-row">
+         <div class="form-group">
+        
+            <!-- Soldaki ikon -->
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ddd" viewBox="0 0 24 24">
+                <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm2.3-10.7L12 10.83 9.7 9.3c-.39-.39-1.02-.39-1.41 0-.39.39-.39 1.02 0 1.41l3 3c.39.39 1.02.39 1.41 0l3-3c.39-.39.39-1.02 0-1.41-.38-.38-1.03-.39-1.41 0z"></path>
+                <circle cx="12" cy="8" r="1" fill="#ddd"></circle>
+            </svg>
+            <!-- Select Alanı -->
+            <select id="military_service_status" name="military_service_status" >
+                <option value="" disabled selected hidden>Askerlik Tecili (*)</option> <!-- Placeholder efekti -->
+                <option value="" selected>Seçiniz</option>
+                <option value="yapildi" {% if data.military_service_status == 'yapildi' %}selected{% endif %}>Yapıldı</option>
+                <option value="yapilmadi" {% if data.military_service_status == 'yapilmadi' %}selected{% endif %}>Yapılmadı</option>
+            </select>
+            <!-- Label -->
+            <label for="military_service_status">Askerlik Teciliniz</label>
+        </div>  
+
+        
+        <div class="form-group">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ddd" viewBox="0 0 24 24">
+                <path d="M20 4H4C2.89 4 2 4.89 2 6v12c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.11-.9-2-2-2zM4 6h16v4H4V6zm0 12v-6h16v6H4zm6-5c-.55 0-1 .45-1 1s.45 1 1 1 1-.45 1-1-.45-1-1-1z"></path>
+            </svg>
+            <select id="driver_license" name="driver_license">
+                <option value="" selected>Seçiniz</option>
+                <option value="A1" {% if data.driver_license == 'A1' %}selected{% endif %}>A1 - Hafif motosikletler</option>
+                <option value="A2" {% if data.driver_license == 'A2' %}selected{% endif %}>A2 - Orta motosikletler</option>
+            </select>
+            <label for="driver_license">Ehliyetiniz</label>
+        </div>
+        <div class="form-group">
+            <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#ddd" viewBox="0 0 24 24">
+                <path d="M16 11c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3zm-8 0c1.66 0 3-1.34 3-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V18h14v-1.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V18h6v-1.5c0-2.33-4.67-3.5-7-3.5z"></path>
+              </svg>
+            <select id="marital_status" name="marital_status">
+                <option value="" selected>Seçin</option>
+                <option value="evli" {% if data.marital_status == 'evli' %}selected{% endif %}>Evli</option>
+                <option value="bekar" {% if data.marital_status == 'bekar' %}selected{% endif %}>Bekar</option>
+            </select>
+            <label for="marital_status">Medeni Hal</label>
+        </div>
+    </div>
+
+    <!-- Buton -->
+    <button type="submit" class="cta-button">Sonraki Adım</button>
+
+
+</form>

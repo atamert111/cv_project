@@ -1,112 +1,69 @@
 <div class="accordion-header" onclick="toggleAccordion(this)">Eğitim Bilgileri</div>
 <div class="accordion-content" id="education-experiences">
-    
-    {% if data.education %}
-    {% for edu in data.education %}
+    {% set edu_list = data.education if data.education else [{}] %}
+    {% for edu in edu_list %}
     <div class="education-entry">
+        <div class="edu-title custom-edu-title">{{ loop.index }}. Eğitim Kurumu Bilgileri</div>
+        
         <div class="inline">
-            <label for="school_name">Okul Adı:</label>
-            <input type="text" id="school_name" name="school_name" value= "{{ edu.school_name }}" placeholder="Okul adı">
+            <input type="text" name="edu_school_name[]" value="{{ edu.school_name if edu.school_name else '' }}" placeholder=" " required>
+            <label>Okul Adı:(*)</label>
         </div>
-
-        <div class="inline">
-            <label for="degree">Derece:</label>
-            <select id="degree" name="degree">
-                <option value="">Seçiniz</option>
-                <option value="İlkokul">İlkokul</option>
-                <option value="Ortaokul">Ortaokul</option>
-                <option value="Lise">Lise</option>
-                <option value="Önlisans">Ön Lisans</option>
-                <option value="Lisans">Lisans</option>
-                <option value="Yuksek Lisans">Yüksek Lisans</option>
-                <option value="Doktora">Doktora</option>
-                <option value="Post-Doktora">Doktora</option>
-            </select>
+        
+        <div class="inline faculty-input">
+            <input type="text" name="edu_faculty[]" value="{{ edu.faculty_name if edu.faculty_name else '' }}" placeholder=" ">
+            <label>Fakülte (Opsiyonel):</label>
         </div>
-
-        <div class="inline">
-            <label for="department">Bölüm (Opsiyonel):</label>
-            <input type="text" id="department" name="department_name" value = "" placeholder="Bölüm adı">
-        </div>
-        <div class="inline">
-            <label for="faculty">Fakülte (Opsiyonel):</label>
-            <input type="text" id="faculty" name="faculty_name" placeholder="Fakülte adı">
-        </div>
-
-        <div class="three-column">
-            <div>
-                <label for="start_year">Başlangıç Yılı:</label>
-                <input type="number" id="start_year" name="education_start_date" placeholder="YYYY" min="1900" max="2099" >
+        
+        <div class="grouped3">
+            <div class="inline department-input">
+                <input type="text" name="edu_department[]" value="{{ edu.department if edu.department else '' }}" placeholder=" ">
+                <label>Bölüm (Opsiyonel):</label>
             </div>
-
-            <div>
-                <label for="end_year">Mezuniyet Yılı:</label>
-                <input type="number" id="end_year" name="education_end_date" placeholder="YYYY" min="1900" max="2099">
-            </div>
-
-            <div>
-                <label for="currently_studying">Halen devam ediyorum:</label>
-                <input type="checkbox" id="currently_studying" name="currently_studying" value="" onchange="toggleEndYear(this)">
+            <div class="inline degree-input">
+                <select name="edu_degree[]" required>
+                    <option value="" disabled hidden {% if not edu.degree %}selected{% endif %}></option>
+                    <option value="İlkokul" {% if edu.degree == "İlkokul" %}selected{% endif %}>İlkokul</option>
+                    <option value="Ortaokul" {% if edu.degree == "Ortaokul" %}selected{% endif %}>Ortaokul</option>
+                    <option value="Lise" {% if edu.degree == "Lise" %}selected{% endif %}>Lise</option>
+                    <option value="Önlisans" {% if edu.degree == "Önlisans" %}selected{% endif %}>Ön Lisans</option>
+                    <option value="Lisans" {% if edu.degree == "Lisans" %}selected{% endif %}>Lisans</option>
+                    <option value="Yüksek Lisans" {% if edu.degree == "Yüksek Lisans" %}selected{% endif %}>Yüksek Lisans</option>
+                    <option value="Doktora" {% if edu.degree == "Doktora" %}selected{% endif %}>Doktora</option>
+                    <option value="Post-Doktora" {% if edu.degree == "Post-Doktora" %}selected{% endif %}>Post-Doktora</option>
+                </select>
+                <label>Derece:</label>
             </div>
         </div>
+
+        <div class="four-column">
+            <div class="inline">
+                <input type="number" name="edu_start_year[]" value="{{ edu.start_year if edu.start_year else '' }}" placeholder=" " required>
+                <label>Başlangıç Yılı:(*)</label>
+            </div>
+            
+            <div class="inline">
+                <input type="number" name="edu_end_date[]" value="{{ edu.end_year if edu.end_year else '' }}" placeholder=" " min="1900" max="2099">
+                <label>Mezuniyet Yılı:(*)</label>
+            </div>
+            
+            <div class="inline">
+                <input type="number" name="edu_grade[]" value="{{ edu.grade if edu.grade else '' }}" placeholder=" " step="0.01" min="0" max="100">
+                <label>Mezuniyet Puanı:</label>
+            </div>
+            
+            <div class="edu-checkbox-container">
+                <input type="checkbox" name="current_edu" class="edu-checkbox" id="current_edu_{{ loop.index }}" onchange="toggleEndDateEdu(this)">
+            </div>
+            
+        </div>
+        
+        <b class="cta-button_edu remove-btn" onclick="removeEducationEntry(this)">-</b>
     </div>
-
     {% endfor %}
-    {% else %}
-    <div class="education-entry">
-        <div class="inline">
-            <label for="school_name">Okul Adı:</label>
-            <input type="text" id="school_name" name="school_name" placeholder="Okul adı">
-        </div>
-
-        <div class="inline">
-            <label for="degree">Derece:</label>
-            <select id="degree" name="degree">
-                <option value="">Seçiniz</option>
-                <option value="İlkokul">İlkokul</option>
-                <option value="Ortaokul">Ortaokul</option>
-                <option value="Lise">Lise</option>
-                <option value="Önlisans">Ön Lisans</option>
-                <option value="Lisans">Lisans</option>
-                <option value="Yuksek Lisans">Yüksek Lisans</option>
-                <option value="Doktora">Doktora</option>
-                <option value="Post-Doktora">Doktora</option>
-            </select>
-        </div>
-
-        <div class="inline">
-            <label for="department">Bölüm (Opsiyonel):</label>
-            <input type="text" id="department" name="department_name" value = "" placeholder="Bölüm adı">
-        </div>
-        <div class="inline">
-            <label for="faculty">Fakülte (Opsiyonel):</label>
-            <input type="text" id="faculty" name="faculty_name" placeholder="Fakülte adı">
-        </div>
-
-        <div class="three-column">
-            <div>
-                <label for="start_year">Başlangıç Yılı:</label>
-                <input type="number" id="start_year" name="education_start_date" placeholder="YYYY" min="1900" max="2099" >
-            </div>
-
-            <div>
-                <label for="end_year">Mezuniyet Yılı:</label>
-                <input type="number" id="end_year" name="education_end_date" placeholder="YYYY" min="1900" max="2099">
-            </div>
-
-            <div>
-                <label for="currently_studying">Halen devam ediyorum:</label>
-                <input type="checkbox" id="currently_studying" name="currently_studying" value="" onchange="toggleEndYear(this)">
-            </div>
-        </div>
-    </div>
-
-    {% endif %}
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    
+    <div class="edu-add-button-wrapper">
+        <a class="cta-button_edu add-btn" onclick="addEducationEntry()">+</a>
     </div>
 </div>
+

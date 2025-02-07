@@ -1,0 +1,64 @@
+/* Çarpı Butonu (Satır Sonunda) */
+.remove-btn {
+    background-color: orange; /* Varsayılan turuncu arka plan */
+    color: white; /* Beyaz yazı rengi */
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none; /* Kenarlık yok */
+    border-radius: 50%; /* Yuvarlak şekil */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Renk geçişi efekti */
+}
+
+.remove-btn:hover {
+    background-color: red; /* Hover'da kırmızı arka plan */
+}
+
+/* "+" Butonu (Tam Ortada ve Büyük) */
+.lang-add-button-wrapper {
+    display: flex;
+    justify-content: center; /* Ortalamayı sağlıyor */
+    margin-top: 20px;
+}
+
+.add-btn {
+    background-color: orange; /* Varsayılan turuncu arka plan */
+    color: white; /* Beyaz yazı rengi */
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none; /* Kenarlık yok */
+    border-radius: 50%; /* Yuvarlak şekil */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease; /* Renk geçişi efekti */
+}
+
+.add-btn:hover {
+    background-color: green; /* Hover'da yeşil arka plan */
+}
+
+
+.language-entry {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    position: relative;
+}
+
+/* Inline Alanlar */
+.inline {
+    display: inline-block;
+    margin-right: 20px;
+    margin-bottom: 10px;
+}

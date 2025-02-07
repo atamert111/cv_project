@@ -1,0 +1,34 @@
+
+
+/* Wave up Section */
+.wave-up-section {
+    position: relative;
+    background-color: var(--wave-up-background);
+    height: 320px;
+    overflow: hidden;
+    margin-bottom: -5px; /* Wave geÃ§iÅŸi dÃ¼zgÃ¼n gÃ¶rÃ¼nmesi iÃ§in */
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+   
+}
+/* Wave down Section */
+.wave-down-section {
+    position: relative;
+    background-color: var(--wave-down-background); /* Green background */
+    height: 320px;
+    overflow: hidden;
+    margin-bottom: -5px; /* Wave geÃ§iÅŸi dÃ¼zgÃ¼n gÃ¶rÃ¼nmesi iÃ§in */
+}
+
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+
+}

@@ -1,0 +1,52 @@
+
+
+
+.inline2 {
+    position: relative;
+    display: flex;
+    flex-direction: column; /* Label ve textarea'yı dikey hizala */
+    gap: 30px; /* Label ile textarea arasına boşluk ekle */
+}
+
+/* Textarea stilleri */
+.inline2 textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none; /* Kullanıcının yeniden boyutlandırmasını engelle */
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+}
+
+/* Label stilleri */
+.inline2 label {
+    transform: translateY(0%);
+    position: absolute; /* Label'ı textarea'nın üstüne yerleştir */
+    top: 10px; /* Label'ın başlangıç konumunu ayarla */
+    left: 15px; /* Label'ın sol boşluğunu ayarla */
+    font-size: 16px;
+    color: #aaa;
+    pointer-events: none; /* Tıklanamaz hale getir */
+    transition: all 0.3s ease; /* Geçiş efektleri */
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+}
+
+/* Textarea focus veya dolu olduğunda label yukarı hareket eder */
+.inline2 textarea:focus + label,
+.inline2 textarea:not(:placeholder-shown) + label {
+    top: -40px;
+    left: 10px; /* Daha düzgün bir konumlandırma */
+    font-size: 14px;
+    font-family: 'Comic Sans MS', cursive, sans-serif; /* Absürt yazı tipi */
+    color: #4CAF50; /* Yeşil renk */
+}
+.selfinfo_entry{
+        padding: 30px;
+        gap: 60px; /* Elemanlar arasında boşluk */
+        flex-wrap: nowrap; /* Genişlik yeterli değilse alt satıra taşı */
+        width: 100%; /* Kapsayıcı genişliği */
+        max-width: 600px; /* Kapsayıcı genişliği */
+        align-items: flex-start; /* Elemanları üst hizala */
+    }

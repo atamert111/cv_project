@@ -1,0 +1,66 @@
+:root{
+    /* features Renkler */
+    --features-background-main: #392DF5;/* features arka plan Renkler */
+    --features-title: #0c8d0c; /* features baÅŸlÄ±k rengi ÅŸuan mevcutt deÄŸil  */
+    --features-background-item: #F5F5F5; /* features kutucuk arka plan Renkler */
+    --features-list: #F5A623; /* features yazÄ± Renkler */
+
+}
+
+/* Features Section */
+.features {
+    background-color: var(--features-background-main);
+    padding: 15px 15px;
+    text-align: center;
+}
+
+.features-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: var(--features-title);
+}
+
+.features-slider {
+    overflow: hidden;
+    position: relative;
+    max-width: 1600px;
+    margin: 0 auto;
+}
+
+.features-list {
+    display: flex;
+    animation: slide-horizontal 25s infinite;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    color: var(--features-list);
+    text-shadow: 1px 1px #333;
+    gap: 45px;
+}
+
+.features-item {
+    flex: 0 0 95%;
+    text-align: center;
+    font-size: 25px;
+    padding: 10px;
+    background-color: var(--features-background-item);
+    border-radius: 30px;
+    box-shadow: 5px 5px 5px rgba(1, 0, 0, 0);
+}
+
+
+@keyframes slide-horizontal {
+    0% { transform: translateX(0); } /* Ä°lk liste gÃ¶rÃ¼nÃ¼yor */
+    100% { transform: translateX(0); }
+    33% { transform: translateX(-100%); } /* Ä°kinci liste gÃ¶rÃ¼nÃ¼yor */
+    100% { transform: translateX(0); }
+    66% { transform: translateX(-200%); } /* ÃœÃ§Ã¼ncÃ¼ liste gÃ¶rÃ¼nÃ¼yor */
+    100% { transform: translateX(0); } /* DÃ¶ngÃ¼ baÅŸa dÃ¶nÃ¼yor */
+    66% { transform: translateX(-200%); } /* ÃœÃ§Ã¼ncÃ¼ liste gÃ¶rÃ¼nÃ¼yor */
+    100% { transform: translateX(0); }
+    33% { transform: translateX(-100%); } /* Ä°kinci liste gÃ¶rÃ¼nÃ¼yor */
+    100% { transform: translateX(0); }
+    0% { transform: translateX(0); } /* DÃ¶ngÃ¼ baÅŸa dÃ¶nÃ¼yor */
+    100% { transform: translateX(0); }
+}

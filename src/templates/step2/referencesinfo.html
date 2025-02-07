@@ -1,27 +1,34 @@
 <div class="accordion-header" onclick="toggleAccordion(this)">Referanslar</div>
 <div class="accordion-content" id="references-section">
+    {% set reference_list = data.references if data.references else [{}] %}
+    {% for reference in reference_list %}
     <div class="reference-entry">
+        <div class="ref-title custom-ref-title">{{ loop.index }}. Referans Bilgileri</div>
+
         <div class="inline">
+            <input type="text" name="reference_name[]" value="{{ reference.name if reference.name else '' }}" placeholder=" " required>
             <label for="reference_name">Referans Adı:</label>
-            <input type="text" id="reference_name" name="reference_name" placeholder="Adı ve Soyadı" >
         </div>
 
-        <div class="inline">
-            <label for="reference_position">Pozisyon:</label>
-            <input type="text" id="reference_position" name="reference_relation" placeholder="Pozisyon" >
+        <div class="reference-group">
+            <div class="inline position-field">
+                <input type="text" name="reference_position[]" value="{{ reference.position if reference.position else '' }}" placeholder=" " required>
+                <label for="reference_position">Referansın Pozisyonu:</label>
+            </div>
+
+            <div class="inline contact-field">
+                <input type="text" name="reference_contact[]" value="{{ reference.contact if reference.contact else '' }}" placeholder=" " required>
+                <label for="reference_contact">İletişim Bilgileri:</label>
+            </div>
         </div>
 
-        <div class="inline">
-            <label for="reference_contact">İletişim Bilgileri:</label>
-            <input type="text" id="reference_contact" name="reference_contact" placeholder="Telefon veya E-posta" >
-        </div>
+        <!-- "-" Butonu -->
+        <b class="cta-button_ref remove-btn" onclick="removeReferenceEntry(this)">-</b>
     </div>
+    {% endfor %}
 
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    <!-- "+ Ekle" Butonu -->
+    <div id="add-reference-container">
+        <a class="cta-button_ref add-btn" onclick="addReferenceEntry()">+</a>
     </div>
 </div>

@@ -1,29 +1,65 @@
 <div class="accordion-header" onclick="toggleAccordion(this)">Yetenekler</div>
-<div class="accordion-content" id="skills-section">
-    <div class="skill-entry">
-        <div class="inline">
-            <label for="softskill_name">Yetenekler: </label>
-            <input type="text" id="softskill_name" name="soft_skill_name" placeholder="(İletişim - Kararlılık vb.)">
+<div class="accordion-content" id="soft-skills-section">
+    <div id="soft-skills-list">
+        {% if data.soft_skills %}
+            {% for skill in data.soft_skills %}
+            <div class="soft-skill-entry">
+                <div class="grouped_skill">
+                    <!-- Yetenek Adı -->
+                    <div class="inline">
+                        <input type="text" class="wide-input" name="soft_skill_name" value="{{ skill.name }}" placeholder=" " required>
+                        <label for="soft_skill_name">Yetenekler (İletişim, Yöneticilik vb.)</label>
+                    </div>
+                    
+                    <!-- Bilgi Seviyesi -->
+                    <div class="inline">
+                        <select name="soft_skill_level" required>
+                            <option value="" disabled selected hidden>Seçiniz</option>
+                            <option value="1" {% if skill.level == "1" %}selected{% endif %}>1 - Çok Az</option>
+                            <option value="2" {% if skill.level == "2" %}selected{% endif %}>2</option>
+                            <option value="3" {% if skill.level == "3" %}selected{% endif %}>3 - Orta</option>
+                            <option value="4" {% if skill.level == "4" %}selected{% endif %}>4</option>
+                            <option value="5" {% if skill.level == "5" %}selected{% endif %}>5 - Çok İyi</option>
+                        </select>
+                        <label for="soft_skill_level">Bilgi Seviyesi</label>
+                    </div>
+                </div>
+                
+                <!-- "-" Butonu -->
+                <b class="cta-button_soft remove-btn" onclick="removeSoftSkill(this)">-</b>
+            </div>
+            {% endfor %}
+        {% else %}
+        <div class="soft-skill-entry">
+            <div class="grouped_skill">
+                <!-- Yetenek Adı -->
+                <div class="inline">
+                    <input type="text" class="wide-input" name="soft_skill_name" placeholder=" " required>
+                    <label for="soft_skill_name">Yetenekler (İletişim, Yöneticilik vb.)</label>
+                </div>
+                
+                <!-- Bilgi Seviyesi -->
+                <div class="inline">
+                    <select name="soft_skill_level" required>
+                        <option value="" disabled selected hidden>Seçiniz</option>
+                        <option value="1">1 - Çok Az</option>
+                        <option value="2">2</option>
+                        <option value="3">3 - Orta</option>
+                        <option value="4">4</option>
+                        <option value="5">5 - Çok İyi</option>
+                    </select>
+                    <label for="soft_skill_level">Bilgi Seviyesi</label>
+                </div>
+            </div>
+            
+            <!-- "-" Butonu -->
+            <b class="cta-button_soft remove-btn" onclick="removeSoftSkill(this)">-</b>
         </div>
-
-        <div class="inline">
-            <label for="softskill_name">Bilgi Seviyesi:</label>
-            <select id="softskill_name" name="soft_skill_level">
-                <option value="">Seçiniz</option>
-                <option value="1">1 - Çok Az</option>
-                <option value="2">2</option>
-                <option value="3">3 - Orta</option>
-                <option value="4">4</option>
-                <option value="5">5 - Çok İyi</option>
-            </select>
-        </div>
+        {% endif %}
     </div>
 
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
+    <!-- "+ Ekle" Butonu -->
+    <div class="soft-add-button-wrapper">
+        <a class="cta-button_soft add-btn" onclick="addSoftSkill()">+</a>
     </div>
 </div>

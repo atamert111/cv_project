@@ -1,27 +1,66 @@
-// Yeni sertifika bilgisi ekle
-function addCertificate() {
-    const container = document.getElementById('certificate-section');
-    const firstCertificate = container.querySelector('.certificate-entry');
+document.addEventListener("DOMContentLoaded", function () {
+    checkCertificateButtonVisibility();
+});
 
-    // Yeni sertifika girişi oluştur
-    const newCertificate = firstCertificate.cloneNode(true);
+function addCertificateEntry() {
+    let certificateSection = document.getElementById("certificate-section");
+    let certificateEntries = document.getElementsByClassName("certificate-entry");
+    let certificateNumber = certificateEntries.length + 1; // Yeni sertifika numarası
 
-    // İçerikleri temizle
-    newCertificate.querySelectorAll('input').forEach(input => {
-        input.value = '';
-    });
+    let newEntry = document.createElement("div");
+    newEntry.classList.add("certificate-entry");
 
-    // Yeni alanı butonların önüne ekle
-    container.insertBefore(newCertificate, container.querySelector('.action-buttons-certificate'));
+    newEntry.innerHTML = `
+        <div class="cert-title">${certificateNumber}. Sertifika Bilgileri</div>
+
+        <div class="inline">
+            <input type="text" name="certificate_name[]" placeholder=" " required>
+            <label for="certificate_name">Sertifika Adı:</label>
+        </div>
+
+        <div class="grouped2">
+            <div class="inline">
+                <input type="number" name="certificate_year[]" placeholder="" min="1900" max="2099">
+                <label for="certificate_year">Sertifika Yılı (Opsiyonel):</label>
+            </div>
+            <div class="inline">
+                <input type="text" name="certificate_place[]" placeholder=" ">
+                <label for="certificate_place">Alındığı Yer (Opsiyonel):</label>
+            </div>
+        </div>
+
+        <b class="cta-button_cert remove-btn" onclick="removeCertificateEntry(this)">-</b>
+    `;
+
+    let addButtonContainer = document.getElementById("add-certificate-container");
+    certificateSection.insertBefore(newEntry, addButtonContainer);
+
+    updateCertificateNumbers();
+    checkCertificateButtonVisibility();
 }
 
-// Sertifika bilgisi sil
-function removeCertificate() {
-    const container = document.getElementById('certificate-section');
-    const certificateEntries = container.querySelectorAll('.certificate-entry');
+function removeCertificateEntry(button) {
+    let entry = button.closest(".certificate-entry");
+    entry.remove();
+    updateCertificateNumbers();
+    checkCertificateButtonVisibility();
+}
 
-    // En az bir giriş kalmalı
-    if (certificateEntries.length > 1) {
-        certificateEntries[certificateEntries.length - 1].remove();
+function updateCertificateNumbers() {
+    let certificateEntries = document.getElementsByClassName("certificate-entry");
+    for (let i = 0; i < certificateEntries.length; i++) {
+        let title = certificateEntries[i].querySelector(".cert-title");
+        title.textContent = `${i + 1}. Sertifika Bilgileri`;
+    }
+}
+
+function checkCertificateButtonVisibility() {
+    let certificateEntries = document.getElementsByClassName("certificate-entry");
+    let addButtonContainer = document.getElementById("add-certificate-container");
+
+    if (certificateEntries.length === 0) {
+        addButtonContainer.style.display = "block";
+    } else {
+        addButtonContainer.style.display = "flex";
     }
 }
