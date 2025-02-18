@@ -7,13 +7,13 @@
                 <div class="grouped_skill">
                     <!-- Teknik Beceri Adı -->
                     <div class="inline">
-                        <input type="text" class="wide-input" name="tech_skill_name" value="{{ skill.name }}" placeholder=" " >
-                        <label for="tech_skill_name">Teknik Beceri (Matlab, Excel vb.)</label>
+                        <input type="text" class="wide-input" name="technical_skill_name" value="{{ skill.name }}" placeholder=" " >
+                        <label for="technical_skill_name">Teknik Beceri (Matlab, Excel vb.)</label>
                     </div>
                     
                     <!-- Bilgi Seviyesi -->
                     <div class="inline">
-                        <select name="tech_skill_level" >
+                        <select name="technical_skill_level" >
                             <option value="" disabled selected hidden>Seçiniz</option>
                             <option value="1" {% if skill.level == " " %}selected{% endif %}>-</option>
                             <option value="1" {% if skill.level == "1" %}selected{% endif %}>1 - Çok Az</option>
@@ -22,7 +22,7 @@
                             <option value="4" {% if skill.level == "4" %}selected{% endif %}>4</option>
                             <option value="5" {% if skill.level == "5" %}selected{% endif %}>5 - Çok İyi</option>
                         </select>
-                        <label for="tech_skill_level">Bilgi Seviyesi</label>
+                        <label for="technical_skill_level">Bilgi Seviyesi</label>
                     </div>
                 </div>
                 
@@ -35,13 +35,13 @@
             <div class="grouped_skill">
                 <!-- Teknik Beceri Adı -->
                 <div class="inline">
-                    <input type="text" class="wide-input" name="tech_skill_name" placeholder=" " >
-                    <label for="tech_skill_name">Teknik Beceri (Matlab, Excel vb.)</label>
+                    <input type="text" class="wide-input" name="technical_skill_name" placeholder=" " >
+                    <label for="technical_skill_name">Teknik Beceri (Matlab, Excel vb.)</label>
                 </div>
                 
                 <!-- Bilgi Seviyesi -->
                 <div class="inline">
-                    <select name="tech_skill_level" >
+                    <select name="technical_skill_level" >
                         <option value="" disabled selected hidden>Seçiniz</option>
                         <option value=" ">-</option>
                         <option value="1">1 - Çok Az</option>
@@ -50,7 +50,7 @@
                         <option value="4">4</option>
                         <option value="5">5 - Çok İyi</option>
                     </select>
-                    <label for="tech_skill_level">Bilgi Seviyesi</label>
+                    <label for="technical_skill_level">Bilgi Seviyesi</label>
                 </div>
             </div>
             

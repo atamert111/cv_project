@@ -115,8 +115,9 @@ def step2():
         for i in range(len(request.form.getlist('project_name'))):
             projects.append({
                 'name': request.form.getlist('project_name')[i],
-                'description': request.form.getlist('project_description')[i],
-                'date': request.form.getlist('project_link')[i]
+                'date': request.form.getlist('project_date')[i],
+                'link': request.form.getlist('project_link')[i],
+                'description': request.form.getlist('project_description')[i]
             })
 
         # Referanslar

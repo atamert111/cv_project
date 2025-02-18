@@ -6,23 +6,23 @@
         <div class="proj-title custom-proj-title">{{ loop.index }}. Proje Bilgileri</div>
 
         <div class="inline">
-            <input type="text" name="project_name[]" value="{{ project.name if project.name else '' }}" placeholder=" " >
+            <input type="text" name="project_name" value="{{ project.name if project.name else '' }}" placeholder=" " >
             <label for="project_name">Proje Adı:</label>
         </div>
 
         <div class="grouped2">
             <div class="inline">
-                <input type="date" name="project_date[]" value="{{ project.date if project.date else '' }}" placeholder=" " >
+                <input type="date" name="project_date" value="{{ project.date if project.date else '' }}" placeholder=" " >
                 <label for="project_date">Proje Tarihi:</label>
             </div>
             <div class="inline">
-                <input type="text" name="project_link[]" value="{{ project.link if project.link else '' }}" placeholder=" ">
+                <input type="text" name="project_link" value="{{ project.link if project.link else '' }}" placeholder=" ">
                 <label for="project_link">Proje Linki (Opsiyonel): "GitHub veya başka bir link"</label>
             </div>
         </div>
 
         <div class="inline2">
-            <textarea name="project_description[]" class="text-content" placeholder=" " >{{ project.description if project.description else '' }}</textarea>
+            <textarea name="project_description" class="text-content" placeholder=" " >{{ project.description if project.description else '' }}</textarea>
             <label for="project_description">Proje Açıklaması (Opsiyonel):</label>
         </div>
 
