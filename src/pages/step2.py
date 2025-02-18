@@ -1,18 +1,23 @@
 from flask import Blueprint, render_template, request, session, redirect, url_for
 import json
 from cv_data import merge_data, get_default_data
+from pages.translations import get_translations  # Çeviri fonksiyonunu içe aktar
 
 step2_page = Blueprint('step2_page', __name__)
 
 @step2_page.route('/', methods=['GET', 'POST'])
 def step2():
+    # Kullanıcı dilini belirleme
+    lang = session.get("lang", "tr")  # Varsayılan dil Türkçe
+    translations = get_translations(lang)  # Dile göre çevirileri al
+
     if request.method == 'GET':
         # Varsayılan verileri al ve session ile birleştir
         cv_data = session.get('cv_data', get_default_data())
-        return render_template('step2.html', data=cv_data)
+        return render_template('step2.html', translations=translations, data=cv_data)
 
     elif request.method == 'POST':
-        print("################ REQUEST FROM ######################")
+        print("################ REQUEST FORM ######################")
         print(request.form)
         print("####################################################")
 
@@ -31,7 +36,7 @@ def step2():
 
             if not same_company:
                 company_reference = company_name
-            
+
             job_experiences.append({
                 'company_name': company_name,
                 'position': request.form.getlist('job_position')[i],
@@ -39,8 +44,8 @@ def step2():
                 'end_date': request.form.getlist('job_end_date')[i],
                 'description': request.form.getlist('job_description')[i],
                 'location': request.form.getlist('job_location')[i],
-                'work_type': work_types[i] if i < len(work_types) else "",  
-                'work_location': work_locations[i] if i < len(work_locations) else "",  
+                'work_type': work_types[i] if i < len(work_types) else "",
+                'work_location': work_locations[i] if i < len(work_locations) else "",
                 'same_company': same_company
             })
 
@@ -101,7 +106,7 @@ def step2():
                 'name': request.form.getlist('soft_skill_name')[i],
                 'level': request.form.getlist('soft_skill_level')[i]
             })
-        
+
         # Hakkında
         self_about = request.form.get('self_about_text', '')
 

@@ -7,14 +7,15 @@
                 <div class="grouped_skill">
                     <!-- Dil Adı -->
                     <div class="inline">
-                        <input type="text" class="wide-input" name="language_name" value="{{ language.name }}" placeholder=" " required>
+                        <input type="text" class="wide-input" name="language_name" value="{{ language.name }}" placeholder=" " >
                         <label for="language_name">Dil</label>
                     </div>
                     
                     <!-- Bilgi Seviyesi -->
                     <div class="inline">
-                        <select name="language_level" required>
+                        <select name="language_level" >
                             <option value="" disabled selected hidden>Seçiniz</option>
+                            <option value="1" {% if language.level == " " %}selected{% endif %}>-</option>
                             <option value="1" {% if language.level == "1" %}selected{% endif %}>1 - Çok Az</option>
                             <option value="2" {% if language.level == "2" %}selected{% endif %}>2</option>
                             <option value="3" {% if language.level == "3" %}selected{% endif %}>3 - Orta</option>
@@ -34,7 +35,7 @@
             <div class="grouped_skill">
                 <!-- Dil Adı -->
                 <div class="inline">
-                    <input type="text" class="wide-input" name="language_name" placeholder=" " required>
+                    <input type="text" class="wide-input" name="language_name" placeholder=" " >
                     <label for="language_name">Dil</label>
                 </div>
                 
@@ -42,6 +43,7 @@
                 <div class="inline">
                     <select name="language_level" required>
                         <option value="" disabled selected hidden>Seçiniz</option>
+                        <option value=" ">-</option>
                         <option value="1">1 - Çok Az</option>
                         <option value="2">2</option>
                         <option value="3">3 - Orta</option>

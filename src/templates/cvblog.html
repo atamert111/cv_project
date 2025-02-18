@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ cv_data.title }}</title>
+    <link rel="stylesheet" href="/static/css/step1.css"> 
+    <link rel="stylesheet" href="/static/css/common/header.css">
+    <link rel="stylesheet" href="/static/css/result.css">
+    <link rel="stylesheet" href="/static/css/index.css"> 
+    
+</head>
+<body>
+    {% include 'step1/wave_up_step.html' %} 
+    <div class="content">
+        {% include 'common/header.html' %} 
+        <main class="form-container">
+            <h1>{{ cv_data.title }}</h1>
+            <p>{{ cv_data.description }}</p>
+            <img src="{{ cv_data.image }}" alt="{{ cv_data.title }}" class="cv-example-image"> 
+            
+            <!-- Yeni Buton Eklendi -->
+            <a href="/step1/" class="cta-button">{{ translations["ctaButton"] | replace('\n', '<br>') | safe}}</a>
+        </main>
+        {% include 'common/footer.html' %}
+    </div>
+    
+    <script src="/static/js/step3/step3.js" defer></script>
+</body>
+</html>
+<style>
+.cv-example-image {
+    display: block; /* Resmi blok olarak göstermek için */
+    max-width: 100%; /* Resmin ekran genişliğini aşmasını engellemek için */
+    width: 600px; /* Maksimum genişliği belirliyoruz */
+    height: auto; /* Oranı koruyarak yüksekliği ayarlıyoruz */
+    margin: 20px auto; /* Ortalamak için */
+    border-radius: 8px; /* Köşeleri yuvarlamak için */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Hafif gölge efekti */
+}
+</style>

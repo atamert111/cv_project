@@ -6,7 +6,7 @@
         <div class="cert-title custom-cert-title">{{ loop.index }}. Sertifika Bilgileri</div>
 
         <div class="inline">
-            <input type="text" name="certificate_name[]" value="{{ certificate.name if certificate.name else '' }}" placeholder=" " required>
+            <input type="text" name="certificate_name[]" value="{{ certificate.name if certificate.name else '' }}" placeholder=" " >
             <label for="certificate_name">Sertifika Adı:</label>
         </div>
 

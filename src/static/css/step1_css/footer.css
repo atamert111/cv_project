@@ -66,7 +66,7 @@
 }
 
 .footer-column ul li:before {
-    content: 'âœ”';
+    content: ' ';
     color: var(--footer-tick); 
     margin-right: 5px;
 }
@@ -86,6 +86,37 @@
 
 .footer-bottom a:hover {
     text-decoration: underline;
+}
+.footer-bottom a {
+    color: var(--footer-button-a); 
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.footer-bottom a:hover {
+    text-decoration: underline;
+}
+/* Footer içindeki bağlantılar (URL'ler) için stil */
+.footer a {
+    color: white; /* Yazı rengi beyaz */
+    text-decoration: none; /* Altı çizgiyi kaldırır */
+    font-weight: 400; /* Yazı tipi ağırlığı (isteğe bağlı) */
+}
+
+/* Bağlantı hover (üzerine gelindiğinde) durumu */
+.footer a:hover {
+    color: #f0f0f0; /* Daha açık bir beyaz ton (isteğe bağlı) */
+    text-decoration: underline; /* İsteğe bağlı altı çizgi */
+}
+
+/* Tıklanmış (visited) bağlantılar */
+.footer a:visited {
+    color: white; /* Renk değişmeden beyaz kalsın */
+}
+
+/* Aktif (active) durumdaki bağlantılar */
+.footer a:active {
+    color: white; /* Renk değişmesin */
 }
 
 @media screen and (max-width: 768px) {

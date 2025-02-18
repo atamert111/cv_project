@@ -2,11 +2,12 @@
 <main class="hero">
     <div class="hero-content">
         <div class="hero-text">
-            <h1>3 Adımda Ücretsiz CV'ni Oluştur.</h1>
-            <p>Profesyonel şablonlarla CV'ni hazırla, PDF olarak indir.<br>
-                <span class="note">* Üyelik gerektirmez. Hiçbir adımda ücret talep edilmez.</span>
+            <h1>{{ translations["mainTitle"] | replace('\n', '<br>') | safe}}</h1>
+            <p>
+                {{ translations["mainDescription"]| replace('\n', '<br>') | safe }}<br>
+                <span class="note">{{ translations["note"]| replace('\n', '<br>') | safe }}</span>
             </p>
-            <a href="step1" class="cta-button">Hemen CV Oluştur</a>
+            <a href="step1" class="cta-button">{{ translations["ctaButton"] | replace('\n', '<br>') | safe}}</a>
         </div>
         <div class="hero-image">
             <img src="/static/images/cv-2-gulsah.png.webp" alt="CV Örnekleri">

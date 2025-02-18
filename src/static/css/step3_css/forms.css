@@ -1,0 +1,30 @@
+.action-buttons {
+    display: flex; /* Flexbox düzeni */
+    justify-content: center; /* Butonları ortalar */
+    align-items: center; /* Dikey hizalama */
+    gap: 20px; /* Butonlar arasında boşluk */
+    width: 100%; /* Genişliği koru */
+    margin: 20px 0; /* Üst ve alt boşluk */
+}
+
+.cta-button3, .cta-button2 {
+    width: 30%; /* Buton genişliği */
+    height: 40px; /* Buton yüksekliği */
+    padding: 0; /* İç dolgu yok */
+    background-color: #F5A623; /* Arka plan rengi */
+    color: white; /* Yazı rengi */
+    font-size: 16px; /* Yazı boyutu */
+    border: none; /* Çerçeve yok */
+    border-radius: 5px; /* Köşe yuvarlatma */
+    cursor: pointer; /* İmleç değişimi */
+    text-align: center; /* Yazıyı ortala */
+    transition: background-color 0.3s ease; /* Hover efekti */
+}
+
+.cta-button3:hover, .cta-button2:hover {
+    background-color: #4CAF50; /* Hover efekti */
+}
+
+.cta-button3:active, .cta-button2:active {
+    background-color: #388E3C; /* Tıklama efekti */
+}

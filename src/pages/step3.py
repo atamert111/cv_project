@@ -1,15 +1,19 @@
 from flask import Blueprint, render_template, session, request, redirect, url_for
 import json
 from cv_data import merge_data
+from pages.translations import get_translations  # Çeviri fonksiyonunu ekledik
 
 step3_page = Blueprint('step3_page', __name__)
 
 @step3_page.route('/', methods=['GET', 'POST'])
 def step3():
-    if request.method == 'GET':
-        return  render_template('step3.html', data=session.get('cv_data', {}))
-    elif request.method == 'POST':
+    lang = session.get("lang", "tr")  # Kullanıcının seçtiği dili al, yoksa varsayılan Türkçe
+    translations = get_translations(lang)  # Dile göre çevirileri getir
 
+    if request.method == 'GET':
+        return render_template('step3.html', translations=translations, data=session.get('cv_data', {}))
+
+    elif request.method == 'POST':
         print("################ REQUEST FROM ######################")
         print(request.form)
         print("####################################################")

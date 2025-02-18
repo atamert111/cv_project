@@ -4,217 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV Sonuç Özeti</title>
-    <style>
-        /* Genel Sayfa Stili */
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
-        }
-
-        /* Konteyner Alanı */
-        .container {
-            max-width: 900px;
-            margin: 40px auto;
-            padding: 25px;
-            background-color: #ffffff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        /* Başlık Stili */
-        h1 {
-            text-align: center;
-            color: #333;
-            font-size: 26px;
-            margin-bottom: 20px;
-        }
-
-        /* Bölüm Başlıkları */
-        h2 {
-            color: #007bff;
-            font-size: 22px;
-            margin-top: 25px;
-            border-bottom: 3px solid #007bff;
-            padding-bottom: 8px;
-        }
-
-        /* Kartlar */
-        .section {
-            background: #ffffff;
-            border-radius: 8px;
-            padding: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Liste Şekillendirme */
-        .section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .section ul li {
-            background: #f4f4f9;
-            padding: 12px;
-            margin-bottom: 8px;
-            border-radius: 5px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.08);
-        }
-
-        /* Öğe Başlıkları */
-        .section ul li strong {
-            color: #444;
-        }
-
-        /* Boş Alan Mesajı */
-        .empty {
-            font-style: italic;
-            color: #999;
-        }
-
-        /* Buton Stilleri */
-        .btn-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 12px 25px;
-            background: linear-gradient(135deg, #007bff, #0056b3);
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease-in-out;
-            text-decoration: none;
-        }
-
-        .cta-button:hover {
-            background: linear-gradient(135deg, #0056b3, #003d82);
-            transform: scale(1.05);
-        }
-
-        /* Responsive Tasarım */
-        @media (max-width: 768px) {
-            .container {
-                width: 90%;
-                padding: 20px;
-            }
-
-            h1 {
-                font-size: 22px;
-            }
-
-            h2 {
-                font-size: 20px;
-            }
-        }
-
-    </style>
+    <link rel="stylesheet" href="/static/css/step2.css"> 
+    <link rel="stylesheet" href="/static/css/common/header.css">
+    <link rel="stylesheet" href="/static/css/result.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Sonuç Özeti</h1>
-        
-        <div class="section">
-            <h2>Kişisel Bilgiler</h2>
-            <ul>
-                <li>Ad Soyad: {{ data.get('personal_info_name', 'Bilinmiyor') }}</li>
-                <li>Telefon: {{ data.get('personal_info_phone', 'Bilinmiyor') }}</li>
-                <li>E-posta: {{ data.get('personal_info_email', 'Bilinmiyor') }}</li>
-                <li>Adres: {{ data.get('personal_info_address', 'Bilinmiyor') }}</li>
-                <li>Doğum Tarihi: {{ data.get('personal_info_birthday', 'Bilinmiyor') }}</li>
-                <li>Medeni Hal: {{ data.get('marital_status', 'Bilinmiyor') }}</li>
-                <li>Ehliyet: {{ data.get('driver_license', 'Bilinmiyor') }}</li>
-                <li>Askerlik Durumu: {{ data.get('military_service_status', 'Bilinmiyor') }}</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>İş Deneyimleri</h2>
-            {% for job in data.get('job_experiences', []) %}
-                <ul>
-                    <li><strong>Şirket:</strong> {{ job.company_name }}</li>
-                    <li><strong>Pozisyon:</strong> {{ job.position }}</li>
-                    <li><strong>Çalışma Türü:</strong> {{ job.work_type }}</li>
-                    <li><strong>Konum:</strong> {{ job.work_location }}</li>
-                    <li><strong>Dönem:</strong> {{ job.start_date }} - {{ job.end_date }}</li>
-                    <li><strong>Açıklama:</strong> {{ job.description }}</li>
-                </ul>
-            {% else %}
-                <p class="empty">Henüz iş deneyimi girilmedi.</p>
-            {% endfor %}
-        </div>
-
-        <div class="section">
-            <h2>Eğitim</h2>
-            {% for edu in data.get('education', []) %}
-                <ul>
-                    <li><strong>Okul:</strong> {{ edu.school_name }}</li>
-                    <li><strong>Fakülte:</strong> {{ edu.faculty_name }}</li>
-                    <li><strong>Bölüm:</strong> {{ edu.department }}</li>
-                    <li><strong>Derece:</strong> {{ edu.degree }}</li>
-                    <li><strong>Başlangıç:</strong> {{ edu.start_year }}</li>
-                    <li><strong>Mezuniyet:</strong> {{ edu.end_year }}</li>
-                    <li><strong>Puan:</strong> {{ edu.grade }}</li>
-                </ul>
-            {% else %}
-                <p class="empty">Henüz eğitim bilgisi girilmedi.</p>
-            {% endfor %}
-        </div>
-
-        <div class="section">
-            <h2>Yetenekler</h2>
-            <h3>Teknik Yetenekler</h3>
-            {% for skill in data.get('technical_skills', []) %}
-                <p>{{ skill.name }} - Seviye: {{ skill.level }}</p>
-            {% else %}
-                <p class="empty">Henüz teknik beceri girilmedi.</p>
-            {% endfor %}
+    {% include 'step1/wave_up_step.html' %} 
+    <div class="content">
+        {% include 'common/header.html' %} 
+        <main class="form-container">
+            {% include '/result/form_explain.html' %}
+            {% include '/result/navbar.html' %}
+            {% include '/result/form_explain2.html' %}
             
-            <h3>Kişisel Yetenekler</h3>
-            {% for skill in data.get('soft_skills', []) %}
-                <p>{{ skill.name }} - Seviye: {{ skill.level }}</p>
-            {% else %}
-                <p class="empty">Henüz kişisel beceri girilmedi.</p>
-            {% endfor %}
-        </div>
-
-        <div class="section">
-            <h2>Diller</h2>
-            {% for lang in data.get('languages', []) %}
-                <p>{{ lang.name }} - Seviye: {{ lang.level }}</p>
-            {% else %}
-                <p class="empty">Henüz dil bilgisi girilmedi.</p>
-            {% endfor %}
-        </div>
-
-        <div class="section">
-            <h2>Sertifikalar</h2>
-            {% for cert in data.get('certificates', []) %}
-                <ul>
-                    <li><strong>Adı:</strong> {{ cert.name }}</li>
-                    <li><strong>Kuruluş:</strong> {{ cert.issuer }}</li>
-                    <li><strong>Yıl:</strong> {{ cert.date }}</li>
-                </ul>
-            {% else %}
-                <p class="empty">Henüz sertifika girilmedi.</p>
-            {% endfor %}
-        </div>
-
-        <div class="section">
-            <h2>Referanslar</h2>
-            {% for ref in data.get('references', []) %}
-                <p>{{ ref.name }} - {{ ref.position }} ({{ ref.contact }})</p>
-            {% else %}
-                <p class="empty">Henüz referans girilmedi.</p>
-            {% endfor %}
-        </div>
+            <div class="cv-container">
+                <h1 class="cv-title">Sonuç Özeti</h1>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Kişisel Bilgiler</h2>
+                    <ul class="cv-section-list">
+                        <li class="cv-section-list-item">Ad Soyad: {{ data.get('personal_info_name', 'Bilinmiyor') }}</li>
+                        <li class="cv-section-list-item">Telefon: {{ data.get('personal_info_phone', 'Bilinmiyor') }}</li>
+                        <li class="cv-section-list-item">E-posta: {{ data.get('personal_info_email', 'Bilinmiyor') }}</li>
+                        <li class="cv-section-list-item">Adres: {{ data.get('personal_info_address', 'Bilinmiyor') }}</li>
+                        <li class="cv-section-list-item">Doğum Tarihi: {{ data.get('personal_info_birthday', 'Bilinmiyor') }}</li>
+                        <li class="cv-section-list-item">Medeni Hal: {{ data.get('marital_status', 'Bilinmiyor') }}</li>
+                        <li class="cv-section-list-item">Ehliyet: {{ data.get('driver_license', 'Bilinmiyor') }}</li>
+                        <li class="cv-section-list-item">Askerlik Durumu: {{ data.get('military_service_status', 'Bilinmiyor') }}</li>
+                    </ul>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Özet</h2>
+                    <p class="cv-section-list-item">{{ data.get('self_about', 'Henüz açıklama girilmedi.') }}</p>
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">İş Deneyimleri</h2>
+                    {% for job in data.get('job_experiences', []) %}
+                        <ul class="cv-section-list">
+                            <li class="cv-section-list-item"><strong>Şirket:</strong> {{ job.company_name }}</li>
+                            <li class="cv-section-list-item"><strong>Pozisyon:</strong> {{ job.position }}</li>
+                            <li class="cv-section-list-item"><strong>Çalışma Türü:</strong> {{ job.work_type }}</li>
+                            <li class="cv-section-list-item"><strong>Konum:</strong> {{ job.work_location }}</li>
+                            <li class="cv-section-list-item"><strong>Dönem:</strong> {{ job.start_date }} - {{ job.end_date }}</li>
+                            <li class="cv-section-list-item"><strong>Açıklama:</strong> {{ job.description }}</li>
+                        </ul>
+                    {% else %}
+                        <p class="cv-empty">Henüz iş deneyimi girilmedi.</p>
+                    {% endfor %}
+                </div>
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Eğitim</h2>
+                    {% for edu in data.get('education', []) %}
+                        <ul class="cv-section-list">
+                            <li class="cv-section-list-item"><strong>Okul:</strong> {{ edu.school_name }}</li>
+                            <li class="cv-section-list-item"><strong>Bölüm:</strong> {{ edu.department }}</li>
+                            <li class="cv-section-list-item"><strong>Derece:</strong> {{ edu.degree }}</li>
+                            <li class="cv-section-list-item"><strong>Başlangıç:</strong> {{ edu.start_year }}</li>
+                            <li class="cv-section-list-item"><strong>Mezuniyet:</strong> {{ edu.end_year }}</li>
+                        </ul>
+                    {% else %}
+                        <p class="cv-empty">Henüz eğitim bilgisi girilmedi.</p>
+                    {% endfor %}
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Projeler</h2>
+                    {% for project in data.get('projects', []) %}
+                        <p class="cv-section-list-item"><strong>{{ project.name }}</strong> - {{ project.description }}</p>
+                    {% else %}
+                        <p class="cv-empty">Henüz proje bilgisi girilmedi.</p>
+                    {% endfor %}
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Sertifikalar</h2>
+                    {% for cert in data.get('certificates', []) %}
+                        <p class="cv-section-list-item"><strong>{{ cert.name }}</strong> - {{ cert.issuer }} ({{ cert.date }})</p>
+                    {% else %}
+                        <p class="cv-empty">Henüz sertifika bilgisi girilmedi.</p>
+                    {% endfor %}
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Diller</h2>
+                    {% for lang in data.get('languages', []) %}
+                        <p class="cv-section-list-item">{{ lang.name }} - Seviye: {{ lang.level }}</p>
+                    {% else %}
+                        <p class="cv-empty">Henüz dil bilgisi girilmedi.</p>
+                    {% endfor %}
+                </div>
+                
+                <div class="cv-section">
+                    <h2 class="cv-section-title">Yetenekler</h2>
+                    {% for skill in data.get('technical_skills', []) %}
+                        <p class="cv-section-list-item">{{ skill.name }} - Seviye: {{ skill.level }}</p>
+                    {% else %}
+                        <p class="cv-empty">Henüz teknik beceri girilmedi.</p>
+                    {% endfor %}
+                    
+                    {% for skill in data.get('soft_skills', []) %}
+                        <p class="cv-section-list-item">{{ skill.name }} - Seviye: {{ skill.level }}</p>
+                    {% else %}
+                        <p class="cv-empty">Henüz kişisel beceri girilmedi.</p>
+                    {% endfor %}
+                </div>
+            </div>
+        </main>
+        {% include 'common/footer.html' %}
     </div>
+    
+    <script src="/static/js/step3/step3.js" defer></script>
 </body>
 </html>

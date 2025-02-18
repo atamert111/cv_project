@@ -38,12 +38,12 @@
 
         <div class="four-column">
             <div class="inline">
-                <input type="number" name="edu_start_year[]" value="{{ edu.start_year if edu.start_year else '' }}" placeholder=" " required>
+                <input type="number" name="edu_start_year[]" value="{{ edu.start_year if edu.start_year else '' }}" placeholder=" " min="1900" max="2099" required>
                 <label>Başlangıç Yılı:(*)</label>
             </div>
             
             <div class="inline">
-                <input type="number" name="edu_end_date[]" value="{{ edu.end_year if edu.end_year else '' }}" placeholder=" " min="1900" max="2099">
+                <input type="number" name="edu_end_date[]" value="{{ edu.end_year if edu.end_year else '' }}" placeholder=" "  min="1900" max="2099" required>
                 <label>Mezuniyet Yılı:(*)</label>
             </div>
             

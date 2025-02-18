@@ -1,82 +1,290 @@
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f9f9f9;
-}
-
-.container {
-    text-align: center;
-    padding: 20px;
-}
-
-.header {
-    margin-bottom: 20px;
-}
+@import url('step3_css/forms.css');
 
 .carousel {
     display: flex;
     justify-content: center;
-    align-items: center;
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
+    gap: 20px;
+    flex-wrap: wrap;
 }
 
+/* Resimler tek satırda 3 tane olacak */
+.carousel-container {
+    width: 30%;
+    text-align: center;
+    position: relative;
+}
+
+/* Resimler normal boyutunda */
 .carousel img {
     width: 100%;
-    max-width: 400px;
     height: auto;
-    display: none;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    position: relative;
 }
 
-.carousel img.active {
-    display: block;
+/* Resim üzerine gelince hafif büyüme */
+.carousel-container:hover img {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
 }
 
-.carousel-controls {
+/* "Tasarıma Göz At" yazısı */
+/* 🔹 Küçük resimlerin üzerine gelince yazının görünmesi */
+
+.overlay-text {
     position: absolute;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
     top: 50%;
-    transform: translateY(-50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: auto; /* 🔹 Tıklanabilir yap */
+    cursor: pointer; /* 🔹 Üzerine gelince el işareti çıksın */
 }
 
-.carousel-controls button {
-    background-color: rgba(0, 0, 0, 0.5);
+
+/* 🔹 Küçük resmin üzerine gelince yazının görünmesini sağlayan kod */
+.carousel-container:hover .overlay-text {
+    opacity: 1;
+}
+
+
+/* 🔹 Resim büyütme: Daha düzgün olacak */
+.carousel img.active {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 70vw; /* Genişlik ekranın %70'ini geçmeyecek */
+    max-height: 70vh; /* Yükseklik ekranın %70'ini geçmeyecek */
+    z-index: 1001;
+    padding: 10px;
+    border: 4px solid rgba(0, 0, 0, 0.2); /* Çerçeve eklendi */
+    border-radius: 10px;
+    object-fit: contain; /* Orijinal oran korunacak */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Hafif gölge */
+    cursor: grab;
+    background: white; /* Arka plan kaldırıldı */
+}
+
+/* 🔹 X Butonu: Sağ üst köşeye tam hizalandı */
+.close-btn {
+    position: absolute; /* Resme göre konumlandırma */
+    top: 10px;
+    right: 10px;
+    background: red;
     color: white;
     border: none;
     border-radius: 50%;
     width: 40px;
     height: 40px;
+    font-size: 20px;
+    font-weight: bold;
     cursor: pointer;
-    font-size: 18px;
-    line-height: 40px;
-    text-align: center;
+    z-index: 1102;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.carousel-controls button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
+/* X Butonu hover efekti */
+.close-btn:hover {
+    background: darkred;
 }
 
-.form-container {
+/* 🔹 Seç butonu ve Seçildi durumu */
+.select-btn {
+    background: blue;
+    color: white;
+    border: none;
+    padding: 6cqi 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    display: block;
+    margin: 10px auto;
+    transition: background-color 0.3s ease;
+}
+
+/* 🔹 Seçildiğinde buton yeşile dönecek ve "Seçildi" yazacak */
+.select-btn.selected {
+    background-color: green;
+}
+.select-btn.selected::after {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* 🔹 Butonlar resimlerin hemen altında olacak */
+.navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-top: 20px;
+    padding: 20px;
+    width: 80%;
 }
 
-.cta-button {
-    padding: 10px 20px;
-    background-color: #007bff;
+/* 🔹 Sonraki Butonu Uyarısı (Gerçek Pop-up) */
+.popup-warning {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 0, 0, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    z-index: 99999 !important; /* Öne getir */
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    border: 1px solid #fff;
+    min-width: 250px;
+    opacity: 1;
+}
+
+.popup-warning.show {
+    display: block !important;
+    opacity: 1 !important;
+    z-index: 99999 !important;
+}
+
+/* Büyütülen resmin arka planı */
+/* 🔹 Büyütülen resmin arka planı */
+.expanded-img-container {
+    position: fixed;
+    top: 5%;
+    left: 25%;
+    width: 50vw;
+    height: 90vh;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+}
+
+/* 🔹 Büyütülen resmin kendisi */
+.expanded-img {
+    max-width: 70vw;
+    max-height: 70vh;
+    border-radius: 10px;
+    background: white;
+    padding: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* 🔹 Butonları bir araya getiren kutu */
+/* 🔹 Butonları bir araya getiren kutu (X butonu Seç butonunun yanında olacak) */
+.button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* 🔹 Seç Butonu */
+.select-btn {
+    background: blue;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+/* 🔹 Seçildiğinde buton yeşile dönecek ve "Seçildi" yazacak */
+.select-btn.selected {
+    background-color: green;
+}
+
+
+/* 🔹 X Butonu (Seç butonunun yanında olacak) */
+.close-btn {
+    background: red;
     color: white;
     border: none;
     border-radius: 5px;
+    padding: 10px 15px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.cta-button:hover {
-    background-color: #0056b3;
+/* 🔹 Butonlara hover efekti */
+.close-btn:hover {
+    background: darkred;
+}
+.select-btn:hover {
+    background: #aaa;
+}
+
+/* Uyarı kutusunun arka planını flu yapmak için */
+#custom-warning-box {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Arka plan flu */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+}
+
+/* Uyarı kutusunun içeriği */
+.warning-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px;
+    font-family: Arial, sans-serif;
+    position: relative;
+}
+
+/* Başlık tasarımı */
+.warning-content h3 {
+    margin-top: 0;
+    color: #D32F2F;
+    font-size: 20px;
+}
+
+/* Açıklama metni */
+.warning-content p {
+    color: #333;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+/* Kapatma butonu */
+.warning-content button {
+    background: #D32F2F;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background 0.3s;
+}
+
+.warning-content button:hover {
+    background: #B71C1C;
 }

@@ -6,39 +6,34 @@
         <div class="footer-columns">
             <!-- Column 1 -->
             <div class="footer-column">
-                <h3>CV Örnekleri</h3>
+                <h3>{{ translations["footerCVExamples"] }}</h3>
                 <ul>
-                    <li>Satış Pazarlama CV</li>
-                    <li>Grafik & Tasarımcı CV</li>
-                    <li>Akademisyen CV</li>
-                    <li>Medikal CV</li>
-                    <li>Ulaşım CV</li>
+                    {% for example in translations["cvExamplesList"] %}
+                        <li><a href="{{ example['url'] }}">{{ example['text'] }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <!-- Column 2 -->
             <div class="footer-column">
-                <h3>CV Blog</h3>
+                <h3>{{ translations["footerCVBlog"] }}</h3>
                 <ul>
-                    <li> Yeni Mezunlar Nasıl CV Hazırlamalı?</li>
-                    <li> Başarılı Öğretmen CV'si Nasıl Olmalı?</li>
-                    <li> CV Hazırlarken Asla Yapmamanız Gereken 10 Hata</li>
-                    <li> CV'de Doğru Fotoğraf Kullanımı Nasıl Olmalıdır?</li>
-                    <li> Etkileyici Bir CV Nasıl Hazırlanır?</li>
-                    <li> CV'de Staj Deneyimi Nasıl Yazılmalıdır?</li>
+                    {% for blog in translations["cvBlogList"] %}
+                        <li><a href="{{ blog['url'] }}">{{ blog['text'] }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
             <!-- Column 3 -->
             <div class="footer-column">
-                <h3>İletişim</h3>
+                <h3>{{ translations["footerContact"] }}</h3>
                 <ul>
-                    <li>📄 İletişim Formu</li>
-                    <li>✉ hello@cvdone.com</li>
+                    {% for contact in translations["contactList"] %}
+                        <li><a href="{{ contact['url'] }}">{{ contact['text'] }}</a></li>
+                    {% endfor %}
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Select Your Language: <a href="#">English</a>, <a href="#">Turkish</a></p>
-            <p>Copyright © 2025 | Tüm Hakları Saklıdır | Gizlilik Politikası | <a href="#">CVdone.com</a></p>
+            <p>{{ translations["footerCopyright"] | safe }}</p>
         </div>
     </div>
 </footer>

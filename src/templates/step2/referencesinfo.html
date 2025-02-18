@@ -6,18 +6,18 @@
         <div class="ref-title custom-ref-title">{{ loop.index }}. Referans Bilgileri</div>
 
         <div class="inline">
-            <input type="text" name="reference_name[]" value="{{ reference.name if reference.name else '' }}" placeholder=" " required>
+            <input type="text" name="reference_name[]" value="{{ reference.name if reference.name else '' }}" placeholder=" " >
             <label for="reference_name">Referans Adı:</label>
         </div>
 
         <div class="reference-group">
             <div class="inline position-field">
-                <input type="text" name="reference_position[]" value="{{ reference.position if reference.position else '' }}" placeholder=" " required>
+                <input type="text" name="reference_position[]" value="{{ reference.position if reference.position else '' }}" placeholder=" " >
                 <label for="reference_position">Referansın Pozisyonu:</label>
             </div>
 
             <div class="inline contact-field">
-                <input type="text" name="reference_contact[]" value="{{ reference.contact if reference.contact else '' }}" placeholder=" " required>
+                <input type="text" name="reference_contact[]" value="{{ reference.contact if reference.contact else '' }}" placeholder=" " >
                 <label for="reference_contact">İletişim Bilgileri:</label>
             </div>
         </div>

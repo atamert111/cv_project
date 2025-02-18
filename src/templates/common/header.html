@@ -10,10 +10,19 @@
     
                 <div class="brand-title">CVYarat.com</div>
                 <ul class="top-buttons">
-                    <li><a href="/#" class="top-button">Anasayfa</a></li>
-                    <li><a href="/about" class="top-button">Hakkında</a></li>
-                    <li><a href="/contact" class="top-button">İletişim</a></li>
+                    <li><a href="/#" class="top-button">{{ translations["home"] }}</a></li>
+                    <li><a href="/about" class="top-button">{{ translations["about"] }}</a></li>
+                    <li><a href="/contact" class="top-button">{{ translations["contact"] }}</a></li>
                 </ul>                
             </nav>
+            <div class="language-switcher">
+                <a href="{{ url_for('set_language', language='tr') }}" class="lang-option">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b4/Flag_of_Turkey.svg" alt="Türkçe" class="flag-icon"> TR
+                </a>
+                <a href="{{ url_for('set_language', language='en') }}" class="lang-option">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/a/a4/Flag_of_the_United_States.svg" alt="English" class="flag-icon"> EN
+                </a>
+            </div>
+            
         </div>
     </header>

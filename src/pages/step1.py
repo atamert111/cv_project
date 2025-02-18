@@ -5,6 +5,7 @@ from werkzeug.utils import secure_filename
 import json
 import time
 from cv_data import merge_data
+from pages.translations import get_translations  # Çeviri fonksiyonunu içe aktar
 
 step1_page = Blueprint('step1_page', __name__)
 
@@ -17,26 +18,28 @@ def allowed_file(filename):
 
 @step1_page.route('/', methods=['GET', 'POST'])
 def step1():
+    lang = session.get("lang", "tr")  # Varsayılan dil Türkçe
+    translations = get_translations(lang)  # Dile göre çevirileri al
+
     if request.method == 'GET':
         # Formun tekrar yüklenmesi durumunda session verilerini aktar
-        return render_template('step1.html', data=session.get('cv_data', {}))
-    elif request.method == 'POST':
+        return render_template('step1.html', translations=translations, data=session.get('cv_data', {}))
 
-        print("################ REQUEST FROM ######################")
+    elif request.method == 'POST':
+        print("################ REQUEST FORM ######################")
         print(request.form)
         print("####################################################")
         print(request.files)
         print("####################################################")
-      
 
         # Zorunlu alanları kontrol et
         if not request.form.get('name') or not request.form.get('surname') or not request.form.get('phone') or not request.form.get('email'):
-            return render_template('step1.html', error="Lütfen tüm zorunlu alanları doldurun.", data=request.form)
+            return render_template('step1.html', translations=translations, error="Lütfen tüm zorunlu alanları doldurun.", data=request.form)
 
         # E-posta doğrulaması
         email = request.form.get('email')
         if not re.match(r"[^@]+@[^@]+\.[^@]+", email):
-            return render_template('step1.html', error="Geçerli bir e-posta adresi girin.", data=request.form)
+            return render_template('step1.html', translations=translations, error="Geçerli bir e-posta adresi girin.", data=request.form)
 
         # Profil fotoğrafını işle
         file = request.files.get('profile_photo')

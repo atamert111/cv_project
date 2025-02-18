@@ -3,638 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Genel Bilgiler - İş Deneyimleri</title>
-    <link rel="stylesheet" href="/static/css/style.css">
-    
+    <title>Step 3 - Şablon Seçimi</title>
+    <link rel="stylesheet" href="/static/css/step2.css">  <!-- Step1 ve Step2 ile uyumlu stil -->
+    <link rel="stylesheet" href="/static/css/common/header.css">
+    <script src="/static/js/step3.js" defer></script>
     <style>
-        .form-buttons {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
-
-        .cta-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
+        .carousel img {
+            max-width: 100px; /* Küçük önizleme */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             cursor: pointer;
-            transition: background-color 0.3s ease;
         }
 
-        .cta-button:hover {
-            background-color: #0056b3;
+        .carousel img.active {
+            max-width: 80%; /* Büyük görüntü */
+            display: block;
+            height: auto;
+            margin: 0 auto;
+        }
+
+        .navbar-title {
+            display: none; /* Navbar başlığı gizlendi */
         }
     </style>
 </head>
-    <!-- SVG Dalga -->
-    <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path fill="#F5F5F5" fill-opacity="1" d="M0,160L60,176C120,192,240,224,360,224C480,224,600,192,720,160C840,128,960,96,1080,106.7C1200,117,1320,171,1380,197.3L1440,224L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path>
-    </svg>
-<div class="content">
-            <!-- Header Section -->
-    <header class="header">
-        <div class="container d-flex justify-content-between align-items-center">
+<body>
+    {% include 'step1/wave_up_step.html' %} <!-- Üst kısım dalga tasarımı -->
+    <div class="content">
+        {% include 'common/header.html' %} <!-- Ortak başlık -->
+        <main class="form-container">
+            {% include 'step2/navbar.html' %} <!-- Ortak navigasyon çubuğu -->
             
-            
-    <nav class="top-nav">
-        <button class="hamburger-menu" aria-label="Toggle navigation">
-            ☰
-        </button>
-    
-                <div class="brand-title">CVYarat.com</div>
-                <ul class="top-buttons">
-                    <li><a href="#" class="top-button active">Anasayfa</a></li>
-                    <li><a href="#" class="top-button">Hakkımızda</a></li>
-                    <li><a href="#" class="top-button">İletişim</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
- 
-    <main class="form-container">
-            <div class="Form_explanin_up">
-    <div class="Form_explanin_up h3">
-        <h3>CVdone ile ücretsiz CV oluşturun.</h3>
-    </div>
-    <div class="Form_explanin_up h3">
-    <p>Sadece 3 dakika içinde profesyonel şablonlarla CV'nizi hazırlayın.</p>
-    </div>
-</div>
-            <div class="navbar">
-    <a href="/step1">Kişisel Bilgiler</a>
-    <a href="/step2" class="active" >Deneyim Bilgileri</a>
-    <a href="/step3">Tasarım</a>
-    <a href="/finalize.html">Önizleme</a>
-</div>
-            <div class="Form_explanin_up p">
-    <p>Kısa Bir Süre İçinde CV'ni hazırlayacağız.</p>
-</div>
-        <form action="/step2" method="POST" class="modern-form" enctype="multipart/form-data">
-        <div class="container">
-            <div class="accordion">
-                <div class="accordion-header" onclick="toggleAccordion(this)">İş Deneyimleri</div>
-    <div class="accordion-content" id="job-experiences">
-        
-            
-        
-        <div class="job-entry">
-            <div class="inline">
-                <input type="text" id="name" name="job_company_name" value="Medika Hastanesi" placeholder=" " required>
-                <!-- Placeholder gibi label -->
-                <label for="name">Şirket Adı:(*)</label>
-            </div>
-            <div class="toggle-container" style="display:none;">
-                <label for="same_company">Aynı şirkette farklı pozisyon:</label>
-                <input type="checkbox" id="same_company" name="same_company" value="Medika Hastanesi" onchange="toggleSameCompany(this)">
-            </div>
-            <div class="grouped">
-                <div class="inline">
-                    <input type="text"  class="wide-input" id="name" name="job_position" value="Kardiyoloji Doktoru" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="name">Pozisyon:(*)</label>
+            <div class="container">
+                <div class="header">
+                    <h1>Step 3 - Şablon Seçimi</h1>
+                    <p>Beğendiğiniz şablonu seçmek için okları kullanın.</p>
                 </div>
-                <div class="inline">
-                    <input type="text" class="narrow-input" id="name" name="job_location" value="Bolge saglik" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="name">Konum:(*)</label>
+
+                <div class="carousel">
+                    <div class="carousel-controls">
+                        <button id="prevBtn">&lt;</button>
+                        <button id="nextBtn">&gt;</button>
+                    </div>
+                    <img src="/static/images/template1.png" alt="Şablon 1" class="active" data-template="1">
+                    <img src="/static/images/template2.png" alt="Şablon 2" data-template="2">
+                    <img src="/static/images/template3.png" alt="Şablon 3" data-template="3">
+                </div>
+
+                <div class="form-container">
+                    <form method="POST">
+                        <input type="hidden" id="selectedTemplate" name="template" value="1">
+                        <button type="submit" class="cta-button">Sonraki</button>
+                    </form>
+                    <div class="navigation-buttons">
+                        <button type="button" class="cta-button" id="prevStep">Geri</button>
+                    </div>
                 </div>
             </div>
-            <div class="inline">
-                <textarea id="description" name="job_description" class="multi-line" placeholder=" " required>Hastane başvuran hastaların kardiyovasküler rahatsızlıklarını teşhis ve tedavi ettim.</textarea>
-                <!-- Placeholder gibi label -->
-                <label for="description">Pozisyon Açıklaması:</label>
-            </div>
-            <div class="three-column">
-                <div class="inline">
-                    <input type="date" id="start_date" name="job_start_date" value="2018-01-10" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="start_date">Başlangıç Tarihi:(*)</label>
-                </div>
-                <div class="inline">
-                    <input type="date" id="end_date" name="job_end_date" value="2020-02-12" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="end_date">Bitiş Tarihi:(*)</label>
-                </div>
-                <div class="inline">
-                    <input type="checkbox" id="still_working" name="still_working"onchange="toggleEndDate(this)" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="still_working">Haken Çalışıyorum</label>
-                </div>
-       
-            </div>
-
-            <div class="grouped">
-                <div class="inline">
-                    <select id="work_type" name="work_type" required>
-                        <option value="" disabled selected hidden></option>
-                        <option value="">Seçiniz</option>
-                        <option value="full_time">Tam Zamanlı</option>
-                        <option value="part_time">Yarı Zamanlı</option>
-                        <option value="intern">Stajyer</option>
-                    </select>
-                    <!-- Placeholder gibi label -->
-                    <label for="work_type">Çalışma Türü (Opsiyonel):</label>
-                </div>
-                <div class="inline">
-                    <select id="work_location" name="work_location" required>
-                        <option value="" disabled selected hidden></option>
-                        <option value="">Seçiniz</option>
-                        <option value="office">Ofis</option>
-                        <option value="hybrid">Hibrit</option>
-                        <option value="remote">Remote</option>
-                    </select>
-                    <!-- Placeholder gibi label -->
-                    <label for="work_location">Çalışma Türü (Opsiyonel):</label>
-                </div>
-            
-            </div>
-        </div>
-
-            
-        
-        <div class="job-entry">
-            <div class="inline">
-                <input type="text" id="name" name="job_company_name" value="Medika Hastanesi 2" placeholder=" " required>
-                <!-- Placeholder gibi label -->
-                <label for="name">Şirket Adı:(*)</label>
-            </div>
-            <div class="toggle-container" style="display:none;">
-                <label for="same_company">Aynı şirkette farklı pozisyon:</label>
-                <input type="checkbox" id="same_company" name="same_company" value="Medika Hastanesi 2" onchange="toggleSameCompany(this)">
-            </div>
-            <div class="grouped">
-                <div class="inline">
-                    <input type="text"  class="wide-input" id="name" name="job_position" value="Kardiyoloji Doktoru 2" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="name">Pozisyon:(*)</label>
-                </div>
-                <div class="inline">
-                    <input type="text" class="narrow-input" id="name" name="job_location" value="Bolge saglik 2" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="name">Konum:(*)</label>
-                </div>
-            </div>
-            <div class="inline">
-                <textarea id="description" name="job_description" class="multi-line" placeholder=" " required>Hastane başvuran hastaların kardiyovasküler rahatsızlıklarını teşhis ve tedavi ettim.  2</textarea>
-                <!-- Placeholder gibi label -->
-                <label for="description">Pozisyon Açıklaması:</label>
-            </div>
-            <div class="three-column">
-                <div class="inline">
-                    <input type="date" id="start_date" name="job_start_date" value="2021-03-13" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="start_date">Başlangıç Tarihi:(*)</label>
-                </div>
-                <div class="inline">
-                    <input type="date" id="end_date" name="job_end_date" value="2025-04-14" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="end_date">Bitiş Tarihi:(*)</label>
-                </div>
-                <div class="inline">
-                    <input type="checkbox" id="still_working" name="still_working"onchange="toggleEndDate(this)" placeholder=" " required>
-                    <!-- Placeholder gibi label -->
-                    <label for="still_working">Haken Çalışıyorum</label>
-                </div>
-       
-            </div>
-
-            <div class="grouped">
-                <div class="inline">
-                    <select id="work_type" name="work_type" required>
-                        <option value="" disabled selected hidden></option>
-                        <option value="">Seçiniz</option>
-                        <option value="full_time">Tam Zamanlı</option>
-                        <option value="part_time">Yarı Zamanlı</option>
-                        <option value="intern">Stajyer</option>
-                    </select>
-                    <!-- Placeholder gibi label -->
-                    <label for="work_type">Çalışma Türü (Opsiyonel):</label>
-                </div>
-                <div class="inline">
-                    <select id="work_location" name="work_location" required>
-                        <option value="" disabled selected hidden></option>
-                        <option value="">Seçiniz</option>
-                        <option value="office">Ofis</option>
-                        <option value="hybrid">Hibrit</option>
-                        <option value="remote">Remote</option>
-                    </select>
-                    <!-- Placeholder gibi label -->
-                    <label for="work_location">Çalışma Türü (Opsiyonel):</label>
-                </div>
-            
-            </div>
-        </div>
-
-            
-        
-
-        <!-- Ekle/Sil Butonları -->
-        <div class="action-buttons">
-            <a href="#" class="cta-button" onclick="addJob()">+</a>
-            <a href="#" class="cta-button" onclick="removeJob()">-</a>
-
-            <!-- <button type="button" id="addJob" onclick="addJob()">+</button> -->
-            <!-- <button type="button" id="removeJob" onclick="removeJob()">-</button> -->
-        </div>
+        </main>
+        {% include 'common/footer.html' %} <!-- Ortak altbilgi -->
     </div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Eğitim Bilgileri</div>
-<div class="accordion-content" id="education-experiences">
-    
-    
-    <div class="education-entry">
-        <div class="inline">
-            <label for="school_name">Okul Adı:</label>
-            <input type="text" id="school_name" name="school_name" placeholder="Okul adı">
-        </div>
-
-        <div class="inline">
-            <label for="degree">Derece:</label>
-            <select id="degree" name="degree">
-                <option value="">Seçiniz</option>
-                <option value="İlkokul">İlkokul</option>
-                <option value="Ortaokul">Ortaokul</option>
-                <option value="Lise">Lise</option>
-                <option value="Önlisans">Ön Lisans</option>
-                <option value="Lisans">Lisans</option>
-                <option value="Yuksek Lisans">Yüksek Lisans</option>
-                <option value="Doktora">Doktora</option>
-                <option value="Post-Doktora">Doktora</option>
-            </select>
-        </div>
-
-        <div class="inline">
-            <label for="department">Bölüm (Opsiyonel):</label>
-            <input type="text" id="department" name="department_name" value = "" placeholder="Bölüm adı">
-        </div>
-        <div class="inline">
-            <label for="faculty">Fakülte (Opsiyonel):</label>
-            <input type="text" id="faculty" name="faculty_name" placeholder="Fakülte adı">
-        </div>
-
-        <div class="three-column">
-            <div>
-                <label for="start_year">Başlangıç Yılı:</label>
-                <input type="number" id="start_year" name="education_start_date" placeholder="YYYY" min="1900" max="2099" >
-            </div>
-
-            <div>
-                <label for="end_year">Mezuniyet Yılı:</label>
-                <input type="number" id="end_year" name="education_end_date" placeholder="YYYY" min="1900" max="2099">
-            </div>
-
-            <div>
-                <label for="currently_studying">Halen devam ediyorum:</label>
-                <input type="checkbox" id="currently_studying" name="currently_studying" value="" onchange="toggleEndYear(this)">
-            </div>
-        </div>
-    </div>
-
-    
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
-    </div>
-</div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Diller</div>
-<div class="accordion-content" id="skills-section">
-    <div class="skill-entry">
-        <div class="inline">
-            <label for="languageinfo_name">Dil</label>
-            <input type="text" id="languageinfo_name" name="language_name" placeholder="Dil">
-        </div>
-
-        <div class="inline">
-            <label for="languageinfo_name">Bilgi Seviyesi:</label>
-            <select id="softskilanguageinfo_namell_name" name="language_level">
-                <option value="">Seçiniz</option>
-                <option value="1">1 - Çok Az</option>
-                <option value="2">2</option>
-                <option value="3">3 - Orta</option>
-                <option value="4">4</option>
-                <option value="5">5 - Çok İyi</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
-    </div>
-</div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Beceriler</div>
-<div class="accordion-content" id="skills-section">
-    <div class="skill-entry">
-        <div class="inline">
-            <label for="skill_name">Beceri:</label>
-            <input type="text" id="skill_name" name="technical_skill_name" placeholder="Matlab, C++, Excel vb. ">
-        </div>
-
-        <div class="inline">
-            <label for="skill_level">Bilgi Seviyesi:</label>
-            <select id="skill_level" name="technical_skill_level">
-                <option value="">Seçiniz</option>
-                <option value="1">1 - Çok Az</option>
-                <option value="2">2</option>
-                <option value="3">3 - Orta</option>
-                <option value="4">4</option>
-                <option value="5">5 - Çok İyi</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
-    </div>
-</div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Yetenekler</div>
-<div class="accordion-content" id="skills-section">
-    <div class="skill-entry">
-        <div class="inline">
-            <label for="softskill_name">Yetenekler: </label>
-            <input type="text" id="softskill_name" name="soft_skill_name" placeholder="(İletişim - Kararlılık vb.)">
-        </div>
-
-        <div class="inline">
-            <label for="softskill_name">Bilgi Seviyesi:</label>
-            <select id="softskill_name" name="soft_skill_level">
-                <option value="">Seçiniz</option>
-                <option value="1">1 - Çok Az</option>
-                <option value="2">2</option>
-                <option value="3">3 - Orta</option>
-                <option value="4">4</option>
-                <option value="5">5 - Çok İyi</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
-    </div>
-</div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Ön Yazı</div>
-<div class="accordion-content" id="references-section">
-    <div class="reference-entry">
-        <div class="text-content">
-            <label for="selfinfo">Ön Yazı</label>
-            <input type="text" id="self_about_text" name="self_about_text" placeholder="Kendinizden Kısaca bahsedin">
-        </div>
-    </div>
-
-
-</div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Projeler</div>
-<div class="accordion-content" id="projects-section">
-    <div class="project-entry">
-        <div class="inline">
-            <label for="project_name">Proje Adı:</label>
-            <input type="text" id="project_name" name="project_name" placeholder="Proje adı">
-        </div>
-
-        <div class="inline">
-            <label for="project_date">Proje Tarihi:</label>
-            <input type="date" id="project_date" name="project_date">
-        </div>
-
-        <div class="inline">
-            <label for="project_description">Proje Açıklaması (Opsiyonel):</label>
-            <textarea id="project_description" name="project_description" placeholder="Proje açıklaması"></textarea>
-        </div>
-
-        <div class="inline">
-            <label for="project_link">Proje Linki (Opsiyonel):</label>
-            <input type="url" id="project_link" name="project_link" placeholder="GitHub veya başka bir link">
-        </div>
-    </div>
-
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
-    </div>
-</div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Sertifikalar</div>
-<div class="accordion-content" id="certificate-section">
-    <div class="certificate-entry">
-        <div class="inline">
-            <label for="certificate_name">Sertifika Adı:</label>
-            <input type="text" id="certificate_name" name="certificate_name" placeholder="Sertifika adı" >
-        </div>
-
-        <div class="inline">
-            <label for="certificate_year">Sertifika Yılı (Opsiyonel):</label>
-            <input type="number" id="certificate_year" name="certificate_date" placeholder="YYYY" min="1900" max="2099">
-        </div>
-
-        <div class="inline">
-            <label for="certificate_place">Alındığı Yer (Opsiyonel):</label>
-            <input type="text" id="certificate_place" name="certificate_place" placeholder="Alındığı yer">
-        </div>
-    </div>
-
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
-    </div>
-</div>
-                <div class="accordion-header" onclick="toggleAccordion(this)">Referanslar</div>
-<div class="accordion-content" id="references-section">
-    <div class="reference-entry">
-        <div class="inline">
-            <label for="reference_name">Referans Adı:</label>
-            <input type="text" id="reference_name" name="reference_name" placeholder="Adı ve Soyadı" >
-        </div>
-
-        <div class="inline">
-            <label for="reference_position">Pozisyon:</label>
-            <input type="text" id="reference_position" name="reference_relation" placeholder="Pozisyon" >
-        </div>
-
-        <div class="inline">
-            <label for="reference_contact">İletişim Bilgileri:</label>
-            <input type="text" id="reference_contact" name="reference_contact" placeholder="Telefon veya E-posta" >
-        </div>
-    </div>
-
-    <!-- + ve - Butonları -->
-    <div class="action-buttons">
-        <a href="#" class="cta-button" onclick="addJob()">+</a>
-        <a href="#" class="cta-button" onclick="removeJob()">-</a>
-        <!--<button type="button" class="add-education" onclick="addEducation()">+</button> -->
-        <!--<button type="button" class="remove-education" onclick="removeEducation()">-</button> -->
-    </div>
-</div>
-            </div>
-
-            <!-- Önceki ve Sonraki Butonlar -->
-            <div class="action-buttons">
-                <button type="button" id="previous-button" class="cta-button" onclick="navigatePrevious()">Önceki</button>
-                <button type="button" id="next-button" class="cta-button" onclick="navigateNext()">Sonraki</button>
-            </div>
-            <div class="form-buttons">
-                <button type="submit" class="cta-button">Gönder</button>
-            </div>
-        </div>
-
-        </form>
-    </main>
 
     <script>
-        // Önceki sayfaya yönlendirme
-        function navigatePrevious() {
-            window.location.href = '/step1'; // Step 1'e yönlendirme
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const images = document.querySelectorAll('.carousel img');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const selectedTemplate = document.getElementById('selectedTemplate');
+            const prevStep = document.getElementById('prevStep');
+            let currentIndex = 0;
 
-        // Sonraki sayfaya yönlendirme
-        function navigateNext() {
-            window.location.href = '/step3'; // Step 3'e yönlendirme
-        }
-
-        // Accordion işlevselliği
-        function toggleAccordion(header) {
-            const allContents = document.querySelectorAll('.accordion-content');
-            const allHeaders = document.querySelectorAll('.accordion-header');
-            const content = header.nextElementSibling;
-
-            // Tüm içerikleri kapat
-            allContents.forEach(item => item.classList.remove('active'));
-
-            // Tıklanan açık değilse, aç
-            if (!content.classList.contains('active')) {
-                content.classList.add('active');
+            function updateCarousel() {
+                images.forEach((img, index) => {
+                    img.classList.remove('active');
+                    img.style.maxWidth = "100px"; // Küçük önizleme
+                    if (index === currentIndex) {
+                        img.classList.add('active');
+                        img.style.maxWidth = "80%"; // Büyük görüntüleme
+                        selectedTemplate.value = img.dataset.template;
+                    }
+                });
             }
 
-            // Tıklanan başlığa aktif sınıfı ekle
-            allHeaders.forEach(item => item.classList.remove('active'));
-            header.classList.add('active');
-        }
-
-        // Yeni iş deneyimi ekle
-        function addJob() {
-            const container = document.getElementById('job-experiences');
-            const firstJob = container.querySelector('.job-entry');
-            const newJob = firstJob.cloneNode(true);
-
-            // İçerikleri temizle
-            newJob.querySelectorAll('input, textarea, select').forEach(input => {
-                if (input.type === 'checkbox') {
-                    input.checked = false;
-                } else {
-                    input.value = '';
-                }
+            images.forEach((img, index) => {
+                img.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
             });
 
-            newJob.querySelector('.toggle-container').style.display = 'flex';
-
-            container.insertBefore(newJob, container.querySelector('.action-buttons'));
-        }
-
-        // Son iş deneyimini sil
-        function removeJob() {
-            const container = document.getElementById('job-experiences');
-            const jobEntries = container.querySelectorAll('.job-entry');
-
-            if (jobEntries.length > 1) {
-                jobEntries[jobEntries.length - 1].remove();
-            }
-        }
-
-        // "Halen çalışıyorum" seçildiğinde bitiş tarihi alanını devre dışı bırak
-        function toggleEndDate(checkbox) {
-            const endDate = checkbox.closest('.three-column').querySelector('#end_date');
-            if (checkbox.checked) {
-                endDate.value = '';
-                endDate.disabled = true;
-            } else {
-                endDate.disabled = false;
-            }
-        }
-
-        // "Aynı iş yeri" seçildiğinde şirket adını devre dışı bırak
-        function toggleSameCompany(checkbox) {
-            const companyName = checkbox.closest('.job-entry').querySelector('#company_name');
-            if (checkbox.checked) {
-                companyName.value = '';
-                companyName.disabled = true;
-            } else {
-                companyName.disabled = false;
-            }
-        }
-        
-        
-        // Yeni eğitim bilgisi ekle
-        function addEducation() {
-            const container = document.getElementById('education-experiences');
-            const firstEducation = container.querySelector('.education-entry');
-            const newEducation = firstEducation.cloneNode(true);
-
-            // İçerikleri temizle
-            newEducation.querySelectorAll('input').forEach(input => {
-                if (input.type === 'checkbox') {
-                    input.checked = false;
-                } else {
-                    input.value = '';
-                }
+            prevBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + images.length) % images.length;
+                updateCarousel();
             });
 
-            container.insertBefore(newEducation, container.querySelector('.action-buttons'));
-        }
+            nextBtn.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % images.length;
+                updateCarousel();
+            });
 
-        // Son eğitim bilgisini sil
-        function removeEducation() {
-            const container = document.getElementById('education-experiences');
-            const educationEntries = container.querySelectorAll('.education-entry');
+            prevStep.addEventListener('click', () => {
+                window.location.href = "/step2";
+            });
 
-            if (educationEntries.length > 1) {
-                educationEntries[educationEntries.length - 1].remove();
-            }
-        }
-
-        // "Halen devam ediyorum" seçildiğinde mezuniyet yılı alanını devre dışı bırak
-        function toggleEndYear(checkbox) {
-            const endYear = checkbox.closest('.three-column').querySelector('#end_year');
-            if (checkbox.checked) {
-                endYear.value = '';
-                endYear.disabled = true;
-            } else {
-                endYear.disabled = false;
-            }
-        }
+            updateCarousel();
+        });
     </script>
-    <script src="/static/js/step2/educationinfo.js" defer></script>
-    <script src="/static/js/step2/languageinfo.js" defer></script>
-    <script src="/static/js/step2/skillsinfo.js" defer></script>
-    <script src="/static/js/step2/softskillsinfo.js" defer></script>
-    <script src="/static/js/step2/selfinfo.js" defer></script>
-    <script src="/static/js/step2/projectsinfo.js" defer></script>
-    <script src="/static/js/step2/certificateinfo.js" defer></script>
-    <script src="/static/js/step2/referencesinfo.js" defer></script>
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 CVYarat. Tüm Hakları Saklıdır.</p>
-        </div>
-    </footer>
-</div>
 </body>
 </html>
